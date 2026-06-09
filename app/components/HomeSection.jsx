@@ -23,7 +23,7 @@ export default function HomeSection() {
               <LiquidGlass borderRadius={999} blur={0.4} saturation={1.4} shadowIntensity={0.12} zIndex={10}>
                 <div className={styles.badge}>
                   <CodeIcon className={styles.badgeIcon} />
-                  <span>MetaTrader EA Generator — MT4 &amp; MT5 Supported</span>
+                  <span>MetaTrader EA Generator MT4 &amp; MT5 Supported</span>
                 </div>
               </LiquidGlass>
             </div>
@@ -37,7 +37,7 @@ export default function HomeSection() {
             </h1>
 
             <p className={styles.heroDescription}>
-              Configure your <span>forex strategy</span> — indicators, risk
+              Configure your <span>forex strategy</span> indicators, risk
               management, session filters, and more. Get a professional
               trading bot deployed to MT4/MT5 instantly.
             </p>
