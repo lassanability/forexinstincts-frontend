@@ -1,0 +1,242 @@
+"use client";
+
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { useAuthStore } from "@/app/store/AuthStore";
+import { useOrderStore } from "@/app/store/OrderStore";
+import StepIndicator from "./components/StepIndicator";
+import BasicInfoStep from "./components/BasicInfoStep";
+import RiskStep from "./components/RiskStep";
+import EntryStep from "./components/EntryStep";
+import ProtectionStep from "./components/ProtectionStep";
+import AdvancedStep from "./components/AdvancedStep";
+import ReviewStep from "./components/ReviewStep";
+import styles from "@/app/style/build.module.css";
+
+const STEPS = ["Basic Info", "Risk", "Entry", "Protection", "Advanced", "Review & Pay"];
+
+function BuildContent() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const { isAuth } = useAuthStore();
+  const { tiers, tiersLoading, fetchTiers, createOrder, initializePayment } = useOrderStore();
+  const [step, setStep] = useState(0);
+  const [submitting, setSubmitting] = useState(false);
+
+  const [config, setConfig] = useState({
+    tierId: "",
+    tierName: "basic",
+    botName: "",
+    symbol: "EURUSD",
+    timeframe: "H1",
+    platform: "MT4",
+    tradingDirection: "both",
+    riskManagement: { mode: "fixed", lotSize: 0.01, riskPercent: 1, maxOpenTrades: 1, maxTradesPerDay: 5 },
+    entry: { strategy: "ma_crossover", indicators: [], logic: "AND" },
+    exit: {
+      takeProfit: 100,
+      stopLoss: 50,
+      trailingStop: { enabled: false, distance: 30, step: 15 },
+      breakEven: { enabled: false, triggerPips: 20, lockPips: 5 },
+      partialClose: { enabled: false, percent: 50, atPips: 50 },
+    },
+    filters: { maxSpread: 20, sessions: [], newsFilter: false },
+    advanced: {
+      magicNumber: 0,
+      emailNotifications: false,
+      pushNotifications: false,
+      multiTimeframe: { enabled: false, confirmationTimeframe: "H4", indicator: "MA", period: 50 },
+      grid: { enabled: false, distance: 50, maxLevels: 5, lotMultiplier: 1 },
+      martingale: { enabled: false, multiplier: 2, maxLevel: 3 },
+    },
+  });
+  const [durationHours, setDurationHours] = useState(10);
+  const [selectedFeatures, setSelectedFeatures] = useState([]);
+
+  useEffect(() => {
+    fetchTiers().then((result) => {
+      if (result?.success && result?.data?.length) {
+        const tierParam = searchParams.get("tier") || "basic";
+        const found =
+          result.data.find((t) => t._id === tierParam || t.name === tierParam) ||
+          result.data[0];
+        if (found) {
+          setConfig((p) => ({ ...p, tierId: found._id, tierName: found.name }));
+        }
+      }
+    });
+    const dParam = searchParams.get("duration");
+    if (dParam) setDurationHours(Number(dParam));
+    const fParam = searchParams.get("features");
+    if (fParam) setSelectedFeatures(fParam.split(",").map(decodeURIComponent).filter(Boolean));
+  }, [fetchTiers, searchParams]);
+
+  const selectedTier = tiers.find((t) => t._id === config.tierId);
+
+  const update = (path, value) => {
+    setConfig((prev) => {
+      const keys = path.split(".");
+      const next = { ...prev };
+      let cur = next;
+      for (let i = 0; i < keys.length - 1; i++) {
+        cur[keys[i]] = { ...cur[keys[i]] };
+        cur = cur[keys[i]];
+      }
+      cur[keys[keys.length - 1]] = value;
+      return next;
+    });
+  };
+
+  const next = () => setStep((s) => Math.min(s + 1, STEPS.length - 1));
+  const back = () => setStep((s) => Math.max(s - 1, 0));
+
+  const onTierChange = (tier) => {
+    const isBasic = tier.name === "basic";
+    const isAdvanced = tier.name === "advanced";
+    setConfig((p) => ({
+      ...p,
+      tierId: tier._id,
+      tierName: tier.name,
+      entry: { ...p.entry, indicators: isBasic ? [] : p.entry.indicators },
+      filters: { ...p.filters, sessions: isBasic ? [] : p.filters.sessions },
+      exit: {
+        ...p.exit,
+        trailingStop: isBasic ? { enabled: false, distance: 30, step: 15 } : p.exit.trailingStop,
+        breakEven: isBasic ? { enabled: false, triggerPips: 20, lockPips: 5 } : p.exit.breakEven,
+      },
+      advanced: {
+        ...p.advanced,
+        multiTimeframe: isBasic ? { enabled: false, confirmationTimeframe: "H4", indicator: "MA", period: 50 } : p.advanced.multiTimeframe,
+        grid: !isAdvanced ? { enabled: false, distance: 50, maxLevels: 5, lotMultiplier: 1 } : p.advanced.grid,
+        martingale: !isAdvanced ? { enabled: false, multiplier: 2, maxLevel: 3 } : p.advanced.martingale,
+      },
+    }));
+  };
+
+  const handleSubmitOrder = async () => {
+    if (!isAuth) {
+      toast.error("Please sign in to continue");
+      router.push("/authentication/login");
+      return;
+    }
+    if (!config.botName.trim()) {
+      toast.error("Please enter a bot name");
+      setStep(0);
+      return;
+    }
+    if (!config.tierId) {
+      toast.error("Please select a tier");
+      setStep(0);
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const orderResult = await createOrder(
+        config.tierId,
+        config.botName,
+        {
+          symbol: config.symbol,
+          timeframe: config.timeframe,
+          platform: config.platform,
+          tradingDirection: config.tradingDirection,
+          riskManagement: config.riskManagement,
+          entry: config.entry,
+          exit: config.exit,
+          filters: config.filters,
+          advanced: config.advanced,
+        },
+        selectedFeatures,
+        durationHours
+      );
+
+      if (!orderResult.success) {
+        toast.error(orderResult.message || "Failed to create order");
+        setSubmitting(false);
+        return;
+      }
+
+      const payResult = await initializePayment(orderResult.orderId);
+      if (!payResult.success) {
+        toast.error(payResult.message || "Payment initialization failed");
+        setSubmitting(false);
+        return;
+      }
+
+      window.location.href = payResult.authorizationUrl;
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+      setSubmitting(false);
+    }
+  };
+
+  if (tiersLoading && tiers.length === 0) {
+    return (
+      <div className={styles.page}>
+        <div className={styles.loading}>
+          <div className={styles.spinner} />
+        </div>
+      </div>
+    );
+  }
+
+  const stepProps = { config, update, tiers, selectedTier, onTierChange, durationHours, selectedFeatures };
+
+  return (
+    <div className={styles.page}>
+      <div className={styles.header}>
+        <h1>Build Your Trading Bot</h1>
+        <p>Configure every detail of your trading bot</p>
+      </div>
+
+      <StepIndicator steps={STEPS} current={step} />
+
+      <div className={styles.stepContent}>
+        {step === 0 && <BasicInfoStep {...stepProps} />}
+        {step === 1 && <RiskStep {...stepProps} />}
+        {step === 2 && <EntryStep {...stepProps} />}
+        {step === 3 && <ProtectionStep {...stepProps} />}
+        {step === 4 && <AdvancedStep {...stepProps} />}
+        {step === 5 && (
+          <ReviewStep
+            {...stepProps}
+            onPay={handleSubmitOrder}
+            paying={submitting}
+            onDurationChange={setDurationHours}
+            onFeaturesChange={setSelectedFeatures}
+          />
+        )}
+      </div>
+
+      <div className={styles.nav}>
+        {step > 0 && (
+          <button className={styles.backBtn} onClick={back}>
+            ← Back
+          </button>
+        )}
+        {step < STEPS.length - 1 && (
+          <button className={styles.nextBtn} onClick={next}>
+            Next →
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function BuildBotPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className={styles.page}>
+          <div className={styles.loading}>
+            <div className={styles.spinner} />
+          </div>
+        </div>
+      }
+    >
+      <BuildContent />
+    </Suspense>
+  );
+}

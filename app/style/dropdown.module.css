@@ -1,0 +1,101 @@
+@media screen {
+  .wrap {
+    width: 100%;
+    position: relative;
+    font-family: var(--font-family-primary);
+  }
+
+  .trigger {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--light-background-color);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--dark-color);
+    font-size: 0.9rem;
+    font-family: var(--font-family-primary);
+    cursor: pointer;
+    text-align: left;
+    transition: border-color var(--transition-fast);
+  }
+
+  .trigger:hover {
+    border-color: var(--primary-color);
+  }
+
+  .chevron {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: var(--warm-gray);
+    transition: transform var(--transition-normal);
+  }
+
+  .chevronOpen {
+    transform: rotate(180deg);
+  }
+
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 350px;
+    overflow-y: auto;
+    border-radius: 12px;
+    background: var(--background-color);
+    box-shadow: var(--shadow-light);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: none;
+    background: var(--light-background-color);
+    color: var(--dark-color);
+    font-size: 0.875rem;
+    font-family: var(--font-family-primary);
+    cursor: pointer;
+    text-align: left;
+    text-transform: capitalize;
+    transition: background var(--transition-fast), color var(--transition-fast);
+  }
+
+  .option:hover {
+    background: var(--secondary-color);
+    color: var(--background-color);
+  }
+
+  .optionActive {
+    background: var(--primary-color);
+    color: var(--background-color);
+  }
+
+  .optionActive:hover {
+    background: var(--primary-color);
+  }
+
+  .checkIcon {
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+}

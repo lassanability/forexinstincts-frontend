@@ -1,0 +1,274 @@
+@media screen {
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(17, 24, 39, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      backdrop-filter: blur(0px);
+    }
+    to {
+      opacity: 1;
+      backdrop-filter: blur(8px);
+    }
+  }
+
+  .modalContent {
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--background-color);
+    border: 2px solid rgba(0, 200, 150, 0.1);
+    border-radius: 24px;
+    overflow: hidden;
+    animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+  }
+
+  @keyframes modalSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(34px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .modalClose {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--background-color);
+    border: 2px solid rgba(0, 200, 150, 0.1);
+    border-radius: 50%;
+    color: var(--warm-gray);
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+  }
+
+  .modalClose:hover {
+    background: var(--gradient-primary);
+    border-color: transparent;
+    color: var(--light-color);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 16px rgba(0, 200, 150, 0.3);
+  }
+
+  .modalHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl);
+    border-bottom: 2px solid rgba(0, 200, 150, 0.08);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 200, 150, 0.02) 0%,
+      transparent 100%
+    );
+  }
+
+  .modalHeader h2 {
+    font-size: 32px;
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-family-heading);
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    flex: 1;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .modalBookmark {
+    background: rgba(0, 200, 150, 0.08);
+    border: none;
+    color: var(--warm-gray);
+    font-size: 28px;
+    cursor: pointer;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .modalBookmark:hover {
+    background: rgba(0, 200, 150, 0.15);
+    color: var(--primary-color);
+    transform: scale(1.15) rotate(5deg);
+  }
+
+  .bookmarked {
+    color: var(--primary-color);
+  }
+
+  .modalBody {
+    flex: 1;
+    padding: var(--spacing-xl);
+    overflow-y: auto;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--dark-color);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .modalBody::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .modalBody::-webkit-scrollbar-track {
+    background: rgba(0, 200, 150, 0.05);
+    border-radius: 4px;
+  }
+
+  .modalBody::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: 4px;
+  }
+
+  .modalBody h2 {
+    font-size: 26px;
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-family-heading);
+    color: var(--dark-color);
+    margin: 32px 0 16px 0;
+  }
+
+  .modalBody h2:first-child {
+    margin-top: 0;
+  }
+
+  .modalBody h3 {
+    font-size: 20px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-color);
+    margin: 24px 0 12px 0;
+  }
+
+  .modalBody p {
+    margin: 0 0 16px 0;
+    color: #4b5563;
+    line-height: 1.8;
+  }
+
+  .modalBody ul {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+  }
+
+  .modalBody li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    margin-bottom: 10px;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 200, 150, 0.04) 0%,
+      rgba(0, 229, 176, 0.04) 100%
+    );
+    border-radius: 12px;
+    transition: all 0.2s ease;
+  }
+
+  .modalBody li:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 200, 150, 0.08) 0%,
+      rgba(0, 229, 176, 0.08) 100%
+    );
+    transform: translateX(4px);
+  }
+
+  .modalBody li::before {
+    content: "✨";
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+
+  .modalBody strong {
+    color: var(--primary-color);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .modalFooter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xl);
+    border-top: 2px solid rgba(0, 200, 150, 0.08);
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 200, 150, 0.02) 100%
+    );
+  }
+
+  .modalAskButton {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 34px;
+    background: var(--gradient-primary);
+    color: var(--light-color);
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 24px rgba(0, 200, 150, 0.3);
+  }
+
+  .modalAskButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0, 200, 150, 0.4);
+  }
+}
+
+/* Tablet & Up */
+@media only screen and (min-width: 48em) {
+  .modalContent {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(34px);
+    -webkit-backdrop-filter: blur(34px);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15),
+      0 8px 32px rgba(0, 200, 150, 0.1);
+  }
+
+  .modalClose {
+    background: rgba(255, 255, 255, 0.9);
+  }
+}

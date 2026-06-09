@@ -1,0 +1,134 @@
+@media screen {
+  .wrap {
+    height: 100%;
+    min-height: 44px;
+    position: relative;
+    width: fit-content;
+  }
+
+  .trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: inherit;
+    min-height: 44px;
+    padding: 0 14px;
+    border: none;
+    border-radius: var(--radius-circle);
+    background: var(--glass-bg-light);
+    backdrop-filter: var(--blur-sm);
+    -webkit-backdrop-filter: var(--blur-sm);
+    border: var(--glass-border-pink);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-color);
+    white-space: nowrap;
+    transition: all var(--transition-normal);
+  }
+
+  .trigger:hover {
+    background: var(--glass-bg-medium);
+    box-shadow: var(--glass-shadow-pink);
+    border: var(--glass-border-pink-hover);
+  }
+
+  .globe {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    color: var(--primary-color);
+  }
+
+  .label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-color);
+  }
+
+  .chevron {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    color: var(--primary-color);
+    transition: transform 0.2s ease;
+  }
+
+  .chevronOpen {
+    transform: rotate(180deg);
+  }
+
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 9999;
+    background: var(--glass-bg-strong);
+    backdrop-filter: var(--blur-md);
+    -webkit-backdrop-filter: var(--blur-md);
+    border: var(--glass-border-pink);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow-lg);
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 180px;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 9px 12px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: var(--font-size-xs);
+    color: var(--dark-color);
+    text-align: left;
+    transition: background var(--transition-fast);
+    width: 100%;
+  }
+
+  .option:hover {
+    background: rgba(0, 200, 150, 0.08);
+    color: var(--primary-color);
+  }
+
+  .optionActive {
+    background: rgba(0, 200, 150, 0.12);
+    color: var(--primary-color);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .checkIcon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    color: var(--secondary-color);
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .wrap {
+    width: 100%;
+  }
+
+  .trigger {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .dropdown {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+}

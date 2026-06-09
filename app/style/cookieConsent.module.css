@@ -1,0 +1,100 @@
+@media screen {
+  .banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--light-background-color);
+    border-top: 1px solid rgba(0, 200, 150, 0.2);
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .inner {
+    max-width: var(--app-max-width, 1200px);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+  }
+
+  .text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .text p {
+    font-size: var(--font-size-sm);
+    color: var(--warm-gray);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .text a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .text a:hover {
+    color: var(--secondary-color);
+  }
+
+  .actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-shrink: 0;
+  }
+
+  .declineBtn {
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(0, 200, 150, 0.25);
+    background: transparent;
+    color: var(--warm-gray);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    font-family: inherit;
+  }
+
+  .declineBtn:hover {
+    border-color: rgba(0, 200, 150, 0.5);
+    color: var(--dark-color);
+  }
+
+  .acceptBtn {
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    border: none;
+    background: var(--gradient-primary);
+    color: #fff;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    font-family: inherit;
+    box-shadow: 0 2px 12px rgba(0, 200, 150, 0.3);
+  }
+
+  .acceptBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0, 200, 150, 0.45);
+  }
+}
