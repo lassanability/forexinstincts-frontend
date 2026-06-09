@@ -27,13 +27,11 @@ export default function CookieConsent() {
   return (
     <div className={styles.banner}>
       <div className={styles.inner}>
-        <div className={styles.text}>
           <p>
             We use local storage to keep you signed in and save your preferences.
             No third-party tracking.{" "}
             <Link href="/privacy">Learn more</Link>.
           </p>
-        </div>
         <div className={styles.actions}>
           <button className={styles.declineBtn} onClick={decline}>Decline</button>
           <button className={styles.acceptBtn} onClick={accept}>Accept</button>
