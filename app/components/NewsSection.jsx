@@ -32,8 +32,7 @@ export default function NewsSection() {
       list = list.filter(
         (n) =>
           n.title?.toLowerCase().includes(q) ||
-          n.summary?.toLowerCase().includes(q) ||
-          n.content?.toLowerCase().includes(q)
+          n.summary?.toLowerCase().includes(q)
       );
     }
     return list;
