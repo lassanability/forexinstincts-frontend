@@ -12,6 +12,7 @@ export const useAuthStore = create(
       email: "",
       token: "",
       profileImage: "",
+      hasUsedTrial: false,
       isInitialized: false,
 
       setUser: (userData, token) => {
@@ -22,6 +23,7 @@ export const useAuthStore = create(
           email: userData.email,
           token,
           profileImage: userData.profileImage || "",
+          hasUsedTrial: userData.hasUsedTrial || false,
           isInitialized: true,
         });
       },
@@ -34,8 +36,25 @@ export const useAuthStore = create(
           email: "",
           token: "",
           profileImage: "",
+          hasUsedTrial: false,
           isInitialized: false,
         });
+      },
+
+      setHasUsedTrial: () => set({ hasUsedTrial: true }),
+
+      fetchProfile: async () => {
+        try {
+          const { token } = get();
+          if (!token) return;
+          const response = await fetch(`${SERVER_API}/user/profile`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          const data = await response.json();
+          if (data.success && data.user) {
+            set({ hasUsedTrial: data.user.hasUsedTrial || false });
+          }
+        } catch {}
       },
 
       register: async (name, email, password) => {
@@ -47,10 +66,42 @@ export const useAuthStore = create(
           });
           const data = await response.json();
           if (data.success) {
-            get().setUser(data.user, data.token);
+            set({ email });
             return { success: true, message: data.message };
           }
           return { success: false, message: data.message || "Registration failed" };
+        } catch {
+          return { success: false, message: "Connection failed. Please try again." };
+        }
+      },
+
+      verifyEmail: async (email, verificationCode) => {
+        try {
+          const response = await fetch(`${SERVER_API}/user/verify-email`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, verificationCode }),
+          });
+          const data = await response.json();
+          if (data.success) {
+            get().setUser(data.user, data.token);
+            return { success: true, message: data.message };
+          }
+          return { success: false, message: data.message || "Verification failed" };
+        } catch {
+          return { success: false, message: "Connection failed. Please try again." };
+        }
+      },
+
+      resendVerificationCode: async (email) => {
+        try {
+          const response = await fetch(`${SERVER_API}/user/resend-verification`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+          });
+          const data = await response.json();
+          return { success: data.success, message: data.message };
         } catch {
           return { success: false, message: "Connection failed. Please try again." };
         }
@@ -176,6 +227,7 @@ export const useAuthStore = create(
         email: state.email,
         token: state.token,
         profileImage: state.profileImage,
+        hasUsedTrial: state.hasUsedTrial,
       }),
     }
   )

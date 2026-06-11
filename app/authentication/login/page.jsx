@@ -111,6 +111,12 @@ export default function Login() {
           </button>
         </div>
 
+        <div className={styles.forgotpasswordspan}>
+          <span onClick={() => router.push("/authentication/resetcode")}>
+            Forgot password?
+          </span>
+        </div>
+
         <button
           type="submit"
           disabled={isLoading}

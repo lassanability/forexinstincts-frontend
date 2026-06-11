@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
   const description =
     blog.excerpt || blog.content?.replace(/<[^>]*>/g, "").substring(0, 160) || "";
   const canonical = `${SITE_URL}/blog/${id}`;
-  const image = blog.coverImage || `${SITE_URL}/banner.png`;
+  const image = blog.coverImage || `${SITE_URL}/assets/banner.png`;
 
   return {
     title: blog.title,
@@ -65,7 +65,7 @@ export default async function BlogPostPage({ params }) {
   const canonical = `${SITE_URL}/blog/${id}`;
   const description =
     blog.excerpt || blog.content?.replace(/<[^>]*>/g, "").substring(0, 160) || "";
-  const image = blog.coverImage || `${SITE_URL}/banner.png`;
+  const image = blog.coverImage || `${SITE_URL}/assets/banner.png`;
 
   const articleSchema = {
     "@context": "https://schema.org",

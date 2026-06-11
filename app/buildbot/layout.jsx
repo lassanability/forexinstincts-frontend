@@ -10,7 +10,7 @@ export const metadata = {
     url: `${SITE_URL}/buildbot`,
     title: "Build Your Custom Forex Trading Bot — ForexInstincts",
     description: "Step-by-step wizard to configure your strategy, indicators, risk settings, and more. Bot code generated instantly after payment.",
-    images: [{ url: `${SITE_URL}/banner.png`, width: 1200, height: 630 }],
+    images: [{ url: `${SITE_URL}/assets/banner.png`, width: 1200, height: 630 }],
   },
   robots: { index: true, follow: true },
 };

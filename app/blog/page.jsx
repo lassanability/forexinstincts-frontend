@@ -23,13 +23,13 @@ export const metadata = {
     url: `${SITE_URL}/blog`,
     title: "Trading Blog — Forex Strategies & EA Guides | ForexInstincts",
     description: "Expert insights on forex trading strategies, expert advisor development, risk management, and automated trading.",
-    images: [{ url: `${SITE_URL}/banner.png`, width: 1200, height: 630, alt: "ForexInstincts Trading Blog" }],
+    images: [{ url: `${SITE_URL}/assets/banner.png`, width: 1200, height: 630, alt: "ForexInstincts Trading Blog" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Trading Blog — Forex Strategies & EA Guides",
     description: "Expert insights on forex trading strategies, expert advisor development and automated trading.",
-    images: [`${SITE_URL}/banner.png`],
+    images: [`${SITE_URL}/assets/banner.png`],
   },
 };
 

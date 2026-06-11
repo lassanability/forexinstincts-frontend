@@ -267,6 +267,32 @@
   .btnLoginContainer:hover {
     color: var(--primary-color);
   }
+
+  .formFooter {
+    text-align: center;
+  }
+
+  .formFooter p span {
+    cursor: pointer;
+    color: var(--secondary-color);
+    text-decoration: underline;
+    font-size: var(--font-size-sm);
+    transition: color 0.2s ease;
+  }
+
+  .formFooter p span:hover {
+    color: var(--primary-color);
+  }
+
+  .termsContainer label a {
+    color: var(--secondary-color);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+  }
+
+  .termsContainer label a:hover {
+    color: var(--primary-color);
+  }
 }
 
 /* Tablet & Small Laptop Screens */

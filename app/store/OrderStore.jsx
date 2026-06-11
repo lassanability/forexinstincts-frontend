@@ -31,6 +31,32 @@ export const useOrderStore = create((set, get) => ({
     }
   },
 
+  createTrialOrder: async (botName, config) => {
+    try {
+      const { getAuthHeader, setHasUsedTrial } = useAuthStore.getState();
+      const response = await fetch(`${SERVER_API}/orders/trial`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...getAuthHeader(),
+        },
+        body: JSON.stringify({ botName, config }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        setHasUsedTrial();
+        return {
+          success: true,
+          orderId: data.data?.orderId,
+          trialExpiresAt: data.data?.trialExpiresAt,
+        };
+      }
+      return { success: false, message: data.message };
+    } catch {
+      return { success: false, message: "Failed to create trial order" };
+    }
+  },
+
   createOrder: async (tierId, botName, config, selectedFeatures = [], durationHours = 10) => {
     try {
       const { getAuthHeader } = useAuthStore.getState();

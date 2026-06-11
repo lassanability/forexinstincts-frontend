@@ -21,13 +21,13 @@ export const metadata = {
     url: `${SITE_URL}/news`,
     title: "Platform News & Updates | ForexInstincts",
     description: "Latest ForexInstincts platform updates, new features, and forex market news.",
-    images: [{ url: `${SITE_URL}/banner.png`, width: 1200, height: 630, alt: "ForexInstincts News" }],
+    images: [{ url: `${SITE_URL}/assets/banner.png`, width: 1200, height: 630, alt: "ForexInstincts News" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Platform News & Updates — ForexInstincts",
     description: "Latest ForexInstincts platform updates, new features, and forex market news.",
-    images: [`${SITE_URL}/banner.png`],
+    images: [`${SITE_URL}/assets/banner.png`],
   },
 };
 

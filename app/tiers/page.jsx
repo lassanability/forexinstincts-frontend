@@ -13,7 +13,7 @@ export const metadata = {
     url: `${SITE_URL}/tiers`,
     title: "Pricing & Bot Tiers — ForexInstincts",
     description: "Three tiers — Basic, Complex, Advanced. One-time payment, instant bot generation. Configure your strategy and get professional EA code.",
-    images: [{ url: `${SITE_URL}/banner.png`, width: 1200, height: 630 }],
+    images: [{ url: `${SITE_URL}/assets/banner.png`, width: 1200, height: 630 }],
   },
 };
 

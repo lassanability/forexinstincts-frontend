@@ -22,6 +22,14 @@ import {
 
 const SERVER_API = process.env.NEXT_PUBLIC_SERVER_API;
 
+const formatTrialExpiry = (dateStr) => {
+  if (!dateStr) return "6h after generation";
+  const d = new Date(dateStr);
+  const now = new Date();
+  if (d < now) return "Expired";
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+};
+
 const STATUS_CONFIG = {
   pending:    { label: "Queued",     Icon: ClockIcon },
   generating: { label: "Generating", Icon: SyncIcon },
@@ -33,7 +41,9 @@ export default function Dashboard() {
   const router = useRouter();
   const { isAuth, username, isInitialized, initializeAuth } = useAuthStore();
   const { orders: rawOrders, ordersLoading, getMyOrders, downloadBot } = useOrderStore();
-  const orders = rawOrders.filter((o) => o.status === "paid" || o.status === "generated");
+  const orders = rawOrders.filter(
+    (o) => o.status === "paid" || o.status === "generated" || o.status === "trial" || o.isTrial
+  );
   const [downloadingId, setDownloadingId] = useState(null);
 
   const [testimonyText, setTestimonyText] = useState("");
@@ -164,11 +174,16 @@ export default function Dashboard() {
               const isFailed = genStatus === "failed";
 
               return (
-                <div key={order._id} className={styles.orderCard}>
+                <div key={order._id} className={styles.orderCard} data-trial={order.isTrial ? "true" : undefined}>
                   <div className={styles.orderCardHeader}>
                     <div className={styles.orderInfo}>
                       <h3>{order.botName}</h3>
                       <div className={styles.orderMeta}>
+                        {order.isTrial && (
+                          <div className={styles.orderTrialPill}>
+                            <span>Trial</span>
+                          </div>
+                        )}
                         <span>{order.tierName}</span>
                         <span>•</span>
                         <span>{order.config?.symbol || "—"}</span>
@@ -200,6 +215,19 @@ export default function Dashboard() {
                       <span>Downloads</span>
                       <span>{order.generation?.downloadCount || 0}</span>
                     </div>
+                    {order.isTrial && (
+                      <div
+                        className={styles.orderDetail}
+                        data-expired={
+                          order.trialExpiresAt && new Date(order.trialExpiresAt) < new Date()
+                            ? "true"
+                            : undefined
+                        }
+                      >
+                        <span>Trial Expires</span>
+                        <span>{formatTrialExpiry(order.trialExpiresAt)}</span>
+                      </div>
+                    )}
                   </div>
 
                   {isReady && (

@@ -19,13 +19,13 @@ export const metadata = {
     url: SITE_URL,
     title: "Build Custom Forex Trading Bots — MT4 & MT5 EA Generator",
     description: "Create professional MetaTrader Expert Advisors in minutes. Configure your strategy, indicators, and risk settings — bot code generated instantly after payment.",
-    images: [{ url: `${SITE_URL}/banner.png`, width: 1200, height: 630, alt: "ForexInstincts — Custom Forex Bot Generator" }],
+    images: [{ url: `${SITE_URL}/assets/banner.png`, width: 1200, height: 630, alt: "ForexInstincts — Custom Forex Bot Generator" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Build Custom Forex Trading Bots — MT4 & MT5",
     description: "Professional EA code generated instantly from your strategy configuration. No coding required.",
-    images: [`${SITE_URL}/banner.png`],
+    images: [`${SITE_URL}/assets/banner.png`],
   },
 };
 

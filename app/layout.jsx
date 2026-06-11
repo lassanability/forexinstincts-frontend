@@ -5,6 +5,7 @@ import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import GlobalLoader from "@/app/components/GlobalLoader";
 import CookieConsent from "@/app/components/CookieConsent";
+import TrialNotification from "@/app/components/TrialNotification";
 import styles from "@/app/style/applayout.module.css";
 import { Inter, Sora, JetBrains_Mono } from "next/font/google";
 import { StoreInitializer } from "@/app/components/StoreInitializer";
@@ -236,6 +237,7 @@ export default function RootLayout({ children }) {
         />
         <GlobalLoader />
         <CookieConsent />
+        <TrialNotification />
         <div className={styles.appLayout}>
           <Navbar />
           <StoreInitializer>{children}</StoreInitializer>

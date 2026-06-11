@@ -12,7 +12,7 @@ const TIER_ORDER = ["basic", "complex", "advanced"];
 
 export default function PricingGrid() {
   const router = useRouter();
-  const { isAuth } = useAuthStore();
+  const { isAuth, hasUsedTrial } = useAuthStore();
   const { tiers, tiersLoading, fetchTiers } = useOrderStore();
   const [tierIndex, setTierIndex] = useState(1);
   const [durationIndex, setDurationIndex] = useState(0);
@@ -70,6 +70,14 @@ export default function PricingGrid() {
     router.push(buildPath);
   };
 
+  const handleTrial = () => {
+    if (!isAuth) {
+      router.push("/authentication/signup");
+      return;
+    }
+    router.push("/buildbot?trial=true");
+  };
+
   if (tiersLoading && !tiers?.length) {
     return (
       <div className={styles.wrapper}>
@@ -106,6 +114,32 @@ export default function PricingGrid() {
             <div className={`${styles.skeletonPriceNote} skeleton`} />
           </div>
           <div className={`${styles.skeletonBtn} skeleton`} />
+        </div>
+
+        <div className={styles.trialSection}>
+          <div className={styles.trialCard}>
+            <div className={styles.trialCardBadge}>
+              <span>{isAuth && hasUsedTrial ? "USED" : "FREE"}</span>
+            </div>
+            <h3>Try Before You Buy</h3>
+            <p>
+              Generate a basic trading bot free of charge. Valid for 6 hours — no payment required.
+              {!isAuth && " Create an account to get started."}
+              {isAuth && hasUsedTrial && " You have already used your free trial."}
+            </p>
+            {isAuth && hasUsedTrial ? (
+              <button className={styles.trialBtn} disabled>
+                Trial Already Used
+              </button>
+            ) : (
+              <button className={styles.trialBtn} onClick={handleTrial}>
+                {isAuth ? "Start Free Trial" : "Create Account for Free Trial"}
+              </button>
+            )}
+            <div className={styles.trialCardNote}>
+              <span>Account required · Basic tier · 6h validity</span>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -234,6 +268,32 @@ export default function PricingGrid() {
 
         <div className={styles.secureNote}>
           <span>Secure payment via Paystack · Bot generated instantly after confirmation</span>
+        </div>
+      </div>
+
+      <div className={styles.trialSection}>
+        <div className={styles.trialCard}>
+          <div className={styles.trialCardBadge}>
+            <span>{isAuth && hasUsedTrial ? "USED" : "FREE"}</span>
+          </div>
+          <h3>Try Before You Buy</h3>
+          <p>
+            Generate a basic trading bot free of charge. Valid for 6 hours — no payment required.
+            {!isAuth && " Create an account to get started."}
+            {isAuth && hasUsedTrial && " You have already used your free trial."}
+          </p>
+          {isAuth && hasUsedTrial ? (
+            <button className={styles.trialBtn} disabled>
+              Trial Already Used
+            </button>
+          ) : (
+            <button className={styles.trialBtn} onClick={handleTrial}>
+              {isAuth ? "Start Free Trial" : "Create Account for Free Trial"}
+            </button>
+          )}
+          <div className={styles.trialCardNote}>
+            <span>Account required · Basic tier · 6h validity</span>
+          </div>
         </div>
       </div>
     </div>

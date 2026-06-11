@@ -1824,6 +1824,30 @@
     border: 1px solid rgba(239, 68, 68, 0.2);
   }
 
+  .orderTrialPill {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: 999px;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .orderTrialPill span {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #0b0f1a;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .orderDetail[data-expired="true"] span:last-child {
+    color: var(--error-color);
+  }
+
+  .orderCard[data-trial="true"] {
+    border-color: rgba(0, 200, 150, 0.28);
+  }
+
   /* ==================== TESTIMONY SECTION ==================== */
   .testimonySection {
     background: var(--glass-bg-light);

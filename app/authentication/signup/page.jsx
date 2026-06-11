@@ -2,8 +2,10 @@
 
 import { toast } from "sonner";
 import { useState, Suspense } from "react";
+import Link from "next/link";
 import Loader from "@/app/components/Loader";
 import { useAuthStore } from "@/app/store/AuthStore";
+import { getEmailValidationError } from "@/app/lib/emailValidation";
 import styles from "@/app/style/auth.module.css";
 import { useRouter } from "next/navigation";
 
@@ -57,6 +59,11 @@ function SignUpForm() {
       toast.error("Email is required");
       return;
     }
+    const emailError = await getEmailValidationError(formData.email.trim());
+    if (emailError) {
+      toast.error(emailError);
+      return;
+    }
     if (!formData.password) {
       toast.error("Password is required");
       return;
@@ -84,8 +91,8 @@ function SignUpForm() {
       );
 
       if (result.success) {
-        toast.success(result.message || "Account created successfully!");
-        router.push("/dashboard");
+        toast.success(result.message || "Verification code sent to your email!");
+        router.push("/authentication/verification");
       } else {
         toast.error(result.message || "Registration failed. Please try again.");
       }
@@ -197,7 +204,10 @@ function SignUpForm() {
             required
           />
           <label htmlFor="terms">
-            I accept the terms and conditions
+            I accept the{" "}
+            <Link href="/terms">Terms of Use</Link>
+            {" "}and{" "}
+            <Link href="/privacy">Privacy Policy</Link>
           </label>
         </div>
 

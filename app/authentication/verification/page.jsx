@@ -165,10 +165,7 @@ export default function Verification() {
         <div className={styles.formFooter}>
           <p>
             Wrong email?{" "}
-            <span
-              onClick={() => router.push("/authentication/signup")}
-              style={{ cursor: "pointer", color: "#ec4899" }}
-            >
+            <span onClick={() => router.push("/authentication/signup")}>
               Register again
             </span>
           </p>

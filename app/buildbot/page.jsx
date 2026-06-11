@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
+import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useAuthStore } from "@/app/store/AuthStore";
@@ -14,15 +15,17 @@ import AdvancedStep from "./components/AdvancedStep";
 import ReviewStep from "./components/ReviewStep";
 import styles from "@/app/style/build.module.css";
 
-const STEPS = ["Basic Info", "Risk", "Entry", "Protection", "Advanced", "Review & Pay"];
-
 function BuildContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { isAuth } = useAuthStore();
-  const { tiers, tiersLoading, fetchTiers, createOrder, initializePayment } = useOrderStore();
+  const { isAuth, hasUsedTrial, fetchProfile } = useAuthStore();
+  const { tiers, tiersLoading, fetchTiers, createOrder, initializePayment, createTrialOrder } = useOrderStore();
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
+
+  const isTrial = searchParams.get("trial") === "true";
+
+  const STEPS = ["Basic Info", "Risk", "Entry", "Protection", "Advanced", isTrial ? "Review & Generate" : "Review & Pay"];
 
   const [config, setConfig] = useState({
     tierId: "",
@@ -55,22 +58,44 @@ function BuildContent() {
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
   useEffect(() => {
+    if (isTrial && isAuth) {
+      fetchProfile().then(() => {
+        const { hasUsedTrial: used } = useAuthStore.getState();
+        if (used) {
+          toast.error("You have already used your free trial");
+          router.push("/tiers");
+        }
+      });
+    }
+  }, [isTrial, isAuth, fetchProfile, router]);
+
+  useEffect(() => {
     fetchTiers().then((result) => {
       if (result?.success && result?.data?.length) {
-        const tierParam = searchParams.get("tier") || "basic";
-        const found =
-          result.data.find((t) => t._id === tierParam || t.name === tierParam) ||
-          result.data[0];
-        if (found) {
-          setConfig((p) => ({ ...p, tierId: found._id, tierName: found.name }));
+        if (isTrial) {
+          const basicTier = result.data.find((t) => t.name === "basic") || result.data[0];
+          if (basicTier) {
+            setConfig((p) => ({ ...p, tierId: basicTier._id, tierName: basicTier.name }));
+          }
+          setDurationHours(6);
+        } else {
+          const tierParam = searchParams.get("tier") || "basic";
+          const found =
+            result.data.find((t) => t._id === tierParam || t.name === tierParam) ||
+            result.data[0];
+          if (found) {
+            setConfig((p) => ({ ...p, tierId: found._id, tierName: found.name }));
+          }
         }
       }
     });
-    const dParam = searchParams.get("duration");
-    if (dParam) setDurationHours(Number(dParam));
-    const fParam = searchParams.get("features");
-    if (fParam) setSelectedFeatures(fParam.split(",").map(decodeURIComponent).filter(Boolean));
-  }, [fetchTiers, searchParams]);
+    if (!isTrial) {
+      const dParam = searchParams.get("duration");
+      if (dParam) setDurationHours(Number(dParam));
+      const fParam = searchParams.get("features");
+      if (fParam) setSelectedFeatures(fParam.split(",").map(decodeURIComponent).filter(Boolean));
+    }
+  }, [fetchTiers, searchParams, isTrial]);
 
   const selectedTier = tiers.find((t) => t._id === config.tierId);
 
@@ -171,6 +196,49 @@ function BuildContent() {
     }
   };
 
+  const handleSubmitTrial = async () => {
+    if (!isAuth) {
+      toast.error("Please sign in to continue");
+      router.push("/authentication/login");
+      return;
+    }
+    if (!config.botName.trim()) {
+      toast.error("Please enter a bot name");
+      setStep(0);
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const trialResult = await createTrialOrder(config.botName, {
+        symbol: config.symbol,
+        timeframe: config.timeframe,
+        platform: config.platform,
+        tradingDirection: config.tradingDirection,
+        riskManagement: config.riskManagement,
+        entry: config.entry,
+        exit: config.exit,
+        filters: config.filters,
+        advanced: config.advanced,
+      });
+
+      if (!trialResult.success) {
+        toast.error(trialResult.message || "Failed to generate trial bot");
+        setSubmitting(false);
+        return;
+      }
+
+      const expiryMsg = trialResult.trialExpiresAt
+        ? `Valid until ${new Date(trialResult.trialExpiresAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
+        : "Valid for 6 hours";
+      toast.success(`Trial bot generated! ${expiryMsg}`);
+      router.push("/dashboard");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+      setSubmitting(false);
+    }
+  };
+
   if (tiersLoading && tiers.length === 0) {
     return (
       <div className={styles.page}>
@@ -181,13 +249,16 @@ function BuildContent() {
     );
   }
 
-  const stepProps = { config, update, tiers, selectedTier, onTierChange, durationHours, selectedFeatures };
+  const stepProps = { config, update, tiers, selectedTier, onTierChange: isTrial ? undefined : onTierChange, durationHours, selectedFeatures, isTrial };
 
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <h1>Build Your Trading Bot</h1>
-        <p>Configure every detail of your trading bot</p>
+        {isTrial && (
+          <div className={styles.trialBadge}>Free Trial · Basic Bot · Valid 6 Hours</div>
+        )}
+        <h1>{isTrial ? "Try Your Trading Bot Free" : "Build Your Trading Bot"}</h1>
+        <p>{isTrial ? "Configure a basic bot — generate free, valid for 6 hours" : "Configure every detail of your trading bot"}</p>
       </div>
 
       <StepIndicator steps={STEPS} current={step} />
@@ -201,10 +272,11 @@ function BuildContent() {
         {step === 5 && (
           <ReviewStep
             {...stepProps}
-            onPay={handleSubmitOrder}
+            onPay={isTrial ? handleSubmitTrial : handleSubmitOrder}
             paying={submitting}
-            onDurationChange={setDurationHours}
-            onFeaturesChange={setSelectedFeatures}
+            onDurationChange={isTrial ? undefined : setDurationHours}
+            onFeaturesChange={isTrial ? undefined : setSelectedFeatures}
+            isTrial={isTrial}
           />
         )}
       </div>
@@ -220,6 +292,17 @@ function BuildContent() {
             Next →
           </button>
         )}
+      </div>
+
+      <div className={styles.pageDisclaimer}>
+        <p>
+          Forex Instincts does not guarantee profits or trading performance. Users are solely responsible for defining how their bots operate. The generated bots simply automate the rules and logic specified by the user.
+        </p>
+        <div className={styles.pageDisclaimerLinks}>
+          <Link href="/terms">Terms of Use</Link>
+          <span>·</span>
+          <Link href="/privacy">Privacy Policy</Link>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,128 @@
+@media screen {
+  @keyframes notifSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .notification {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 998;
+    animation: notifSlideUp 0.4s cubic-bezier(0.2, 0, 0, 1) forwards;
+    width: calc(100% - 3rem);
+    max-width: 20rem;
+  }
+
+  .notifCard {
+    background: var(--light-background-color);
+    border: 1px solid rgba(0, 200, 150, 0.35);
+    border-radius: 0.875rem;
+    padding: 1.125rem 1.25rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 200, 150, 0.08);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .notifCloseBtn {
+    position: absolute;
+    top: 0.625rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: var(--warm-gray);
+    cursor: pointer;
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.25rem;
+    transition: color 0.2s ease, background 0.2s ease;
+    font-family: inherit;
+  }
+
+  .notifCloseBtn:hover {
+    color: var(--dark-color);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .notifBadge {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: 999px;
+    padding: 0.175rem 0.65rem;
+    width: fit-content;
+  }
+
+  .notifBadge span {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #0b0f1a;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .notifBody {
+    padding-right: 1.25rem;
+  }
+
+  .notifBody p {
+    color: var(--dark-color);
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .notifCta {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: #0b0f1a;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5625rem 1rem;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    font-family: inherit;
+  }
+
+  .notifCta span {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #0b0f1a;
+  }
+
+  .notifCta:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  .notifNote {
+    text-align: center;
+  }
+
+  .notifNote span {
+    font-size: 0.675rem;
+    color: var(--warm-gray);
+    letter-spacing: 0.01em;
+  }
+}
+
+@media only screen and (max-width: 48em) {
+  .notification {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+    max-width: none;
+  }
+}

@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
 
   const description = article.summary || "";
   const canonical = `${SITE_URL}/news/${id}`;
-  const image = article.coverImage || `${SITE_URL}/banner.png`;
+  const image = article.coverImage || `${SITE_URL}/assets/banner.png`;
 
   return {
     title: article.title,
@@ -64,7 +64,7 @@ export default async function NewsArticlePage({ params }) {
 
   const canonical = `${SITE_URL}/news/${id}`;
   const description = article.summary || "";
-  const image = article.coverImage || `${SITE_URL}/banner.png`;
+  const image = article.coverImage || `${SITE_URL}/assets/banner.png`;
 
   const newsArticleSchema = {
     "@context": "https://schema.org",

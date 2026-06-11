@@ -6,7 +6,7 @@ import { calculateBotPrice, DURATION_OPTIONS } from "@/app/lib/pricingUtils";
 export default function ReviewStep({
   config, selectedTier, onPay, paying,
   durationHours = 10, selectedFeatures = [],
-  onDurationChange, onFeaturesChange,
+  onDurationChange, onFeaturesChange, isTrial = false,
 }) {
   const { isAuth } = useAuthStore();
   const price = calculateBotPrice(
@@ -31,8 +31,8 @@ export default function ReviewStep({
   return (
     <div>
       <div className={styles.stepHeader}>
-        <h2>Review & Pay</h2>
-        <p>Confirm your bot configuration before checkout</p>
+        <h2>{isTrial ? "Review & Generate" : "Review & Pay"}</h2>
+        <p>{isTrial ? "Confirm your bot configuration to generate your free trial" : "Confirm your bot configuration before checkout"}</p>
       </div>
 
       <div className={styles.reviewSection}>
@@ -143,60 +143,85 @@ export default function ReviewStep({
         </div>
       </div>
 
-      <div className={styles.reviewSection}>
-        <div className={styles.reviewSectionHeader}>
-          <h4>Duration & Features</h4>
-        </div>
-        <div className={styles.reviewPricingBody}>
-          <div className={styles.formGroup}>
-            <label>Bot Active Duration</label>
-            <select
-              value={durationHours}
-              onChange={e => onDurationChange && onDurationChange(Number(e.target.value))}
-              className={styles.select}
-            >
-              {DURATION_OPTIONS.map(d => (
-                <option key={d.hours} value={d.hours}>{d.fullLabel}</option>
-              ))}
-            </select>
+      {isTrial ? (
+        <div className={styles.reviewSection}>
+          <div className={styles.reviewSectionHeader}>
+            <h4>Trial Details</h4>
           </div>
-
-          {(selectedTier?.features || []).length > 0 && (
-            <div className={styles.formGroup}>
-              <label>Bot Features</label>
-              <div className={styles.reviewFeatureGrid}>
-                {(selectedTier.features || []).map((f, i) => {
-                  const isOn = selectedFeatures.includes(f.name);
-                  return (
-                    <div
-                      key={i}
-                      className={`${styles.reviewFeature}${isOn ? ` ${styles.reviewFeatureOn}` : ""}`}
-                      onClick={() => toggleFeature(f.name)}
-                    >
-                      <div className={`${styles.reviewFeatureDot}${isOn ? ` ${styles.reviewFeatureDotOn}` : ""}`} />
-                      <span>{f.name}</span>
-                      <span className={styles.reviewFeatureMult}>×{f.multiplier}</span>
-                    </div>
-                  );
-                })}
-              </div>
+          <div className={styles.reviewTable}>
+            <div className={styles.reviewRow}>
+              <div className={styles.reviewLabel}>Duration</div>
+              <div className={styles.reviewValue}>6 hours</div>
             </div>
-          )}
+            <div className={styles.reviewRow}>
+              <div className={styles.reviewLabel}>Cost</div>
+              <div className={styles.reviewValue}>Free</div>
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className={styles.reviewSection}>
+          <div className={styles.reviewSectionHeader}>
+            <h4>Duration & Features</h4>
+          </div>
+          <div className={styles.reviewPricingBody}>
+            <div className={styles.formGroup}>
+              <label>Bot Active Duration</label>
+              <select
+                value={durationHours}
+                onChange={e => onDurationChange && onDurationChange(Number(e.target.value))}
+                className={styles.select}
+              >
+                {DURATION_OPTIONS.map(d => (
+                  <option key={d.hours} value={d.hours}>{d.fullLabel}</option>
+                ))}
+              </select>
+            </div>
 
-      <div className={styles.priceTotal}>
-        <div className={styles.priceTotalLabel}>Total</div>
-        <div className={styles.priceTotalAmount}>
-          ${price.toLocaleString()} USD
+            {(selectedTier?.features || []).length > 0 && (
+              <div className={styles.formGroup}>
+                <label>Bot Features</label>
+                <div className={styles.reviewFeatureGrid}>
+                  {(selectedTier.features || []).map((f, i) => {
+                    const isOn = selectedFeatures.includes(f.name);
+                    return (
+                      <div
+                        key={i}
+                        className={`${styles.reviewFeature}${isOn ? ` ${styles.reviewFeatureOn}` : ""}`}
+                        onClick={() => toggleFeature(f.name)}
+                      >
+                        <div className={`${styles.reviewFeatureDot}${isOn ? ` ${styles.reviewFeatureDotOn}` : ""}`} />
+                        <span>{f.name}</span>
+                        <span className={styles.reviewFeatureMult}>×{f.multiplier}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
+
+      {isTrial ? (
+        <div className={styles.trialFreeTotal}>
+          <div>Total</div>
+          <div>FREE · 6h Trial</div>
+        </div>
+      ) : (
+        <div className={styles.priceTotal}>
+          <div className={styles.priceTotalLabel}>Total</div>
+          <div className={styles.priceTotalAmount}>
+            ${price.toLocaleString()} USD
+          </div>
+        </div>
+      )}
 
       {!isAuth ? (
         <div className={styles.authNotice}>
-          <p>You need to sign in before checkout</p>
-          <Link href="/authentication/login" className={styles.payBtn}>
-            Sign in to Continue
+          <p>{isTrial ? "Create an account to access your free trial" : "You need to sign in before checkout"}</p>
+          <Link href={isTrial ? "/authentication/signup" : "/authentication/login"} className={styles.payBtn}>
+            {isTrial ? "Create Account" : "Sign in to Continue"}
           </Link>
         </div>
       ) : (
@@ -205,12 +230,31 @@ export default function ReviewStep({
           onClick={onPay}
           disabled={paying || !config.botName.trim()}
         >
-          {paying ? "Redirecting to Paystack..." : `Pay $${price.toLocaleString()} & Generate Bot`}
+          {paying
+            ? (isTrial ? "Generating..." : "Redirecting to Paystack...")
+            : isTrial
+              ? "Generate Trial Bot (Free)"
+              : `Pay $${price.toLocaleString()} & Generate Bot`}
         </button>
       )}
 
       <div className={styles.secureNote}>
-        <p>Secure payment via Paystack · Bot generated instantly after confirmation</p>
+        <p>
+          {isTrial
+            ? "Trial bot · Basic tier · Valid for 6 hours after generation"
+            : "Secure payment via Paystack · Bot generated instantly after confirmation"}
+        </p>
+      </div>
+
+      <div className={styles.disclaimer}>
+        <p>
+          Forex Instincts does not guarantee profits or trading performance. Users are solely responsible for defining how their bots operate. The generated bots simply automate the rules and logic specified by the user.
+        </p>
+        <div className={styles.disclaimerLinks}>
+          <Link href="/terms">Terms of Use</Link>
+          <span>·</span>
+          <Link href="/privacy">Privacy Policy</Link>
+        </div>
       </div>
     </div>
   );

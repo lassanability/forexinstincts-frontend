@@ -24,14 +24,14 @@ export const metadata = {
     url: `${SITE_URL}/about`,
     title: "About ForexInstincts — Professional MetaTrader EA Generator",
     description: "Build professional automated trading bots for MT4 and MT5 without writing a single line of code. One-time payment, instant generation.",
-    images: [{ url: `${SITE_URL}/banner.png`, width: 1200, height: 630, alt: "About ForexInstincts" }],
+    images: [{ url: `${SITE_URL}/assets/banner.png`, width: 1200, height: 630, alt: "About ForexInstincts" }],
   },
 
   twitter: {
     card: "summary_large_image",
     title: "About ForexInstincts — Professional MetaTrader EA Generator",
     description: "Build professional automated trading bots for MT4 and MT5 without writing a single line of code.",
-    images: [`${SITE_URL}/banner.png`],
+    images: [`${SITE_URL}/assets/banner.png`],
   },
 };
 
