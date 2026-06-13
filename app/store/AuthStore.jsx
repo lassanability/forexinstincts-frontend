@@ -127,6 +127,9 @@ export const useAuthStore = create(
 
       logout: async () => {
         get().clearUser();
+        if (typeof window !== "undefined") {
+          localStorage.removeItem("forexinstincts-auth");
+        }
         return { success: true, message: "Logged out successfully" };
       },
 

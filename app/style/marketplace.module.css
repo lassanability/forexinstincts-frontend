@@ -138,44 +138,50 @@
     transform: none;
   }
 
-  .loading {
-    min-height: 50vh;
+  .skeletonCard {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xxl);
+    border: var(--glass-border-pink);
+    background: var(--glass-bg-light);
   }
 
-  .spinner {
-    width: 36px;
-    height: 36px;
-    border: 3px solid var(--glass-border-pink);
-    border-top-color: var(--primary-color);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
+  .skeletonTitle {
+    height: 22px;
+    width: 65%;
+    border-radius: var(--radius-sm);
   }
 
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
+  .skeletonText {
+    height: 14px;
+    width: 85%;
+    border-radius: var(--radius-sm);
   }
 
-  .empty {
-    text-align: center;
-    padding: var(--spacing-xxxl) var(--spacing-xl);
+  .skeletonTextShort {
+    height: 14px;
+    width: 55%;
+    border-radius: var(--radius-sm);
   }
 
-  .empty h3 {
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-bold);
-    color: var(--dark-color);
-    margin: 0 0 var(--spacing-sm);
+  .skeletonTags {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
   }
 
-  .empty p {
-    color: var(--warm-gray);
-    font-size: var(--font-size-base);
-    margin: 0;
+  .skeletonTag {
+    height: 22px;
+    width: 58px;
+    border-radius: var(--radius-full);
+  }
+
+  .skeletonBtn {
+    height: 48px;
+    border-radius: var(--radius-full);
+    width: 100%;
   }
 }
 

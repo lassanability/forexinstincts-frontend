@@ -8,6 +8,8 @@ import { useMarketplaceStore } from "@/app/store/MarketplaceStore";
 import { useOrderStore } from "@/app/store/OrderStore";
 import styles from "@/app/style/marketplace.module.css";
 import { IoRocketOutline as RocketIcon } from "react-icons/io5";
+import Nothing from "@/app/components/Nothing";
+import NothingImg from "@/public/assets/notfound.png";
 
 const STRATEGY_LABELS = {
   ma_crossover: "MA Crossover",
@@ -67,8 +69,24 @@ export default function MarketplacePage() {
   if (loading) {
     return (
       <div className={styles.page}>
-        <div className={styles.loading}>
-          <div className={styles.spinner} />
+        <div className={styles.header}>
+          <h1>Bot Marketplace</h1>
+          <p>Ready-to-use trading bots built by our experts. Buy once, use immediately.</p>
+        </div>
+        <div className={styles.grid}>
+          {Array(6).fill(0).map((_, i) => (
+            <div key={i} className={styles.skeletonCard}>
+              <div className={`${styles.skeletonTitle} skeleton`} />
+              <div className={`${styles.skeletonText} skeleton`} />
+              <div className={`${styles.skeletonTextShort} skeleton`} />
+              <div className={styles.skeletonTags}>
+                {Array(4).fill(0).map((_, j) => (
+                  <div key={j} className={`${styles.skeletonTag} skeleton`} />
+                ))}
+              </div>
+              <div className={`${styles.skeletonBtn} skeleton`} />
+            </div>
+          ))}
         </div>
       </div>
     );
@@ -82,10 +100,7 @@ export default function MarketplacePage() {
       </div>
 
       {bots.length === 0 ? (
-        <div className={styles.empty}>
-          <h3>No Bots Available Yet</h3>
-          <p>Check back soon — new bots are being added regularly.</p>
-        </div>
+        <Nothing NothingImage={NothingImg} Text="No bots available yet — check back soon" Alt="No bots available" />
       ) : (
         <div className={styles.grid}>
           {bots.map((bot) => (
