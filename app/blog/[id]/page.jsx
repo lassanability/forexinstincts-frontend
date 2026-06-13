@@ -1,21 +1,26 @@
+import { cache } from "react";
 import styles from "@/app/style/blog.module.css";
 import { FiClock as ClockIcon, FiUser as UserIcon } from "react-icons/fi";
 import { notFound } from "next/navigation";
 
 const SITE_URL = "https://forexinstincts.com";
 
-async function fetchBlog(id) {
+const fetchBlog = cache(async (id) => {
   try {
+    const controller = new AbortController();
+    const t = setTimeout(() => controller.abort(), 8000);
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/blog/${id}`, {
       next: { revalidate: 1800 },
+      signal: controller.signal,
     });
+    clearTimeout(t);
     if (!res.ok) return null;
     const data = await res.json();
     return data.success ? data.blog : null;
   } catch {
     return null;
   }
-}
+});
 
 export async function generateMetadata({ params }) {
   const { id } = await params;

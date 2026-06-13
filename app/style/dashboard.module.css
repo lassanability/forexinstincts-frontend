@@ -1824,6 +1824,12 @@
     border: 1px solid rgba(239, 68, 68, 0.2);
   }
 
+  .orderFailed[data-info="true"] {
+    color: var(--warm-gray);
+    background: rgba(0, 200, 150, 0.04);
+    border-color: rgba(0, 200, 150, 0.15);
+  }
+
   .orderTrialPill {
     display: inline-flex;
     align-items: center;
@@ -1990,6 +1996,118 @@
   .testimonySuccess p {
     margin: 0;
     color: #10b981;
+  }
+
+/* ==================== HOW TO USE ==================== */
+  .howToSection {
+    background: var(--glass-bg-light);
+    backdrop-filter: var(--blur-md);
+    -webkit-backdrop-filter: var(--blur-md);
+    border: var(--glass-border-pink);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    box-shadow: var(--glass-shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+  }
+
+  .howToHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .howToIconWrap {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-md);
+    color: #fff;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .howToHeader h2 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-color);
+    margin: 0 0 4px;
+    font-family: var(--font-family-heading);
+  }
+
+  .howToHeader p {
+    font-size: var(--font-size-sm);
+    color: var(--warm-gray);
+    margin: 0;
+  }
+
+  .howToSteps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .howToStep {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: rgba(0, 200, 150, 0.03);
+    border: 1px solid rgba(0, 200, 150, 0.1);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--transition-normal);
+  }
+
+  .howToStep:hover {
+    border-color: rgba(0, 200, 150, 0.25);
+  }
+
+  .howToStepNum {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    color: #fff;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .howToStepContent {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .howToStepContent strong {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--dark-color);
+  }
+
+  .howToStepContent p {
+    font-size: var(--font-size-xs);
+    color: var(--warm-gray);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .howToNote {
+    font-size: var(--font-size-xs);
+    color: var(--warm-gray);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(0, 200, 150, 0.04);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   }
 
 /* ==================== RESPONSIVE DESIGN ==================== */

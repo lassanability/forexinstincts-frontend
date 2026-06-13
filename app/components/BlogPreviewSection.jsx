@@ -10,8 +10,6 @@ import { useBlogStore } from "@/app/store/BlogStore";
 const formatDate = (d) =>
   d ? new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "";
 
-const stripHtml = (html = "") => html.replace(/<[^>]*>/g, "");
-
 export default function BlogPreviewSection() {
   const { blogs, loading, fetchBlogs } = useBlogStore();
 
@@ -77,9 +75,7 @@ export default function BlogPreviewSection() {
                     <span>{formatDate(post.publishedAt || post.createdAt)}</span>
                   </div>
                   <h3>{post.title}</h3>
-                  <p>
-                    {post.excerpt || `${stripHtml(post.content).substring(0, 140)}...`}
-                  </p>
+                  <p>{post.excerpt}</p>
                   <div className={styles.cardFooter}>
                     {post.readTime && (
                       <span>

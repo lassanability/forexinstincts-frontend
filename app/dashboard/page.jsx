@@ -18,7 +18,35 @@ import {
   IoStar as StarFilledIcon,
   IoStarOutline as StarEmptyIcon,
   IoChatbubbleEllipsesOutline as TestimonyIcon,
+  IoHelpCircleOutline as GuideIcon,
 } from "react-icons/io5";
+
+const HOW_TO_STEPS = [
+  {
+    title: "Download Your Bot File",
+    desc: "Click the MT4 or MT5 download button on your bot card above. You will receive a .mq4 or .mq5 source file.",
+  },
+  {
+    title: "Open MetaTrader Data Folder",
+    desc: "In MetaTrader, go to File → Open Data Folder. Navigate to MQL4/Experts (MT4) or MQL5/Experts (MT5).",
+  },
+  {
+    title: "Copy the EA File",
+    desc: "Paste the downloaded .mq4 or .mq5 file into the Experts folder you just opened.",
+  },
+  {
+    title: "Refresh the Navigator",
+    desc: "In MetaTrader, right-click on Navigator → Expert Advisors → Refresh. Your bot will appear in the list.",
+  },
+  {
+    title: "Attach to a Chart",
+    desc: "Drag your bot from Navigator → Expert Advisors onto the chart matching the symbol and timeframe you configured.",
+  },
+  {
+    title: "Enable AutoTrading",
+    desc: 'Check "Allow automated trading" in the EA settings popup, then click the AutoTrading button in the toolbar (or press Ctrl+E).',
+  },
+];
 
 const SERVER_API = process.env.NEXT_PUBLIC_SERVER_API;
 
@@ -259,6 +287,12 @@ export default function Dashboard() {
                     </div>
                   )}
 
+                  {!isReady && !isFailed && (
+                    <div className={styles.orderFailed} data-info="true">
+                      You will receive an email when your bot is ready. If you don&apos;t see it, check your spam or junk folder.
+                    </div>
+                  )}
+
                   {isFailed && (
                     <div className={styles.orderFailed}>
                       Generation failed. Please contact support.
@@ -269,6 +303,32 @@ export default function Dashboard() {
             })}
           </div>
         )}
+
+        <div className={styles.howToSection}>
+          <div className={styles.howToHeader}>
+            <div className={styles.howToIconWrap}>
+              <GuideIcon />
+            </div>
+            <div>
+              <h2>How to Install Your Bot</h2>
+              <p>Follow these steps to get your Expert Advisor running in MetaTrader</p>
+            </div>
+          </div>
+          <div className={styles.howToSteps}>
+            {HOW_TO_STEPS.map((step, i) => (
+              <div key={i} className={styles.howToStep}>
+                <div className={styles.howToStepNum}>{i + 1}</div>
+                <div className={styles.howToStepContent}>
+                  <strong>{step.title}</strong>
+                  <p>{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className={styles.howToNote}>
+            After attaching the EA, MetaTrader will compile it automatically. A green smiley face icon in the top-right corner of the chart confirms the bot is running.
+          </p>
+        </div>
 
         <div className={styles.testimonySection}>
           <div className={styles.testimonySectionHeader}>

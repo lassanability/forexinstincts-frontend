@@ -12,6 +12,7 @@ import { MdOutlineEmail as EmailIcon } from "react-icons/md";
 export default function ResetCode() {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
   const router = useRouter();
   const { requestPasswordReset } = useAuthStore();
 
@@ -28,7 +29,7 @@ export default function ResetCode() {
       const result = await requestPasswordReset(email);
 
       if (result.success) {
-        toast.success(result.message || "Reset link sent to your email!");
+        setSent(true);
       } else {
         toast.error(result.message);
       }
@@ -43,6 +44,31 @@ export default function ResetCode() {
   const handleLogin = () => {
     router.push("login", { scroll: false });
   };
+
+  if (sent) {
+    return (
+      <div className={styles.authWrapper}>
+        <div className={styles.formContainer}>
+          <div className={styles.sentState}>
+            <EmailIcon className={styles.sentIcon} />
+            <h2>Check Your Email</h2>
+            <p>
+              We sent a password reset link to <strong>{email}</strong>
+            </p>
+          </div>
+          <div className={styles.spamHint}>
+            Can&apos;t find it? Check your spam or junk folder.
+          </div>
+          <h3>
+            Back to{" "}
+            <div className={styles.btnLoginContainer} onClick={handleLogin}>
+              Login
+            </div>
+          </h3>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.authWrapper}>

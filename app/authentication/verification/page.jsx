@@ -109,6 +109,10 @@ export default function Verification() {
           </p>
         </div>
 
+        <div className={styles.spamHint}>
+          Can&apos;t find it? Check your spam or junk folder.
+        </div>
+
         <div className={styles.authInput}>
           <VerificationIcon
             className={styles.authIcon}

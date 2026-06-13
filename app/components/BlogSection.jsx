@@ -26,14 +26,12 @@ export default function BlogSection() {
       list = list.filter(
         (b) =>
           b.title?.toLowerCase().includes(q) ||
-          b.excerpt?.toLowerCase().includes(q) ||
-          b.content?.toLowerCase().includes(q)
+          b.excerpt?.toLowerCase().includes(q)
       );
     }
     return list;
   }, [search, activeCategory, blogs]);
 
-  const stripHtml = (html = "") => html.replace(/<[^>]*>/g, "");
   const formatDate = (date) =>
     date
       ? new Date(date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
@@ -125,7 +123,7 @@ export default function BlogSection() {
                         <span>{formatDate(post.publishedAt || post.createdAt)}</span>
                       </div>
                       <h3>{post.title}</h3>
-                      <p>{post.excerpt || `${stripHtml(post.content).substring(0, 200)}...`}</p>
+                      <p>{post.excerpt}</p>
                       {(post.author || post.readTime) && (
                         <div className={styles.cardInfo}>
                           {post.author && (

@@ -139,13 +139,13 @@
     flex-direction: column;
     text-decoration: none;
     color: inherit;
-    height: 100%;
+    flex: 1;
   }
 
   .newsCard > a > div {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    flex: 1;
   }
 
   .coverImg {
