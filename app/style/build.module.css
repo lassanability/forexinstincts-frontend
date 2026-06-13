@@ -1006,6 +1006,65 @@
   }
 }
 
+  .customStratTextarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: var(--glass-border-pink);
+    border-radius: var(--radius-md);
+    background: var(--glass-bg-medium);
+    backdrop-filter: var(--blur-sm);
+    -webkit-backdrop-filter: var(--blur-sm);
+    color: var(--dark-color);
+    font-size: var(--font-size-sm);
+    font-family: inherit;
+    resize: vertical;
+    min-height: 140px;
+    line-height: 1.6;
+    transition: border-color var(--transition-normal);
+  }
+
+  .customStratTextarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+  }
+
+  .customStratTextarea::placeholder {
+    color: var(--warm-gray);
+    opacity: 0.7;
+  }
+
+  .strategyHint {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    background: rgba(0, 200, 150, 0.04);
+    border: 1px solid rgba(0, 200, 150, 0.12);
+    margin-top: var(--spacing-xs);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .strategyHint p {
+    font-size: var(--font-size-xs);
+    color: var(--warm-gray);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .strategyHint strong {
+    color: var(--dark-color);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .strategyHint code {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-xxs);
+    color: var(--primary-color);
+    background: rgba(0, 200, 150, 0.08);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
 @media only screen and (min-width: 48em) {
   .page {
     padding: var(--spacing-xxxl) var(--spacing-xl) 80px;

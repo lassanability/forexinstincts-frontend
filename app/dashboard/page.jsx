@@ -28,15 +28,19 @@ const HOW_TO_STEPS = [
   },
   {
     title: "Open MetaTrader Data Folder",
-    desc: "In MetaTrader, go to File → Open Data Folder. Navigate to MQL4/Experts (MT4) or MQL5/Experts (MT5).",
+    desc: "In MetaTrader, go to File → Open Data Folder. Navigate to MQL4/Experts (for MT4) or MQL5/Experts (for MT5).",
   },
   {
     title: "Copy the EA File",
     desc: "Paste the downloaded .mq4 or .mq5 file into the Experts folder you just opened.",
   },
   {
+    title: "Compile in MetaEditor",
+    desc: "Press F4 in MetaTrader to open MetaEditor. Open your EA file, then press F7 to compile. Wait for '0 error(s)' in the output at the bottom. This step is required — without it, MetaTrader will not recognise the bot.",
+  },
+  {
     title: "Refresh the Navigator",
-    desc: "In MetaTrader, right-click on Navigator → Expert Advisors → Refresh. Your bot will appear in the list.",
+    desc: "Switch back to MetaTrader, then right-click Navigator → Expert Advisors → Refresh (or press Ctrl+R). Your compiled bot will now appear in the list.",
   },
   {
     title: "Attach to a Chart",
@@ -44,7 +48,7 @@ const HOW_TO_STEPS = [
   },
   {
     title: "Enable AutoTrading",
-    desc: 'Check "Allow automated trading" in the EA settings popup, then click the AutoTrading button in the toolbar (or press Ctrl+E).',
+    desc: 'Check "Allow automated trading" in the EA settings popup, then click the AutoTrading button in the toolbar (or press Ctrl+E). A green smiley face on the chart confirms the bot is live.',
   },
 ];
 
@@ -311,7 +315,7 @@ export default function Dashboard() {
             </div>
             <div>
               <h2>How to Install Your Bot</h2>
-              <p>Follow these steps to get your Expert Advisor running in MetaTrader</p>
+              <p>Expert Advisors only run on the <strong>Windows desktop</strong> version of MetaTrader 4 or 5 — not on the mobile app. If you trade on your phone, install MT4/MT5 on a Windows PC or rent a VPS to run the bot.</p>
             </div>
           </div>
           <div className={styles.howToSteps}>
@@ -326,7 +330,7 @@ export default function Dashboard() {
             ))}
           </div>
           <p className={styles.howToNote}>
-            After attaching the EA, MetaTrader will compile it automatically. A green smiley face icon in the top-right corner of the chart confirms the bot is running.
+            If the bot shows a grey frowning face, check that AutoTrading is enabled in the toolbar and that "Allow automated trading" was checked when you attached it.
           </p>
         </div>
 

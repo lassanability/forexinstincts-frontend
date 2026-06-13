@@ -36,7 +36,7 @@ function BuildContent() {
     platform: "MT4",
     tradingDirection: "both",
     riskManagement: { mode: "fixed", lotSize: 0.01, riskPercent: 1, maxOpenTrades: 1, maxTradesPerDay: 5 },
-    entry: { strategy: "ma_crossover", indicators: [], logic: "AND" },
+    entry: { strategy: "ma_crossover", indicators: [], logic: "AND", customDescription: "", patternType: "any", breakoutBars: 20 },
     exit: {
       takeProfit: 100,
       stopLoss: 50,

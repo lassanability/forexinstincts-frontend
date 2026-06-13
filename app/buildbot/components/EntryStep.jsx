@@ -11,11 +11,20 @@ const INDICATORS = [
 ];
 
 const STRATEGIES = [
-  { value: "ma_crossover",    label: "Moving Average Crossover" },
-  { value: "rsi_breakout",    label: "RSI Breakout" },
-  { value: "macd_signal",     label: "MACD Signal Cross" },
-  { value: "bb_breakout",     label: "Bollinger Band Breakout" },
-  { value: "multi_indicator", label: "Multi-Indicator (Custom)" },
+  { value: "ma_crossover",          label: "Moving Average Crossover" },
+  { value: "rsi_breakout",          label: "RSI Breakout" },
+  { value: "macd_signal",           label: "MACD Signal Cross" },
+  { value: "bb_breakout",           label: "Bollinger Band Breakout" },
+  { value: "multi_indicator",       label: "Multi-Indicator (Custom)" },
+  { value: "price_action_breakout", label: "Price Action Breakout" },
+  { value: "candlestick_pattern",   label: "Candlestick Patterns" },
+];
+
+const PATTERN_TYPES = [
+  { value: "any",        label: "All Patterns" },
+  { value: "pin_bar",    label: "Pin Bar Only" },
+  { value: "engulfing",  label: "Engulfing Only" },
+  { value: "inside_bar", label: "Inside Bar Only" },
 ];
 
 const LOGIC_OPTS = [
@@ -26,6 +35,7 @@ const LOGIC_OPTS = [
 export default function EntryStep({ config, update }) {
   const entry = config.entry;
   const isComplex = config.tierName === "complex" || config.tierName === "advanced";
+  const strategy = entry.strategy || "ma_crossover";
 
   const toggleIndicator = (ind) => {
     const current = entry.indicators || [];
@@ -36,6 +46,10 @@ export default function EntryStep({ config, update }) {
       update("entry.indicators", [...current, { type: ind }]);
     }
   };
+
+  const isPriceAction    = strategy === "price_action_breakout";
+  const isCandlestick    = strategy === "candlestick_pattern";
+  const isIndicatorBased = !isPriceAction && !isCandlestick;
 
   return (
     <div>
@@ -48,13 +62,52 @@ export default function EntryStep({ config, update }) {
         <label>Primary Strategy</label>
         <Dropdown
           options={STRATEGIES}
-          value={STRATEGIES.find((s) => s.value === entry.strategy) || null}
+          value={STRATEGIES.find((s) => s.value === strategy) || null}
           onSelect={(opt) => update("entry.strategy", opt.value)}
           dropPlaceHolder="Select Strategy"
         />
       </div>
 
-      {isComplex && (
+      {isPriceAction && (
+        <div className={styles.formGroup}>
+          <label>Breakout Lookback (bars)</label>
+          <input
+            type="number"
+            className={styles.input}
+            value={entry.breakoutBars ?? 20}
+            min={5}
+            max={200}
+            onChange={(e) => update("entry.breakoutBars", Number(e.target.value))}
+          />
+          <div className={styles.strategyHint}>
+            <p>Generates a buy signal when the closing price breaks above the highest high of the last <strong>{entry.breakoutBars ?? 20} bars</strong>, and a sell signal when it breaks below the lowest low.</p>
+          </div>
+        </div>
+      )}
+
+      {isCandlestick && (
+        <div className={styles.formGroup}>
+          <label>Pattern Filter</label>
+          <div className={styles.indicatorGrid}>
+            {PATTERN_TYPES.map((pt) => (
+              <div
+                key={pt.value}
+                className={`${styles.indicatorCard} ${entry.patternType === pt.value ? styles.indicatorCardSelected : ""}`}
+                onClick={() => update("entry.patternType", pt.value)}
+              >
+                <span>{pt.label}</span>
+              </div>
+            ))}
+          </div>
+          <div className={styles.strategyHint}>
+            <p><strong>Pin Bar</strong> — long wick rejections at key levels</p>
+            <p><strong>Engulfing</strong> — full candle reversal pattern</p>
+            <p><strong>Inside Bar</strong> — consolidation breakout setup</p>
+          </div>
+        </div>
+      )}
+
+      {isIndicatorBased && isComplex && (
         <>
           <div className={styles.formGroup}>
             <label>Additional Indicators</label>
