@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import styles from "@/app/style/blog.module.css";
+import AppImage from "@/app/components/ui/AppImage";
 import { useBlogStore } from "@/app/store/BlogStore";
 import SectionLabel from "@/app/components/ui/SectionLabel";
 import { IoSearch as SearchIcon } from "react-icons/io5";
@@ -112,7 +113,11 @@ export default function BlogSection() {
                   <div className={isFeatured ? styles.featuredInner : undefined}>
                     {post.coverImage && (
                       <div className={isFeatured ? styles.featuredImgWrap : styles.cardImgWrap}>
-                        <img src={post.coverImage} alt={post.title} className={styles.cardCoverImg} />
+                        <AppImage
+                          src={post.coverImage}
+                          alt={post.title}
+                          sizes={isFeatured ? "(min-width: 64em) 860px, 100vw" : "(min-width: 64em) 33vw, (min-width: 48em) 50vw, 100vw"}
+                        />
                       </div>
                     )}
                     <div className={styles.cardContent}>

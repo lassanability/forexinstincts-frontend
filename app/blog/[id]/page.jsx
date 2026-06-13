@@ -1,5 +1,6 @@
 import { cache } from "react";
 import styles from "@/app/style/blog.module.css";
+import AppImage from "@/app/components/ui/AppImage";
 import { FiClock as ClockIcon, FiUser as UserIcon } from "react-icons/fi";
 import { notFound } from "next/navigation";
 
@@ -110,7 +111,7 @@ export default async function BlogPostPage({ params }) {
       <article className={styles.blogPost}>
         {blog.coverImage && (
           <div className={styles.postHeroImage}>
-            <img src={blog.coverImage} alt={blog.title} />
+            <AppImage src={blog.coverImage} alt={blog.title} sizes="(min-width: 54em) 860px, 100vw" priority />
           </div>
         )}
         <div className={styles.blogPostContent}>

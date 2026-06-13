@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import SectionLabel from "@/app/components/ui/SectionLabel";
+import AppImage from "@/app/components/ui/AppImage";
 import styles from "@/app/style/blogPreview.module.css";
 import { FiArrowRight as ArrowRight, FiClock as ClockIcon } from "react-icons/fi";
 import { useBlogStore } from "@/app/store/BlogStore";
@@ -65,7 +66,9 @@ export default function BlogPreviewSection() {
             <Link href={`/blog/${post._id}`}>
               <div>
                 {post.coverImage && (
-                  <img src={post.coverImage} alt={post.title} className={styles.coverImg} />
+                  <div className={styles.coverImg}>
+                    <AppImage src={post.coverImage} alt={post.title} sizes="(min-width: 48em) 33vw, 100vw" />
+                  </div>
                 )}
                 <div className={styles.cardBody}>
                   <div className={styles.cardMeta}>

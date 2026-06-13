@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import styles from "@/app/style/news.module.css";
+import AppImage from "@/app/components/ui/AppImage";
 import { useNewsStore } from "@/app/store/NewsStore";
 import SectionLabel from "@/app/components/ui/SectionLabel";
 import { IoSearch as SearchIcon } from "react-icons/io5";
@@ -106,7 +107,9 @@ export default function NewsSection() {
               <Link href={`/news/${item._id}`}>
                 <div>
                   {item.coverImage && (
-                    <img src={item.coverImage} alt={item.title} className={styles.coverImg} />
+                    <div className={styles.coverImg}>
+                      <AppImage src={item.coverImage} alt={item.title} sizes="(min-width: 64em) 33vw, (min-width: 48em) 50vw, 100vw" />
+                    </div>
                   )}
                   <div className={styles.cardBody}>
                     <div className={styles.cardMeta}>

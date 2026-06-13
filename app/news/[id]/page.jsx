@@ -1,5 +1,6 @@
 import { cache } from "react";
 import styles from "@/app/style/blog.module.css";
+import AppImage from "@/app/components/ui/AppImage";
 import { FiCalendar as CalendarIcon } from "react-icons/fi";
 import { notFound } from "next/navigation";
 
@@ -109,7 +110,7 @@ export default async function NewsArticlePage({ params }) {
       <article className={styles.blogPost}>
         {article.coverImage && (
           <div className={styles.postHeroImage}>
-            <img src={article.coverImage} alt={article.title} />
+            <AppImage src={article.coverImage} alt={article.title} sizes="(min-width: 54em) 860px, 100vw" priority />
           </div>
         )}
         <div className={styles.blogPostContent}>
