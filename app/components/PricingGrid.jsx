@@ -267,7 +267,7 @@ export default function PricingGrid() {
         </button>
 
         <div className={styles.secureNote}>
-          <span>Secure payment via Paystack · Bot generated instantly after confirmation</span>
+          <span>Secure crypto payment · Bot generated instantly after confirmation</span>
         </div>
       </div>
 

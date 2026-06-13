@@ -10,7 +10,7 @@ export const metadata = {
     "MetaTrader EA support",
     "trading bot help",
     "EA download support",
-    "Paystack payment support",
+    "crypto payment support",
     "MQL4 MQL5 support",
     "custom bot request",
     "forex automation support",

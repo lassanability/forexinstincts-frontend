@@ -59,7 +59,7 @@ export default function MiddleSection() {
       icon: <ShieldIcon />,
       title: "Pay & Generate",
       description:
-        "Complete payment via Paystack. Your bot is generated immediately — professional EA code ready for MetaTrader.",
+        "Complete payment via crypto. Your bot is generated immediately — professional EA code ready for MetaTrader.",
     },
     {
       icon: <DownloadIcon />,

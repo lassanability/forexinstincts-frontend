@@ -45,7 +45,7 @@ const SECTIONS = [
       "Entry Strategy — select your primary signal (MA crossover, RSI, MACD, Bollinger Bands, or Price Action) and add filters",
       "Protection — set take profit, stop loss, trailing stop, and break-even rules",
       "Advanced Options — multi-timeframe analysis, martingale, grid trading, and notification settings",
-      "Review and Pay — confirm your configuration and pay once via Paystack to trigger generation",
+      "Review and Pay — confirm your configuration and pay once via crypto to trigger generation",
     ],
   },
   {

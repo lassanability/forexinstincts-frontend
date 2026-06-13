@@ -43,9 +43,9 @@ export default function Privacy() {
           <p>
             <strong>2.2 Order and Transaction Data.</strong> When you submit a bot configuration
             and complete payment, we record: a unique order ID, your selected tier and
-            configuration parameters, the payment reference number issued by Paystack, the
+            configuration parameters, the payment reference number issued by our payment processor, the
             transaction amount, and timestamp. We do not receive, store, or process your
-            raw payment credentials — those remain exclusively with Paystack.
+            raw payment credentials — those remain exclusively with our payment processor.
           </p>
           <p>
             <strong>2.3 Usage and Technical Data.</strong> We automatically collect certain
@@ -101,30 +101,29 @@ export default function Privacy() {
         </section>
 
         <section>
-          <h2>4. Payment Processing — Paystack</h2>
+          <h2>4. Payment Processing — NowPayments</h2>
           <p>
             All payments on the ForexInstincts Platform are processed exclusively by
-            <strong> Paystack Payments Limited</strong> (&quot;Paystack&quot;), a PCI-DSS-compliant
-            third-party payment processor.
+            <strong> NowPayments</strong>, a third-party cryptocurrency payment processor.
           </p>
           <p>
             <strong>FOREXINSTINCTS DOES NOT COLLECT, RECEIVE, STORE, TRANSMIT, SEE, OR HAVE
-            ACCESS TO YOUR PAYMENT CARD NUMBERS, CVV CODES, BANK ACCOUNT DETAILS, OR ANY OTHER
-            SENSITIVE PAYMENT CREDENTIALS AT ANY POINT IN THE PAYMENT PROCESS.</strong> When you
-            make a payment, your card or bank details are entered directly and exclusively into
-            Paystack&apos;s secure, encrypted payment interface — never into ForexInstincts systems.
+            ACCESS TO YOUR WALLET DETAILS, PRIVATE KEYS, OR ANY OTHER SENSITIVE PAYMENT
+            CREDENTIALS AT ANY POINT IN THE PAYMENT PROCESS.</strong> When you make a payment,
+            your cryptocurrency transaction is handled directly and exclusively through
+            NowPayments&apos; secure interface — never into ForexInstincts systems.
           </p>
           <p>
             ForexInstincts receives only a payment confirmation reference, the transaction
-            amount, and a success or failure status from Paystack — never your raw financial
+            amount, and a success or failure status from NowPayments — never your raw financial
             credentials.
           </p>
           <p>
             The collection, processing, storage, and security of your payment information is
-            governed entirely by Paystack&apos;s Privacy Policy and Terms of Service. Any concerns
+            governed entirely by NowPayments&apos; Privacy Policy and Terms of Service. Any concerns
             about the security or handling of your payment information should be directed to
-            Paystack. ForexInstincts accepts no liability for any payment data breaches,
-            errors, or incidents that occur within Paystack&apos;s systems.
+            NowPayments. ForexInstincts accepts no liability for any payment data breaches,
+            errors, or incidents that occur within NowPayments&apos; systems.
           </p>
         </section>
 
@@ -162,9 +161,9 @@ export default function Privacy() {
             limited circumstances:
           </p>
           <p>
-            <strong>(a) Payment Processor (Paystack):</strong> Limited information necessary to
+            <strong>(a) Payment Processor (NowPayments):</strong> Limited information necessary to
             initiate a payment transaction (such as order amount and reference) is passed to
-            Paystack. Paystack does not receive your full account data.
+            NowPayments. NowPayments does not receive your full account data.
           </p>
           <p>
             <strong>(b) Server Infrastructure (Linode):</strong> All ForexInstincts services are
@@ -347,7 +346,7 @@ export default function Privacy() {
           <h2>13. Third-Party Services and Links</h2>
           <p>
             The Platform may contain links to or integrations with third-party websites,
-            applications, or services, including Paystack (payment processing) and MetaTrader
+            applications, or services, including NowPayments (payment processing) and MetaTrader
             (trading platform). ForexInstincts is not responsible for the privacy practices,
             security, or content of those third-party services.
           </p>

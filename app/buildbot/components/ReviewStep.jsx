@@ -231,7 +231,7 @@ export default function ReviewStep({
           disabled={paying || !config.botName.trim()}
         >
           {paying
-            ? (isTrial ? "Generating..." : "Redirecting to Paystack...")
+            ? (isTrial ? "Generating..." : "Processing payment...")
             : isTrial
               ? "Generate Trial Bot (Free)"
               : `Pay $${price.toLocaleString()} & Generate Bot`}
@@ -242,7 +242,7 @@ export default function ReviewStep({
         <p>
           {isTrial
             ? "Trial bot · Basic tier · Valid for 6 hours after generation"
-            : "Secure payment via Paystack · Bot generated instantly after confirmation"}
+            : "Secure crypto payment · Bot generated instantly after confirmation"}
         </p>
       </div>
 

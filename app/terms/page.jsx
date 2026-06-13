@@ -55,7 +55,7 @@ export default function Terms() {
             user dashboard, and all related services and content.
           </p>
           <p>
-            <strong>&quot;Paystack&quot;</strong> means Paystack Payments Limited, the third-party payment processor
+            <strong>&quot;NowPayments&quot;</strong> means NOWPayments, the third-party cryptocurrency payment processor
             used by ForexInstincts to handle all payment transactions.
           </p>
         </section>
@@ -128,23 +128,24 @@ export default function Terms() {
           <p>
             <strong>6.1 Pricing.</strong> Bot generation is priced according to the selected tier
             (Basic, Complex, or Advanced) and applicable configuration options. All prices are
-            displayed in United States Dollars (USD). Currency conversion, where applicable, is
-            handled solely by Paystack.
+            displayed in United States Dollars (USD). Cryptocurrency conversion is handled by
+            NowPayments at the time of checkout.
           </p>
           <p>
-            <strong>6.2 Payment Processing by Paystack.</strong> ALL PAYMENTS ON THE FOREXINSTINCTS
-            PLATFORM ARE PROCESSED EXCLUSIVELY BY PAYSTACK PAYMENTS LIMITED, A THIRD-PARTY
+            <strong>6.2 Payment Processing by NowPayments.</strong> ALL PAYMENTS ON THE FOREXINSTINCTS
+            PLATFORM ARE PROCESSED EXCLUSIVELY BY NOWPAYMENTS, A THIRD-PARTY CRYPTOCURRENCY
             PAYMENT PROCESSOR. FOREXINSTINCTS DOES NOT COLLECT, RECEIVE, STORE, TRANSMIT, OR
-            HAVE ACCESS TO YOUR PAYMENT CARD NUMBERS, CVV CODES, BANK ACCOUNT DETAILS, OR ANY
-            OTHER PAYMENT CREDENTIALS. By proceeding with a payment, you agree to Paystack&apos;s
-            Terms of Service and Privacy Policy. Paystack is solely and exclusively responsible
-            for the security, processing, and handling of your payment information.
+            HAVE ACCESS TO YOUR WALLET DETAILS, PRIVATE KEYS, OR ANY OTHER PAYMENT CREDENTIALS.
+            By proceeding with a payment, you agree to NowPayments&apos; Terms of Service and Privacy
+            Policy. NowPayments is solely and exclusively responsible for the security, processing,
+            and handling of your payment information.
           </p>
           <p>
             <strong>6.3 Payment Confirmation.</strong> An Order is confirmed when payment is
-            successfully processed by Paystack and ForexInstincts receives a verified payment
+            successfully processed by NowPayments and ForexInstincts receives a verified payment
             notification. ForexInstincts is not responsible for payment processing delays,
-            failures, or errors caused by Paystack, your bank, or your card issuer.
+            failures, or errors caused by NowPayments, blockchain network congestion, or your
+            cryptocurrency wallet or exchange.
           </p>
           <p>
             <strong>6.4 Taxes.</strong> You are solely responsible for any taxes, duties, or levies
@@ -192,7 +193,7 @@ export default function Terms() {
           </p>
           <p>
             <strong>7.4 Chargebacks and Disputes.</strong> Initiating a chargeback, payment reversal,
-            or dispute through your bank, card issuer, or Paystack for a successfully delivered
+            or dispute through your bank, exchange, or NowPayments for a successfully delivered
             EA file, without first contacting ForexInstincts and allowing us a reasonable
             opportunity to resolve the matter, constitutes a material breach of these Terms and
             may result in immediate account termination, reporting to relevant fraud prevention
@@ -395,10 +396,10 @@ export default function Terms() {
         <section>
           <h2>15. Third-Party Services</h2>
           <p>
-            <strong>15.1 Paystack.</strong> Payment processing is provided by Paystack Payments
-            Limited. ForexInstincts is not responsible for Paystack&apos;s availability, uptime,
+            <strong>15.1 NowPayments.</strong> Payment processing is provided by NOWPayments.
+            ForexInstincts is not responsible for NowPayments&apos; availability, uptime,
             payment processing errors, security incidents, or data handling. All disputes
-            relating to payment processing must be directed first to Paystack.
+            relating to payment processing must be directed first to NowPayments.
           </p>
           <p>
             <strong>15.2 MetaTrader / MetaQuotes.</strong> EA files are designed for use with
@@ -475,7 +476,7 @@ export default function Terms() {
             beyond our reasonable control, including but not limited to acts of God, natural
             disasters, war, terrorism, civil unrest, government orders, internet or
             infrastructure outages, cyberattacks, power failures, or third-party service
-            provider failures (including Paystack or hosting providers).
+            provider failures (including NowPayments or hosting providers).
           </p>
         </section>
 
