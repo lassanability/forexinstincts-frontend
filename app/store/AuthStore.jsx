@@ -119,7 +119,10 @@ export const useAuthStore = create(
             get().setUser(data.user, data.token);
             return { success: true, message: data.message };
           }
-          return { success: false, message: data.message || "Invalid credentials" };
+          if (data.requiresVerification) {
+            set({ email });
+          }
+          return { success: false, message: data.message || "Invalid credentials", requiresVerification: data.requiresVerification };
         } catch {
           return { success: false, message: "Connection failed. Please try again." };
         }

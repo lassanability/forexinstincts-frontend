@@ -49,6 +49,9 @@ export default function Login() {
       if (result.success) {
         toast.success("Welcome back!");
         router.push("/dashboard");
+      } else if (result.requiresVerification) {
+        toast.error(result.message);
+        router.push("/authentication/verification");
       } else {
         toast.error(result.message || "Invalid email or password");
       }
