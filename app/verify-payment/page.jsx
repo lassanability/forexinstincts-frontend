@@ -18,14 +18,7 @@ function VerifyContent() {
   const [message, setMessage] = useState("Verifying your payment...");
 
   useEffect(() => {
-    const reference = searchParams.get("reference") || searchParams.get("trxref");
-    const payStatus = searchParams.get("status");
-
-    if (payStatus === "cancelled") {
-      setStatus("error");
-      setMessage("Payment was cancelled. No charge was made.");
-      return;
-    }
+    const reference = searchParams.get("reference");
 
     if (!reference) {
       setStatus("error");
@@ -38,7 +31,7 @@ function VerifyContent() {
         const result = await verifyPayment(reference);
         if (result.success) {
           setStatus("success");
-          setMessage("Payment confirmed! Your bot is being generated. Check your dashboard to download it when ready.");
+          setMessage("Payment confirmed! Your bot is being generated. Check your dashboard to download it when ready. Crypto confirmations may take a few minutes.");
         } else {
           setStatus("error");
           setMessage(result.message || "Payment verification failed. Please contact support.");

@@ -1,0 +1,196 @@
+@media screen {
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-xxxl);
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: var(--spacing-xxl);
+  }
+
+  .header h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 var(--spacing-sm);
+    font-family: var(--font-family-heading);
+  }
+
+  .header p {
+    color: var(--warm-gray);
+    font-size: var(--font-size-base);
+    margin: 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xxl);
+    border: var(--glass-border-pink);
+    background: var(--glass-bg-light);
+    backdrop-filter: var(--blur-md);
+    -webkit-backdrop-filter: var(--blur-md);
+    transition: all var(--transition-normal);
+  }
+
+  .card:hover {
+    border: var(--glass-border-pink-hover);
+    box-shadow: var(--glass-shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .cardTop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+  }
+
+  .cardInfo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    flex: 1;
+  }
+
+  .cardName {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-color);
+    margin: 0;
+    font-family: var(--font-family-heading);
+  }
+
+  .cardDesc {
+    font-size: var(--font-size-sm);
+    color: var(--warm-gray);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .cardPrice {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color);
+    flex-shrink: 0;
+  }
+
+  .cardMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    background: rgba(0, 200, 150, 0.08);
+    border: 1px solid rgba(0, 200, 150, 0.18);
+    color: var(--primary-color);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .buyBtn {
+    width: 100%;
+    padding: 14px;
+    border-radius: var(--radius-full);
+    background: var(--gradient-primary);
+    color: var(--light-color);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: var(--glass-shadow-pink);
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+  }
+
+  .buyBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--glass-shadow-pink-hover);
+  }
+
+  .buyBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .loading {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--glass-border-pink);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .empty {
+    text-align: center;
+    padding: var(--spacing-xxxl) var(--spacing-xl);
+  }
+
+  .empty h3 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-color);
+    margin: 0 0 var(--spacing-sm);
+  }
+
+  .empty p {
+    color: var(--warm-gray);
+    font-size: var(--font-size-base);
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .page {
+    padding: var(--spacing-xxxl) var(--spacing-xl) 80px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (min-width: 72em) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

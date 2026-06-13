@@ -189,7 +189,13 @@ function BuildContent() {
         return;
       }
 
-      window.location.href = payResult.authorizationUrl;
+      if (payResult.freeMode) {
+        toast.success("Bot is being generated for free!");
+        router.push("/dashboard");
+        return;
+      }
+
+      window.location.href = payResult.invoiceUrl;
     } catch {
       toast.error("Something went wrong. Please try again.");
       setSubmitting(false);
@@ -261,7 +267,7 @@ function BuildContent() {
         <p>{isTrial ? "Configure a basic bot — generate free, valid for 6 hours" : "Configure every detail of your trading bot"}</p>
       </div>
 
-      <StepIndicator steps={STEPS} current={step} />
+      <StepIndicator steps={STEPS} current={step} onStepClick={(i) => setStep(i)} />
 
       <div className={styles.stepContent}>
         {step === 0 && <BasicInfoStep {...stepProps} />}

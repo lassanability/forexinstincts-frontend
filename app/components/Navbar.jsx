@@ -71,6 +71,7 @@ const useNavLinks = () => {
         { href: "/blog", label: "Blog" },
         { href: "/news", label: "News" },
         isAuth && { href: "/dashboard", label: "Dashboard" },
+        isAuth && { href: "/marketplace", label: "Marketplace" },
         { href: "/contact", label: "Contact" },
       ].filter(Boolean),
     [isAuth]

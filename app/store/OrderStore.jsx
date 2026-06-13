@@ -93,12 +93,34 @@ export const useOrderStore = create((set, get) => ({
       const data = await response.json();
       set({ paymentLoading: false });
       if (data.success) {
-        return { success: true, authorizationUrl: data.data.authorizationUrl, reference: data.data.reference };
+        if (data.data.freeMode) return { success: true, freeMode: true };
+        return { success: true, invoiceUrl: data.data.invoiceUrl, reference: data.data.reference };
       }
       return { success: false, message: data.message };
     } catch {
       set({ paymentLoading: false });
       return { success: false, message: "Payment initialization failed" };
+    }
+  },
+
+  buyPrebuiltBot: async (botId) => {
+    try {
+      const { getAuthHeader } = useAuthStore.getState();
+      const response = await fetch(`${SERVER_API}/prebuilt-bots/buy`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...getAuthHeader(),
+        },
+        body: JSON.stringify({ botId }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        return { success: true, orderId: data.data.orderId };
+      }
+      return { success: false, message: data.message };
+    } catch {
+      return { success: false, message: "Failed to initiate purchase" };
     }
   },
 
