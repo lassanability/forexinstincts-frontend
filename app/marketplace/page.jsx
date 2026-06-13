@@ -12,12 +12,14 @@ import Nothing from "@/app/components/Nothing";
 import NothingImg from "@/public/assets/notfound.png";
 
 const STRATEGY_LABELS = {
-  ma_crossover: "MA Crossover",
-  rsi_breakout: "RSI Breakout",
-  macd_signal: "MACD Signal",
-  bb_breakout: "BB Breakout",
-  stoch_crossover: "Stoch Crossover",
-  multi_indicator: "Multi Indicator",
+  ma_crossover:          "MA Crossover",
+  rsi_breakout:          "RSI Breakout",
+  macd_signal:           "MACD Signal",
+  bb_breakout:           "BB Breakout",
+  stoch_crossover:       "Stoch Crossover",
+  multi_indicator:       "Multi Indicator",
+  price_action_breakout: "Price Action",
+  candlestick_pattern:   "Candlestick",
 };
 
 export default function MarketplacePage() {

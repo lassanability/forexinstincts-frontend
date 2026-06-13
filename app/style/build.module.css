@@ -1006,6 +1006,81 @@
   }
 }
 
+  .categoryGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .categoryCard {
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    border: var(--glass-border-light);
+    background: var(--glass-bg-light);
+    backdrop-filter: var(--blur-sm);
+    -webkit-backdrop-filter: var(--blur-sm);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .categoryCard:hover {
+    border: var(--glass-border-pink);
+    transform: translateY(-1px);
+  }
+
+  .categoryCardSelected {
+    border: 2px solid var(--primary-color);
+    background: rgba(0, 200, 150, 0.07);
+    box-shadow: var(--glass-shadow-pink);
+  }
+
+  .categoryCardTitle {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-color);
+  }
+
+  .categoryCardSelected .categoryCardTitle {
+    color: var(--primary-color);
+  }
+
+  .categoryCardDesc {
+    font-size: var(--font-size-xs);
+    color: var(--warm-gray);
+    line-height: 1.5;
+  }
+
+  .categoryCardTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+  }
+
+  .categoryCardBadge {
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-color);
+    background: rgba(0, 200, 150, 0.12);
+    padding: 2px 8px;
+    border-radius: var(--radius-circle);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .reviewAddonBadge {
+    margin-left: 8px;
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-color);
+    background: rgba(0, 200, 150, 0.12);
+    padding: 2px 8px;
+    border-radius: var(--radius-circle);
+  }
+
   .customStratTextarea {
     width: 100%;
     padding: var(--spacing-md);

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "@/app/style/build.module.css";
 import { useAuthStore } from "@/app/store/AuthStore";
-import { calculateBotPrice, DURATION_OPTIONS } from "@/app/lib/pricingUtils";
+import { calculateBotPrice, getStrategyAddon, DURATION_OPTIONS } from "@/app/lib/pricingUtils";
 
 export default function ReviewStep({
   config, selectedTier, onPay, paying,
@@ -9,12 +9,17 @@ export default function ReviewStep({
   onDurationChange, onFeaturesChange, isTrial = false,
 }) {
   const { isAuth } = useAuthStore();
+  const strategyAddon = isTrial ? 0 : getStrategyAddon(selectedTier, config.entry.strategy);
+  const strategyLabel = ['price_action_breakout', 'candlestick_pattern'].includes(config.entry.strategy)
+    ? 'Price Action'
+    : 'Indicator Based';
   const price = calculateBotPrice(
     selectedTier?.basePrice,
     selectedTier?.ratePerHour,
     selectedTier?.features,
     selectedFeatures,
-    durationHours
+    durationHours,
+    strategyAddon
   );
   const exit = config.exit;
   const isComplex = config.tierName === "complex" || config.tierName === "advanced";
@@ -99,6 +104,15 @@ export default function ReviewStep({
           <div className={styles.reviewRow}>
             <div className={styles.reviewLabel}>Strategy</div>
             <div className={styles.reviewValue}>{config.entry.strategy.replace(/_/g, " ")}</div>
+          </div>
+          <div className={styles.reviewRow}>
+            <div className={styles.reviewLabel}>Category</div>
+            <div className={styles.reviewValue}>
+              {strategyLabel}
+              {!isTrial && strategyAddon > 0 && (
+                <span className={styles.reviewAddonBadge}>+${strategyAddon}</span>
+              )}
+            </div>
           </div>
           {indicators.length > 0 && (
             <div className={styles.reviewRow}>
