@@ -1,13 +1,15 @@
 @media screen {
   .page {
-    max-width: 1100px;
+    max-width: var(--app-max-width, 1200px);
     margin: 0 auto;
     padding: var(--spacing-xl) var(--spacing-md) var(--spacing-xxxl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
   }
 
   .header {
     text-align: center;
-    margin-bottom: var(--spacing-xxl);
   }
 
   .header h1 {
@@ -27,176 +29,14 @@
     margin: 0;
   }
 
+  /* ---- bot grid ---- */
   .grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--spacing-lg);
   }
 
-  .card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    padding: var(--spacing-xl);
-    border-radius: var(--radius-xxl);
-    border: var(--glass-border-pink);
-    background: var(--glass-bg-light);
-    backdrop-filter: var(--blur-md);
-    -webkit-backdrop-filter: var(--blur-md);
-    transition: all var(--transition-normal);
-  }
-
-  .card:hover {
-    border: var(--glass-border-pink-hover);
-    box-shadow: var(--glass-shadow-md);
-    transform: translateY(-2px);
-  }
-
-  .cardTop {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: var(--spacing-md);
-  }
-
-  .cardInfo {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
-    flex: 1;
-  }
-
-  .cardName {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-    color: var(--dark-color);
-    margin: 0;
-    font-family: var(--font-family-heading);
-  }
-
-  .cardDesc {
-    font-size: var(--font-size-sm);
-    color: var(--warm-gray);
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  .communityTag {
-    display: inline-flex;
-    align-items: center;
-    padding: 2px 8px;
-    border-radius: var(--radius-full);
-    background: rgba(0, 229, 176, 0.12);
-    border: 1px solid rgba(0, 229, 176, 0.25);
-    color: var(--secondary-color);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-semibold);
-    width: fit-content;
-  }
-
-  .cardPrice {
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-bold);
-    color: var(--primary-color);
-    flex-shrink: 0;
-  }
-
-  .cardMeta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-xs);
-  }
-
-  .tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 3px 10px;
-    border-radius: var(--radius-full);
-    background: rgba(0, 200, 150, 0.08);
-    border: 1px solid rgba(0, 200, 150, 0.18);
-    color: var(--primary-color);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-semibold);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .buyBtn {
-    width: 100%;
-    padding: 14px;
-    border-radius: var(--radius-full);
-    background: var(--gradient-primary);
-    color: var(--light-color);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-bold);
-    border: none;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    box-shadow: var(--glass-shadow-pink);
-    font-family: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-  }
-
-  .buyBtn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: var(--glass-shadow-pink-hover);
-  }
-
-  .buyBtn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  .skeletonCard {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    padding: var(--spacing-xl);
-    border-radius: var(--radius-xxl);
-    border: var(--glass-border-pink);
-    background: var(--glass-bg-light);
-  }
-
-  .skeletonTitle {
-    height: 22px;
-    width: 65%;
-    border-radius: var(--radius-sm);
-  }
-
-  .skeletonText {
-    height: 14px;
-    width: 85%;
-    border-radius: var(--radius-sm);
-  }
-
-  .skeletonTextShort {
-    height: 14px;
-    width: 55%;
-    border-radius: var(--radius-sm);
-  }
-
-  .skeletonTags {
-    display: flex;
-    gap: var(--spacing-xs);
-    flex-wrap: wrap;
-  }
-
-  .skeletonTag {
-    height: 22px;
-    width: 58px;
-    border-radius: var(--radius-full);
-  }
-
-  .skeletonBtn {
-    height: 48px;
-    border-radius: var(--radius-full);
-    width: 100%;
-  }
-
+  /* ---- empty state ---- */
   .emptyState {
     display: flex;
     flex-direction: column;
@@ -219,12 +59,61 @@
     margin: 0;
   }
 
-  .guideSection {
-    margin-top: var(--spacing-xl);
+  /* ---- skeleton loading ---- */
+  .skeletonCard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    border: var(--glass-border-pink);
+    background: var(--glass-bg-light);
   }
 
+  .skeletonLine {
+    border-radius: var(--radius-sm);
+  }
+
+  .skeletonTitle {
+    height: 22px;
+    width: 65%;
+  }
+
+  .skeletonText {
+    height: 14px;
+    width: 85%;
+  }
+
+  .skeletonTextShort {
+    height: 14px;
+    width: 55%;
+  }
+
+  .skeletonTags {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+  }
+
+  .skeletonTag {
+    height: 22px;
+    width: 58px;
+    border-radius: var(--radius-full);
+  }
+
+  .skeletonBtn {
+    height: 48px;
+    border-radius: var(--radius-full);
+    width: 100%;
+  }
+
+  /* ---- guide section ---- */
+  .guideSection {
+    margin-top: var(--spacing-sm);
+  }
+
+  /* ---- disclaimer ---- */
   .disclaimer {
-    margin-top: var(--spacing-xl);
     padding: var(--spacing-md) var(--spacing-lg);
     border: 1px solid rgba(0, 200, 150, 0.12);
     border-radius: var(--radius-lg);

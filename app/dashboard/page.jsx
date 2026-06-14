@@ -8,40 +8,22 @@ import { useOrderStore } from "@/app/store/OrderStore";
 import { toast } from "sonner";
 import styles from "@/app/style/dashboard.module.css";
 import BotInstallGuide from "@/app/components/BotInstallGuide";
+import BotCard from "@/app/components/BotCard";
 import {
   IoRocketOutline as RocketIcon,
-  IoDownloadOutline as DownloadIcon,
   IoCodeSlash as CodeIcon,
-  IoTimeOutline as ClockIcon,
-  IoCheckmarkCircle as CheckIcon,
-  IoAlertCircle as AlertIcon,
-  IoSyncOutline as SyncIcon,
   IoStar as StarFilledIcon,
   IoStarOutline as StarEmptyIcon,
   IoChatbubbleEllipsesOutline as TestimonyIcon,
-  IoTrashOutline as TrashIcon,
   IoCopyOutline as CopyIcon,
   IoWalletOutline as WalletIcon,
   IoPeopleOutline as PeopleIcon,
   IoTrendingUpOutline as EarningsIcon,
+  IoCheckmarkCircle as CheckIcon,
 } from "react-icons/io5";
 
 const SERVER_API = process.env.NEXT_PUBLIC_SERVER_API;
 
-const formatTrialExpiry = (dateStr) => {
-  if (!dateStr) return "6h after generation";
-  const d = new Date(dateStr);
-  const now = new Date();
-  if (d < now) return "Expired";
-  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
-};
-
-const STATUS_CONFIG = {
-  pending:    { label: "Queued",     Icon: ClockIcon },
-  generating: { label: "Generating", Icon: SyncIcon },
-  completed:  { label: "Ready",      Icon: CheckIcon },
-  failed:     { label: "Failed",     Icon: AlertIcon },
-};
 
 export default function Dashboard() {
   const router = useRouter();
@@ -220,111 +202,21 @@ export default function Dashboard() {
               </div>
             ) : (
               <div className={styles.ordersGrid}>
-                {orders.map((order) => {
-                  const genStatus = order.generation?.status || "pending";
-                  const status = STATUS_CONFIG[genStatus] || STATUS_CONFIG.pending;
-                  const isReady = genStatus === "completed";
-                  const isFailed = genStatus === "failed";
-
-                  return (
-                    <div key={order._id} className={styles.orderCard} data-trial={order.isTrial ? "true" : undefined}>
-                      <div className={styles.orderCardHeader}>
-                        <div className={styles.orderInfo}>
-                          <h3>{order.botName}</h3>
-                          <div className={styles.orderMeta}>
-                            {order.isTrial && (
-                              <div className={styles.orderTrialPill}>
-                                <span>Trial</span>
-                              </div>
-                            )}
-                            <span>{order.tierName}</span>
-                            {order.config?.symbol && <><span>•</span><span>{order.config.symbol}</span></>}
-                            {order.config?.timeframe && <><span>•</span><span>{order.config.timeframe}</span></>}
-                          </div>
-                        </div>
-                        <div className={styles.orderStatus} data-status={genStatus}>
-                          <status.Icon />
-                          <span>{status.label}</span>
-                        </div>
-                      </div>
-
-                      <div className={styles.orderDetails}>
-                        <div className={styles.orderDetail}>
-                          <span>Platform</span>
-                          <span>{order.config?.platform || "MT4"}</span>
-                        </div>
-                        <div className={styles.orderDetail}>
-                          <span>Strategy</span>
-                          <span>{(order.config?.entry?.strategy || "ma_crossover").replace(/_/g, " ")}</span>
-                        </div>
-                        <div className={styles.orderDetail}>
-                          <span>Downloads</span>
-                          <span>{order.generation?.downloadCount || 0}</span>
-                        </div>
-                        {order.isTrial && (
-                          <div
-                            className={styles.orderDetail}
-                            data-expired={order.trialExpiresAt && new Date(order.trialExpiresAt) < new Date() ? "true" : undefined}
-                          >
-                            <span>Trial Expires</span>
-                            <span>{formatTrialExpiry(order.trialExpiresAt)}</span>
-                          </div>
-                        )}
-                      </div>
-
-                      {isReady && (
-                        <div className={styles.orderActions}>
-                          {order.generation?.mt4Code && (
-                            <button className={styles.dlBtn} onClick={() => handleDownload(order._id, order.botName, "mt4")} disabled={downloadingId === `${order._id}-mt4`}>
-                              <DownloadIcon />
-                              <span>{downloadingId === `${order._id}-mt4` ? "Preparing..." : "Download MT4"}</span>
-                            </button>
-                          )}
-                          {order.generation?.mt5Code && (
-                            <button className={styles.dlBtn} onClick={() => handleDownload(order._id, order.botName, "mt5")} disabled={downloadingId === `${order._id}-mt5`}>
-                              <DownloadIcon />
-                              <span>{downloadingId === `${order._id}-mt5` ? "Preparing..." : "Download MT5"}</span>
-                            </button>
-                          )}
-                        </div>
-                      )}
-
-                      {!isReady && !isFailed && (
-                        <div className={styles.orderFailed} data-info="true">
-                          You will receive an email when your bot is ready. If you don&apos;t see it, check your spam or junk folder.
-                        </div>
-                      )}
-
-                      {isFailed && (
-                        <div className={styles.orderFailed}>
-                          Generation failed. Please contact support.
-                        </div>
-                      )}
-
-                      <div className={styles.cardFooter}>
-                        <div className={styles.visibilityRow}>
-                          <span className={styles.visibilityLabel}>{order.isPublic ? "Public" : "Private"}</span>
-                          <label className={styles.toggleTrack}>
-                            <input type="checkbox" checked={!order.isPublic} onChange={() => handleToggleVisibility(order._id, !order.isPublic)} />
-                            <span className={styles.toggleSlider} />
-                          </label>
-                        </div>
-                        {confirmDeleteId === order._id ? (
-                          <div className={styles.deleteConfirm}>
-                            <span>Delete this bot?</span>
-                            <button className={styles.confirmYes} onClick={() => handleDeleteConfirm(order._id)} disabled={deletingId === order._id}>Yes</button>
-                            <button className={styles.confirmNo} onClick={() => setConfirmDeleteId(null)}>Cancel</button>
-                          </div>
-                        ) : (
-                          <button className={styles.deleteBtn} onClick={() => setConfirmDeleteId(order._id)} disabled={deletingId === order._id}>
-                            <TrashIcon />
-                            <span>{deletingId === order._id ? "Deleting..." : "Delete"}</span>
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
+                {orders.map((order) => (
+                  <BotCard
+                    key={order._id}
+                    variant="dashboard"
+                    order={order}
+                    onDownload={handleDownload}
+                    onDelete={(id) => setConfirmDeleteId(id)}
+                    onToggleVisibility={handleToggleVisibility}
+                    downloadingId={downloadingId}
+                    deletingId={deletingId}
+                    confirmDeleteId={confirmDeleteId}
+                    onConfirmDelete={handleDeleteConfirm}
+                    onCancelDelete={() => setConfirmDeleteId(null)}
+                  />
+                ))}
               </div>
             )}
 

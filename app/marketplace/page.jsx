@@ -8,19 +8,9 @@ import { useAuthStore } from "@/app/store/AuthStore";
 import { useMarketplaceStore } from "@/app/store/MarketplaceStore";
 import { useOrderStore } from "@/app/store/OrderStore";
 import BotInstallGuide from "@/app/components/BotInstallGuide";
+import BotCard from "@/app/components/BotCard";
 import styles from "@/app/style/marketplace.module.css";
-import { IoRocketOutline as RocketIcon, IoCodeSlash as BotIcon } from "react-icons/io5";
-
-const STRATEGY_LABELS = {
-  ma_crossover:          "MA Crossover",
-  rsi_breakout:          "RSI Breakout",
-  macd_signal:           "MACD Signal",
-  bb_breakout:           "BB Breakout",
-  stoch_crossover:       "Stoch Crossover",
-  multi_indicator:       "Multi Indicator",
-  price_action_breakout: "Price Action",
-  candlestick_pattern:   "Candlestick",
-};
+import { IoCodeSlash as BotIcon } from "react-icons/io5";
 
 export default function MarketplacePage() {
   const router = useRouter();
@@ -80,9 +70,9 @@ export default function MarketplacePage() {
         <div className={styles.grid}>
           {Array(6).fill(0).map((_, i) => (
             <div key={i} className={styles.skeletonCard}>
-              <div className={`${styles.skeletonTitle} skeleton`} />
-              <div className={`${styles.skeletonText} skeleton`} />
-              <div className={`${styles.skeletonTextShort} skeleton`} />
+              <div className={`${styles.skeletonLine} ${styles.skeletonTitle} skeleton`} />
+              <div className={`${styles.skeletonLine} ${styles.skeletonText} skeleton`} />
+              <div className={`${styles.skeletonLine} ${styles.skeletonTextShort} skeleton`} />
               <div className={styles.skeletonTags}>
                 {Array(4).fill(0).map((_, j) => (
                   <div key={j} className={`${styles.skeletonTag} skeleton`} />
@@ -111,37 +101,13 @@ export default function MarketplacePage() {
       ) : (
         <div className={styles.grid}>
           {bots.map((bot) => (
-            <div key={bot._id} className={styles.card}>
-              <div className={styles.cardTop}>
-                <div className={styles.cardInfo}>
-                  <h2 className={styles.cardName}>{bot.name}</h2>
-                  {bot.isUserBot && <span className={styles.communityTag}>Community Bot</span>}
-                  {bot.description && <p className={styles.cardDesc}>{bot.description}</p>}
-                </div>
-                <div className={styles.cardPrice}>${bot.price}</div>
-              </div>
-
-              <div className={styles.cardMeta}>
-                <span className={styles.tag}>{bot.platform}</span>
-                <span className={styles.tag}>{bot.config?.symbol || "EURUSD"}</span>
-                <span className={styles.tag}>{bot.config?.timeframe || "H1"}</span>
-                <span className={styles.tag}>{bot.tierName}</span>
-                {bot.config?.entry?.strategy && (
-                  <span className={styles.tag}>
-                    {STRATEGY_LABELS[bot.config.entry.strategy] || bot.config.entry.strategy}
-                  </span>
-                )}
-              </div>
-
-              <button
-                className={styles.buyBtn}
-                onClick={() => handleBuy(bot)}
-                disabled={buyingId === bot._id}
-              >
-                <RocketIcon />
-                {buyingId === bot._id ? "Processing..." : `Buy for $${bot.price}`}
-              </button>
-            </div>
+            <BotCard
+              key={bot._id}
+              variant="marketplace"
+              bot={bot}
+              onBuy={handleBuy}
+              buyingId={buyingId}
+            />
           ))}
         </div>
       )}
