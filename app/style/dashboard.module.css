@@ -1606,7 +1606,6 @@
   .dashboardLayout {
     display: flex;
     gap: var(--spacing-xl);
-    align-items: flex-start;
   }
 
   .botsColumn {
@@ -1623,15 +1622,20 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
+    position: sticky;
+    top: var(--spacing-xl);
+    align-self: flex-start;
+    max-height: calc(100vh - var(--spacing-xl) * 2);
+    overflow-y: auto;
   }
 
   .sidebarStats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: var(--spacing-sm);
   }
 
   .sidebarStatCard {
+    flex: 1;
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
@@ -1716,7 +1720,7 @@
   }
 
   .buildNewBtn {
-    display: inline-flex;
+    display: none;
     align-items: center;
     gap: var(--spacing-sm);
     padding: 12px var(--spacing-xl);
@@ -2910,8 +2914,12 @@
     font-size: var(--font-size-sm);
   }
 
-/* Mobile: stack sidebar below bots */
+/* Mobile: show Build New Bot, stack sidebar below bots */
 @media only screen and (max-width: 47.999em) {
+  .buildNewBtn {
+    display: inline-flex;
+  }
+
   .dashboardLayout {
     flex-direction: column;
   }
@@ -2919,10 +2927,17 @@
   .accountSidebar {
     width: 100%;
     order: 2;
+    position: static;
+    max-height: none;
+    overflow-y: visible;
   }
 
   .botsColumn {
     order: 1;
+  }
+
+  .sidebarStats {
+    flex-direction: row;
   }
 }
 

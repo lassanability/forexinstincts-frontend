@@ -110,3 +110,15 @@
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   }
 }
+
+@media only screen and (max-width: 47.999em) {
+  .howToStep {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+
+  .howToStepNum {
+    margin-top: 0;
+  }
+}
