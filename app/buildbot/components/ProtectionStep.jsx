@@ -11,6 +11,7 @@ export default function ProtectionStep({ config, update }) {
   const exit = config.exit;
   const filters = config.filters;
   const isComplex = config.tierName === "complex" || config.tierName === "advanced";
+  const isAdvanced = config.tierName === "advanced";
 
   const toggleSession = (id) => {
     const sessions = filters.sessions || [];
@@ -111,6 +112,32 @@ export default function ProtectionStep({ config, update }) {
                 <input className={styles.input} type="number" value={exit.breakEven.lockPips} onChange={(e) => update("exit.breakEven.lockPips", parseInt(e.target.value))} min={0} max={50} />
               </div>
             </div>
+          )}
+
+          {isAdvanced && (
+            <>
+              <div className={styles.toggleGroup}>
+                <div
+                  className={`${styles.toggleTrack} ${exit.partialClose.enabled ? styles.toggleTrackOn : ""}`}
+                  onClick={() => update("exit.partialClose.enabled", !exit.partialClose.enabled)}
+                >
+                  <div className={styles.toggleThumb} />
+                </div>
+                <span>Partial Close</span>
+              </div>
+              {exit.partialClose.enabled && (
+                <div className={styles.gridRow}>
+                  <div className={styles.formGroup}>
+                    <label>Close % of Position</label>
+                    <input className={styles.input} type="number" value={exit.partialClose.percent} onChange={(e) => update("exit.partialClose.percent", parseInt(e.target.value))} min={10} max={90} step={10} />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label>At Profit (pips)</label>
+                    <input className={styles.input} type="number" value={exit.partialClose.atPips} onChange={(e) => update("exit.partialClose.atPips", parseInt(e.target.value))} min={10} max={500} />
+                  </div>
+                </div>
+              )}
+            </>
           )}
 
           <div className={styles.formGroup}>

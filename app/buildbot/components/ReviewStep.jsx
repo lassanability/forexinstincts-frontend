@@ -23,6 +23,7 @@ export default function ReviewStep({
   );
   const exit = config.exit;
   const isComplex = config.tierName === "complex" || config.tierName === "advanced";
+  const isAdvanced = config.tierName === "advanced";
   const sessions = config.filters.sessions || [];
   const indicators = config.entry.indicators || [];
 
@@ -148,6 +149,14 @@ export default function ReviewStep({
                 <div className={styles.reviewLabel}>Sessions</div>
                 <div className={styles.reviewValue}>{sessions.length ? sessions.join(", ") : "All sessions"}</div>
               </div>
+              {isAdvanced && (
+                <div className={styles.reviewRow}>
+                  <div className={styles.reviewLabel}>Partial Close</div>
+                  <div className={styles.reviewValue}>
+                    {exit.partialClose.enabled ? `Yes (${exit.partialClose.percent}% at ${exit.partialClose.atPips}p)` : "Off"}
+                  </div>
+                </div>
+              )}
             </>
           )}
           <div className={styles.reviewRow}>

@@ -26,7 +26,7 @@ export default function MarketplacePage() {
   const router = useRouter();
   const { isAuth } = useAuthStore();
   const { bots, loading, fetchBots } = useMarketplaceStore();
-  const { buyPrebuiltBot, initializePayment } = useOrderStore();
+  const { buyPrebuiltBot, buyMarketplaceBot, initializePayment } = useOrderStore();
   const [buyingId, setBuyingId] = useState(null);
 
   useEffect(() => {
@@ -42,7 +42,9 @@ export default function MarketplacePage() {
 
     setBuyingId(bot._id);
     try {
-      const orderResult = await buyPrebuiltBot(bot._id);
+      const orderResult = bot.isUserBot
+        ? await buyMarketplaceBot(bot._id)
+        : await buyPrebuiltBot(bot._id);
       if (!orderResult.success) {
         toast.error(orderResult.message || "Failed to create order");
         return;
@@ -73,7 +75,7 @@ export default function MarketplacePage() {
       <div className={styles.page}>
         <div className={styles.header}>
           <h1>Bot Marketplace</h1>
-          <p>Ready-to-use trading bots built by our experts. Buy once, use immediately.</p>
+          <p>Ready-to-use trading bots. Expert-built and community strategies available.</p>
         </div>
         <div className={styles.grid}>
           {Array(6).fill(0).map((_, i) => (
@@ -98,7 +100,7 @@ export default function MarketplacePage() {
     <div className={styles.page}>
       <div className={styles.header}>
         <h1>Bot Marketplace</h1>
-        <p>Ready-to-use trading bots built by our experts. Buy once, use immediately.</p>
+        <p>Ready-to-use trading bots. Expert-built and community strategies available.</p>
       </div>
 
       {bots.length === 0 ? (
@@ -113,6 +115,7 @@ export default function MarketplacePage() {
               <div className={styles.cardTop}>
                 <div className={styles.cardInfo}>
                   <h2 className={styles.cardName}>{bot.name}</h2>
+                  {bot.isUserBot && <span className={styles.communityTag}>Community Bot</span>}
                   {bot.description && <p className={styles.cardDesc}>{bot.description}</p>}
                 </div>
                 <div className={styles.cardPrice}>${bot.price}</div>

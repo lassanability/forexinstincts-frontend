@@ -129,10 +129,11 @@ function BuildContent() {
         ...p.exit,
         trailingStop: isBasic ? { enabled: false, distance: 30, step: 15 } : p.exit.trailingStop,
         breakEven: isBasic ? { enabled: false, triggerPips: 20, lockPips: 5 } : p.exit.breakEven,
+        partialClose: !isAdvanced ? { enabled: false, percent: 50, atPips: 50 } : p.exit.partialClose,
       },
       advanced: {
         ...p.advanced,
-        multiTimeframe: isBasic ? { enabled: false, confirmationTimeframe: "H4", indicator: "MA", period: 50 } : p.advanced.multiTimeframe,
+        multiTimeframe: !isAdvanced ? { enabled: false, confirmationTimeframe: "H4", indicator: "MA", period: 50 } : p.advanced.multiTimeframe,
         grid: !isAdvanced ? { enabled: false, distance: 50, maxLevels: 5, lotMultiplier: 1 } : p.advanced.grid,
         martingale: !isAdvanced ? { enabled: false, multiplier: 2, maxLevel: 3 } : p.advanced.martingale,
       },

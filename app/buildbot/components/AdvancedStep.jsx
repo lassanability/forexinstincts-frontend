@@ -52,7 +52,7 @@ export default function AdvancedStep({ config, update }) {
         </div>
       </div>
 
-      {isComplex && (
+      {isAdvanced && (
         <>
           <div className={styles.toggleGroup}>
             <div

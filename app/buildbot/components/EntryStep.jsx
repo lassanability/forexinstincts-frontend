@@ -1,11 +1,16 @@
 import Dropdown from "@/app/components/Dropdown";
 import styles from "@/app/style/build.module.css";
 
-const INDICATOR_STRATEGIES = [
+const INDICATOR_STRATEGIES_BASIC = [
   { value: "ma_crossover",    label: "Moving Average Crossover" },
   { value: "rsi_breakout",    label: "RSI Breakout" },
   { value: "macd_signal",     label: "MACD Signal Cross" },
   { value: "bb_breakout",     label: "Bollinger Band Breakout" },
+  { value: "stoch_crossover", label: "Stochastic Crossover" },
+];
+
+const INDICATOR_STRATEGIES = [
+  ...INDICATOR_STRATEGIES_BASIC,
   { value: "multi_indicator", label: "Multi-Indicator (Custom)" },
 ];
 
@@ -95,8 +100,8 @@ export default function EntryStep({ config, update, selectedTier }) {
           <div className={styles.formGroup}>
             <label>Primary Strategy</label>
             <Dropdown
-              options={INDICATOR_STRATEGIES}
-              value={INDICATOR_STRATEGIES.find((s) => s.value === strategy) || null}
+              options={isComplex ? INDICATOR_STRATEGIES : INDICATOR_STRATEGIES_BASIC}
+              value={(isComplex ? INDICATOR_STRATEGIES : INDICATOR_STRATEGIES_BASIC).find((s) => s.value === strategy) || null}
               onSelect={(opt) => update("entry.strategy", opt.value)}
               dropPlaceHolder="Select Strategy"
             />

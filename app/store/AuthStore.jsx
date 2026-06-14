@@ -13,6 +13,10 @@ export const useAuthStore = create(
       token: "",
       profileImage: "",
       hasUsedTrial: false,
+      referralCode: "",
+      referralCount: 0,
+      referralEarnings: 0,
+      walletAddress: "",
       isInitialized: false,
 
       setUser: (userData, token) => {
@@ -24,6 +28,10 @@ export const useAuthStore = create(
           token,
           profileImage: userData.profileImage || "",
           hasUsedTrial: userData.hasUsedTrial || false,
+          referralCode: userData.referralCode || "",
+          referralCount: userData.referralCount || 0,
+          referralEarnings: userData.referralEarnings || 0,
+          walletAddress: userData.walletAddress || "",
           isInitialized: true,
         });
       },
@@ -37,6 +45,10 @@ export const useAuthStore = create(
           token: "",
           profileImage: "",
           hasUsedTrial: false,
+          referralCode: "",
+          referralCount: 0,
+          referralEarnings: 0,
+          walletAddress: "",
           isInitialized: false,
         });
       },
@@ -52,17 +64,77 @@ export const useAuthStore = create(
           });
           const data = await response.json();
           if (data.success && data.user) {
-            set({ hasUsedTrial: data.user.hasUsedTrial || false });
+            set({
+              hasUsedTrial: data.user.hasUsedTrial || false,
+              referralCode: data.user.referralCode || "",
+              referralCount: data.user.referralCount || 0,
+              referralEarnings: data.user.referralEarnings || 0,
+              walletAddress: data.user.walletAddress || "",
+            });
           }
         } catch {}
       },
 
-      register: async (name, email, password) => {
+      requestPayout: async () => {
+        try {
+          const { token } = get();
+          const response = await fetch(`${SERVER_API}/payouts/request`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          });
+          const data = await response.json();
+          if (data.success) {
+            set({ referralEarnings: 0 });
+            return { success: true, data: data.data };
+          }
+          return { success: false, message: data.message };
+        } catch {
+          return { success: false, message: "Failed to submit payout request" };
+        }
+      },
+
+      fetchPayouts: async () => {
+        try {
+          const { token } = get();
+          const response = await fetch(`${SERVER_API}/payouts/my`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          const data = await response.json();
+          if (data.success) return { success: true, data: data.data };
+          return { success: false, data: [] };
+        } catch {
+          return { success: false, data: [] };
+        }
+      },
+
+      updateWallet: async (walletAddress) => {
+        try {
+          const { token } = get();
+          const response = await fetch(`${SERVER_API}/user/wallet`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ walletAddress }),
+          });
+          const data = await response.json();
+          if (data.success) {
+            set({ walletAddress: data.data.walletAddress });
+            return { success: true };
+          }
+          return { success: false, message: data.message };
+        } catch {
+          return { success: false, message: "Failed to update wallet address" };
+        }
+      },
+
+      register: async (name, email, password, referralCode) => {
         try {
           const response = await fetch(`${SERVER_API}/user/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, email, password }),
+            body: JSON.stringify({ name, email, password, referralCode }),
           });
           const data = await response.json();
           if (data.success) {
@@ -234,6 +306,10 @@ export const useAuthStore = create(
         token: state.token,
         profileImage: state.profileImage,
         hasUsedTrial: state.hasUsedTrial,
+        referralCode: state.referralCode,
+        referralCount: state.referralCount,
+        referralEarnings: state.referralEarnings,
+        walletAddress: state.walletAddress,
       }),
     }
   )

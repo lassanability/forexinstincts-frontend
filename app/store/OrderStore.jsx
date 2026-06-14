@@ -103,6 +103,26 @@ export const useOrderStore = create((set, get) => ({
     }
   },
 
+  buyMarketplaceBot: async (botId) => {
+    try {
+      const { getAuthHeader } = useAuthStore.getState();
+      const response = await fetch(`${SERVER_API}/orders/public/${botId}/buy`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...getAuthHeader(),
+        },
+      });
+      const data = await response.json();
+      if (data.success) {
+        return { success: true, orderId: data.data.orderId };
+      }
+      return { success: false, message: data.message };
+    } catch {
+      return { success: false, message: "Failed to initiate purchase" };
+    }
+  },
+
   buyPrebuiltBot: async (botId) => {
     try {
       const { getAuthHeader } = useAuthStore.getState();

@@ -7,7 +7,7 @@ import Loader from "@/app/components/Loader";
 import { useAuthStore } from "@/app/store/AuthStore";
 import { getEmailValidationError } from "@/app/lib/emailValidation";
 import styles from "@/app/style/auth.module.css";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import {
   FiEye as ShowPasswordIcon,
@@ -33,6 +33,8 @@ function SignUpForm() {
   });
 
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const referralCode = searchParams.get("ref") || "";
   const { register } = useAuthStore();
 
   const handleInputChange = (e) => {
@@ -87,7 +89,8 @@ function SignUpForm() {
       const result = await register(
         formData.name.trim(),
         formData.email.trim(),
-        formData.password
+        formData.password,
+        referralCode || undefined
       );
 
       if (result.success) {
