@@ -302,7 +302,7 @@ export default function Dashboard() {
                       <label className={styles.toggleTrack}>
                         <input
                           type="checkbox"
-                          checked={!!order.isPublic}
+                          checked={!order.isPublic}
                           onChange={() => handleToggleVisibility(order._id, !order.isPublic)}
                         />
                         <span className={styles.toggleSlider} />
