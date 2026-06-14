@@ -183,6 +183,71 @@
     border-radius: var(--radius-full);
     width: 100%;
   }
+
+  .emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xxxl) var(--spacing-md);
+    text-align: center;
+  }
+
+  .emptyIcon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    opacity: 0.5;
+  }
+
+  .emptyText {
+    font-size: var(--font-size-base);
+    color: var(--warm-gray);
+    margin: 0;
+  }
+
+  .guideSection {
+    margin-top: var(--spacing-xl);
+  }
+
+  .disclaimer {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: 1px solid rgba(0, 200, 150, 0.12);
+    border-radius: var(--radius-lg);
+    background: rgba(0, 200, 150, 0.03);
+    text-align: center;
+  }
+
+  .disclaimer p {
+    font-size: var(--font-size-xs);
+    color: var(--warm-gray);
+    line-height: 1.7;
+    margin: 0 0 var(--spacing-sm);
+  }
+
+  .disclaimerLinks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+  }
+
+  .disclaimerLinks a {
+    font-size: var(--font-size-xs);
+    color: var(--primary-color);
+    text-decoration: underline;
+    transition: color var(--transition-fast);
+  }
+
+  .disclaimerLinks a:hover {
+    color: var(--secondary-color);
+  }
+
+  .disclaimerLinks span {
+    font-size: var(--font-size-xs);
+    color: var(--warm-gray);
+  }
 }
 
 @media only screen and (min-width: 48em) {

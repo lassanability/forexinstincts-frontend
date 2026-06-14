@@ -7,6 +7,7 @@ import { useAuthStore } from "@/app/store/AuthStore";
 import { useOrderStore } from "@/app/store/OrderStore";
 import { toast } from "sonner";
 import styles from "@/app/style/dashboard.module.css";
+import BotInstallGuide from "@/app/components/BotInstallGuide";
 import {
   IoRocketOutline as RocketIcon,
   IoDownloadOutline as DownloadIcon,
@@ -18,39 +19,8 @@ import {
   IoStar as StarFilledIcon,
   IoStarOutline as StarEmptyIcon,
   IoChatbubbleEllipsesOutline as TestimonyIcon,
-  IoHelpCircleOutline as GuideIcon,
+  IoTrashOutline as TrashIcon,
 } from "react-icons/io5";
-
-const HOW_TO_STEPS = [
-  {
-    title: "Download Your Bot File",
-    desc: "Click the MT4 or MT5 download button on your bot card above. You will receive a .mq4 or .mq5 source file.",
-  },
-  {
-    title: "Open MetaTrader Data Folder",
-    desc: "In MetaTrader, go to File → Open Data Folder. Navigate to MQL4/Experts (for MT4) or MQL5/Experts (for MT5).",
-  },
-  {
-    title: "Copy the EA File",
-    desc: "Paste the downloaded .mq4 or .mq5 file into the Experts folder you just opened.",
-  },
-  {
-    title: "Compile in MetaEditor",
-    desc: "Press F4 in MetaTrader to open MetaEditor. Open your EA file, then press F7 to compile. Wait for '0 error(s)' in the output at the bottom. This step is required — without it, MetaTrader will not recognise the bot.",
-  },
-  {
-    title: "Refresh the Navigator",
-    desc: "Switch back to MetaTrader, then right-click Navigator → Expert Advisors → Refresh (or press Ctrl+R). Your compiled bot will now appear in the list.",
-  },
-  {
-    title: "Attach to a Chart",
-    desc: "Drag your bot from Navigator → Expert Advisors onto the chart matching the symbol and timeframe you configured.",
-  },
-  {
-    title: "Enable AutoTrading",
-    desc: 'Check "Allow automated trading" in the EA settings popup, then click the AutoTrading button in the toolbar (or press Ctrl+E). A green smiley face on the chart confirms the bot is live.',
-  },
-];
 
 const SERVER_API = process.env.NEXT_PUBLIC_SERVER_API;
 
@@ -72,11 +42,13 @@ const STATUS_CONFIG = {
 export default function Dashboard() {
   const router = useRouter();
   const { isAuth, username, isInitialized, initializeAuth } = useAuthStore();
-  const { orders: rawOrders, ordersLoading, getMyOrders, downloadBot } = useOrderStore();
+  const { orders: rawOrders, ordersLoading, getMyOrders, downloadBot, deleteOrder, updateVisibility } = useOrderStore();
   const orders = rawOrders.filter(
     (o) => o.status === "paid" || o.status === "generated" || o.status === "trial" || o.isTrial
   );
   const [downloadingId, setDownloadingId] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
 
   const [testimonyText, setTestimonyText] = useState("");
   const [testimonyRating, setTestimonyRating] = useState(5);
@@ -117,6 +89,27 @@ export default function Dashboard() {
       toast.error("Download failed. Please try again.");
     } finally {
       setDownloadingId(null);
+    }
+  };
+
+  const handleDeleteConfirm = async (orderId) => {
+    setDeletingId(orderId);
+    setConfirmDeleteId(null);
+    const result = await deleteOrder(orderId);
+    if (result.success) {
+      toast.success("Bot deleted");
+    } else {
+      toast.error(result.message || "Failed to delete bot");
+    }
+    setDeletingId(null);
+  };
+
+  const handleToggleVisibility = async (orderId, isPublic) => {
+    const result = await updateVisibility(orderId, isPublic);
+    if (result.success) {
+      if (isPublic) toast.success("Your bot will be available for the ForexInstincts team to review.");
+    } else {
+      toast.error(result.message || "Failed to update visibility");
     }
   };
 
@@ -217,10 +210,8 @@ export default function Dashboard() {
                           </div>
                         )}
                         <span>{order.tierName}</span>
-                        <span>•</span>
-                        <span>{order.config?.symbol || "—"}</span>
-                        <span>•</span>
-                        <span>{order.config?.timeframe || "—"}</span>
+                        {order.config?.symbol && <><span>•</span><span>{order.config.symbol}</span></>}
+                        {order.config?.timeframe && <><span>•</span><span>{order.config.timeframe}</span></>}
                       </div>
                     </div>
                     <div
@@ -302,37 +293,56 @@ export default function Dashboard() {
                       Generation failed. Please contact support.
                     </div>
                   )}
+
+                  <div className={styles.cardFooter}>
+                    <div className={styles.visibilityRow}>
+                      <span className={styles.visibilityLabel}>
+                        {order.isPublic ? "Public" : "Private"}
+                      </span>
+                      <label className={styles.toggleTrack}>
+                        <input
+                          type="checkbox"
+                          checked={!!order.isPublic}
+                          onChange={() => handleToggleVisibility(order._id, !order.isPublic)}
+                        />
+                        <span className={styles.toggleSlider} />
+                      </label>
+                    </div>
+                    {confirmDeleteId === order._id ? (
+                      <div className={styles.deleteConfirm}>
+                        <span>Delete this bot?</span>
+                        <button
+                          className={styles.confirmYes}
+                          onClick={() => handleDeleteConfirm(order._id)}
+                          disabled={deletingId === order._id}
+                        >
+                          Yes
+                        </button>
+                        <button
+                          className={styles.confirmNo}
+                          onClick={() => setConfirmDeleteId(null)}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        className={styles.deleteBtn}
+                        onClick={() => setConfirmDeleteId(order._id)}
+                        disabled={deletingId === order._id}
+                      >
+                        <TrashIcon />
+                        <span>{deletingId === order._id ? "Deleting..." : "Delete"}</span>
+                      </button>
+                    )}
+                  </div>
                 </div>
               );
             })}
           </div>
         )}
 
-        <div className={styles.howToSection}>
-          <div className={styles.howToHeader}>
-            <div className={styles.howToIconWrap}>
-              <GuideIcon />
-            </div>
-            <div>
-              <h2>How to Install Your Bot</h2>
-              <p>Expert Advisors only run on the <strong>Windows desktop</strong> version of MetaTrader 4 or 5 — not on the mobile app. If you trade on your phone, install MT4/MT5 on a Windows PC or rent a VPS to run the bot.</p>
-            </div>
-          </div>
-          <div className={styles.howToSteps}>
-            {HOW_TO_STEPS.map((step, i) => (
-              <div key={i} className={styles.howToStep}>
-                <div className={styles.howToStepNum}>{i + 1}</div>
-                <div className={styles.howToStepContent}>
-                  <strong>{step.title}</strong>
-                  <p>{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className={styles.howToNote}>
-            If the bot shows a grey frowning face, check that AutoTrading is enabled in the toolbar and that "Allow automated trading" was checked when you attached it.
-          </p>
-        </div>
+        <BotInstallGuide />
 
         <div className={styles.testimonySection}>
           <div className={styles.testimonySectionHeader}>

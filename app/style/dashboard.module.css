@@ -1854,6 +1854,157 @@
     border-color: rgba(0, 200, 150, 0.28);
   }
 
+  .cardFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid rgba(0, 200, 150, 0.08);
+    flex-wrap: wrap;
+  }
+
+  .visibilityRow {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .visibilityLabel {
+    font-size: var(--font-size-xs);
+    color: var(--warm-gray);
+    font-weight: var(--font-weight-medium);
+    min-width: 38px;
+  }
+
+  .toggleTrack {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    cursor: pointer;
+    display: block;
+  }
+
+  .toggleTrack input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+  }
+
+  .toggleSlider {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    transition: background var(--transition-normal), border-color var(--transition-normal);
+  }
+
+  .toggleSlider::before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    left: 2px;
+    top: 2px;
+    background: var(--warm-gray);
+    border-radius: 50%;
+    transition: transform var(--transition-normal), background var(--transition-normal);
+  }
+
+  .toggleTrack input:checked + .toggleSlider {
+    background: rgba(0, 200, 150, 0.2);
+    border-color: var(--primary-color);
+  }
+
+  .toggleTrack input:checked + .toggleSlider::before {
+    transform: translateX(16px);
+    background: var(--primary-color);
+  }
+
+  .deleteBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 8px var(--spacing-md);
+    border-radius: var(--radius-full);
+    background: rgba(239, 68, 68, 0.06);
+    color: #ef4444;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-xs);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-family: inherit;
+  }
+
+  .deleteBtn:hover:not(:disabled) {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .deleteBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .deleteConfirm {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  .deleteConfirm span {
+    font-size: var(--font-size-xs);
+    color: #ef4444;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .confirmYes {
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    background: #ef4444;
+    color: #fff;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all var(--transition-normal);
+  }
+
+  .confirmYes:hover:not(:disabled) {
+    background: #dc2626;
+    transform: translateY(-1px);
+  }
+
+  .confirmYes:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .confirmNo {
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--warm-gray);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all var(--transition-normal);
+  }
+
+  .confirmNo:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
   /* ==================== TESTIMONY SECTION ==================== */
   .testimonySection {
     background: var(--glass-bg-light);

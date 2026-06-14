@@ -41,11 +41,12 @@ export default function Privacy() {
             at any point.
           </p>
           <p>
-            <strong>2.2 Order and Transaction Data.</strong> When you submit a bot configuration
-            and complete payment, we record: a unique order ID, your selected tier and
-            configuration parameters, the payment reference number issued by our payment processor, the
-            transaction amount, and timestamp. We do not receive, store, or process your
-            raw payment credentials — those remain exclusively with our payment processor.
+            <strong>2.2 Order and Transaction Data.</strong> When you place an order — whether
+            through the Bot Builder (custom configuration) or the Bot Marketplace (pre-built bot
+            purchase) — we record: a unique order ID, your selected tier or marketplace bot,
+            configuration parameters where applicable, the payment reference number issued by our
+            payment processor, the transaction amount, and timestamp. We do not receive, store,
+            or process your raw payment credentials — those remain exclusively with our payment processor.
           </p>
           <p>
             <strong>2.3 Usage and Technical Data.</strong> We automatically collect certain

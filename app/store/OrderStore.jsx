@@ -161,6 +161,47 @@ export const useOrderStore = create((set, get) => ({
     }
   },
 
+  deleteOrder: async (orderId) => {
+    try {
+      const { getAuthHeader } = useAuthStore.getState();
+      const response = await fetch(`${SERVER_API}/orders/my/${orderId}`, {
+        method: "DELETE",
+        headers: getAuthHeader(),
+      });
+      const data = await response.json();
+      if (data.success) {
+        set((state) => ({ orders: state.orders.filter((o) => o._id !== orderId) }));
+        return { success: true };
+      }
+      return { success: false, message: data.message };
+    } catch {
+      return { success: false, message: "Failed to delete bot" };
+    }
+  },
+
+  updateVisibility: async (orderId, isPublic) => {
+    try {
+      const { getAuthHeader } = useAuthStore.getState();
+      const response = await fetch(`${SERVER_API}/orders/my/${orderId}/visibility`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json", ...getAuthHeader() },
+        body: JSON.stringify({ isPublic }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        set((state) => ({
+          orders: state.orders.map((o) =>
+            o._id === orderId ? { ...o, isPublic } : o
+          ),
+        }));
+        return { success: true };
+      }
+      return { success: false, message: data.message };
+    } catch {
+      return { success: false, message: "Failed to update visibility" };
+    }
+  },
+
   downloadBot: async (orderId, type) => {
     try {
       const { getAuthHeader } = useAuthStore.getState();
