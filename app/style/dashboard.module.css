@@ -1602,6 +1602,88 @@
     gap: var(--spacing-xl);
   }
 
+  /* Two-column dashboard layout */
+  .dashboardLayout {
+    display: flex;
+    gap: var(--spacing-xl);
+    align-items: flex-start;
+  }
+
+  .botsColumn {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+  }
+
+  .accountSidebar {
+    width: 300px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .sidebarStats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .sidebarStatCard {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: var(--glass-bg-light);
+    backdrop-filter: var(--blur-md);
+    -webkit-backdrop-filter: var(--blur-md);
+    border: var(--glass-border-pink);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow-md);
+  }
+
+  .sidebarPanel {
+    background: var(--glass-bg-light);
+    backdrop-filter: var(--blur-md);
+    -webkit-backdrop-filter: var(--blur-md);
+    border: var(--glass-border-pink);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    box-shadow: var(--glass-shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .sidebarPanelHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .sidebarPanelHeader h3 {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-color);
+    margin: 0;
+    font-family: var(--font-family-heading);
+  }
+
+  .sidebarIconWrap {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-sm);
+    color: #fff;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
   .dashboardHeader {
     display: flex;
     flex-direction: column;
@@ -2812,9 +2894,35 @@
   .ordersGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
 
-  .buildNewBtn {
-    display: none;
+/* Sidebar panel payout request row — compact for narrow sidebar */
+  .sidebarPanel .payoutRequestRow {
+    padding: var(--spacing-md);
+  }
+
+  .sidebarPanel .payoutBalanceAmount {
+    font-size: 1.4rem;
+  }
+
+  .sidebarPanel .payoutRequestBtn {
+    padding: 10px var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+
+/* Mobile: stack sidebar below bots */
+@media only screen and (max-width: 47.999em) {
+  .dashboardLayout {
+    flex-direction: column;
+  }
+
+  .accountSidebar {
+    width: 100%;
+    order: 2;
+  }
+
+  .botsColumn {
+    order: 1;
   }
 }
 
