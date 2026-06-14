@@ -9,12 +9,13 @@ const MODE_OPTS_ADVANCED = [
   { value: "percent", name: "% of Balance" },
 ];
 
-export default function RiskStep({ config, update }) {
+export default function RiskStep({ config, update, selectedTier }) {
   const rm = config.riskManagement;
-  const isComplex = config.tierName === "complex" || config.tierName === "advanced";
-  const isAdvanced = config.tierName === "advanced";
+  const lim = selectedTier?.limits || {};
+  const canRiskPercent     = !!lim.riskPercentMode;
+  const canMaxTradesPerDay = !!lim.maxTradesPerDay;
 
-  const modeOpts = isAdvanced ? MODE_OPTS_ADVANCED : MODE_OPTS_BASIC;
+  const modeOpts = canRiskPercent ? MODE_OPTS_ADVANCED : MODE_OPTS_BASIC;
 
   return (
     <div>
@@ -31,7 +32,7 @@ export default function RiskStep({ config, update }) {
           onSelect={(opt) => update("riskManagement.mode", opt.value)}
           dropPlaceHolder="Select Mode"
         />
-        {!isAdvanced && (
+        {!canRiskPercent && (
           <span>% of Balance requires Advanced tier</span>
         )}
       </div>
@@ -78,19 +79,20 @@ export default function RiskStep({ config, update }) {
             max={20}
           />
         </div>
-        <div className={styles.formGroup}>
-          <label>Max Trades Per Day</label>
-          <input
-            className={styles.input}
-            type="number"
-            value={rm.maxTradesPerDay}
-            onChange={(e) => update("riskManagement.maxTradesPerDay", parseInt(e.target.value))}
-            min={1}
-            max={50}
-            disabled={!isComplex}
-          />
-          <span>{!isComplex ? "Requires Complex or Advanced tier" : "Daily trade limit"}</span>
-        </div>
+        {canMaxTradesPerDay && (
+          <div className={styles.formGroup}>
+            <label>Max Trades Per Day</label>
+            <input
+              className={styles.input}
+              type="number"
+              value={rm.maxTradesPerDay}
+              onChange={(e) => update("riskManagement.maxTradesPerDay", parseInt(e.target.value))}
+              min={1}
+              max={50}
+            />
+            <span>Daily trade limit</span>
+          </div>
+        )}
       </div>
     </div>
   );

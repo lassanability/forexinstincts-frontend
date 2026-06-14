@@ -3,10 +3,12 @@ import styles from "@/app/style/build.module.css";
 
 const TF_OPTS = ["M5", "M15", "M30", "H1", "H4", "D1"].map((t) => ({ name: t, value: t }));
 
-export default function AdvancedStep({ config, update }) {
+export default function AdvancedStep({ config, update, selectedTier }) {
   const adv = config.advanced;
-  const isComplex = config.tierName === "complex" || config.tierName === "advanced";
-  const isAdvanced = config.tierName === "advanced";
+  const lim = selectedTier?.limits || {};
+  const canNotify    = !!lim.notifications;
+  const canMTF       = !!lim.multiTimeframe;
+  const canGridMart  = !!lim.gridMartingale;
 
   return (
     <div>
@@ -28,31 +30,33 @@ export default function AdvancedStep({ config, update }) {
         <span>Unique identifier for this EA. 0 = auto-generate random.</span>
       </div>
 
-      <div className={styles.formGroup}>
-        <label>Notifications</label>
-        <div className={styles.checkboxRow}>
-          <div className={styles.toggleGroup}>
-            <div
-              className={`${styles.toggleTrack} ${adv.emailNotifications ? styles.toggleTrackOn : ""}`}
-              onClick={() => update("advanced.emailNotifications", !adv.emailNotifications)}
-            >
-              <div className={styles.toggleThumb} />
+      {canNotify && (
+        <div className={styles.formGroup}>
+          <label>Notifications</label>
+          <div className={styles.checkboxRow}>
+            <div className={styles.toggleGroup}>
+              <div
+                className={`${styles.toggleTrack} ${adv.emailNotifications ? styles.toggleTrackOn : ""}`}
+                onClick={() => update("advanced.emailNotifications", !adv.emailNotifications)}
+              >
+                <div className={styles.toggleThumb} />
+              </div>
+              <span>Email Alerts</span>
             </div>
-            <span>Email Alerts</span>
-          </div>
-          <div className={styles.toggleGroup}>
-            <div
-              className={`${styles.toggleTrack} ${adv.pushNotifications ? styles.toggleTrackOn : ""}`}
-              onClick={() => update("advanced.pushNotifications", !adv.pushNotifications)}
-            >
-              <div className={styles.toggleThumb} />
+            <div className={styles.toggleGroup}>
+              <div
+                className={`${styles.toggleTrack} ${adv.pushNotifications ? styles.toggleTrackOn : ""}`}
+                onClick={() => update("advanced.pushNotifications", !adv.pushNotifications)}
+              >
+                <div className={styles.toggleThumb} />
+              </div>
+              <span>Push Notifications</span>
             </div>
-            <span>Push Notifications</span>
           </div>
         </div>
-      </div>
+      )}
 
-      {isAdvanced && (
+      {canMTF && (
         <>
           <div className={styles.toggleGroup}>
             <div
@@ -90,7 +94,7 @@ export default function AdvancedStep({ config, update }) {
         </>
       )}
 
-      {isAdvanced && (
+      {canGridMart && (
         <>
           <div className={styles.toggleGroup}>
             <div

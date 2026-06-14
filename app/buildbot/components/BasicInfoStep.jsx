@@ -26,6 +26,8 @@ const TIER_ICONS = {
 };
 
 export default function BasicInfoStep({ config, update, selectedTier }) {
+  const canTradingDirection = !!selectedTier?.limits?.tradingDirection;
+
   return (
     <div>
       <div className={styles.stepHeader}>
@@ -89,15 +91,17 @@ export default function BasicInfoStep({ config, update, selectedTier }) {
             dropPlaceHolder="Select Platform"
           />
         </div>
-        <div className={styles.formGroup}>
-          <label>Trading Direction</label>
-          <Dropdown
-            options={DIRECTION_OPTS}
-            value={DIRECTION_OPTS.find((o) => o.value === config.tradingDirection) || null}
-            onSelect={(opt) => update("tradingDirection", opt.value)}
-            dropPlaceHolder="Select Direction"
-          />
-        </div>
+        {canTradingDirection && (
+          <div className={styles.formGroup}>
+            <label>Trading Direction</label>
+            <Dropdown
+              options={DIRECTION_OPTS}
+              value={DIRECTION_OPTS.find((o) => o.value === config.tradingDirection) || null}
+              onSelect={(opt) => update("tradingDirection", opt.value)}
+              dropPlaceHolder="Select Direction"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

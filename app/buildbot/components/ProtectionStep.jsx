@@ -7,11 +7,14 @@ const SESSIONS = [
   { id: "sydney", label: "Sydney", time: "21:00–06:00 GMT" },
 ];
 
-export default function ProtectionStep({ config, update }) {
+export default function ProtectionStep({ config, update, selectedTier }) {
   const exit = config.exit;
   const filters = config.filters;
-  const isComplex = config.tierName === "complex" || config.tierName === "advanced";
-  const isAdvanced = config.tierName === "advanced";
+  const lim = selectedTier?.limits || {};
+  const canTrailingStop  = !!lim.trailingStop;
+  const canBreakEven     = !!lim.breakEven;
+  const canPartialClose  = !!lim.partialClose;
+  const canSessionFilter = !!lim.sessionFilter;
 
   const toggleSession = (id) => {
     const sessions = filters.sessions || [];
@@ -68,7 +71,7 @@ export default function ProtectionStep({ config, update }) {
         <span>Skip trading if spread exceeds this. 0 = disabled.</span>
       </div>
 
-      {isComplex && (
+      {canTrailingStop && (
         <>
           <div className={styles.toggleGroup}>
             <div
@@ -91,7 +94,11 @@ export default function ProtectionStep({ config, update }) {
               </div>
             </div>
           )}
+        </>
+      )}
 
+      {canBreakEven && (
+        <>
           <div className={styles.toggleGroup}>
             <div
               className={`${styles.toggleTrack} ${exit.breakEven.enabled ? styles.toggleTrackOn : ""}`}
@@ -113,50 +120,52 @@ export default function ProtectionStep({ config, update }) {
               </div>
             </div>
           )}
-
-          {isAdvanced && (
-            <>
-              <div className={styles.toggleGroup}>
-                <div
-                  className={`${styles.toggleTrack} ${exit.partialClose.enabled ? styles.toggleTrackOn : ""}`}
-                  onClick={() => update("exit.partialClose.enabled", !exit.partialClose.enabled)}
-                >
-                  <div className={styles.toggleThumb} />
-                </div>
-                <span>Partial Close</span>
-              </div>
-              {exit.partialClose.enabled && (
-                <div className={styles.gridRow}>
-                  <div className={styles.formGroup}>
-                    <label>Close % of Position</label>
-                    <input className={styles.input} type="number" value={exit.partialClose.percent} onChange={(e) => update("exit.partialClose.percent", parseInt(e.target.value))} min={10} max={90} step={10} />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <label>At Profit (pips)</label>
-                    <input className={styles.input} type="number" value={exit.partialClose.atPips} onChange={(e) => update("exit.partialClose.atPips", parseInt(e.target.value))} min={10} max={500} />
-                  </div>
-                </div>
-              )}
-            </>
-          )}
-
-          <div className={styles.formGroup}>
-            <label>Trading Sessions</label>
-            <div className={styles.sessionGrid}>
-              {SESSIONS.map((s) => (
-                <div
-                  key={s.id}
-                  className={`${styles.sessionCard} ${(filters.sessions || []).includes(s.id) ? styles.sessionCardSelected : ""}`}
-                  onClick={() => toggleSession(s.id)}
-                >
-                  <span>{s.label}</span>
-                  <span>{s.time}</span>
-                </div>
-              ))}
-            </div>
-            <span>Leave all unchecked to trade all sessions</span>
-          </div>
         </>
+      )}
+
+      {canPartialClose && (
+        <>
+          <div className={styles.toggleGroup}>
+            <div
+              className={`${styles.toggleTrack} ${exit.partialClose.enabled ? styles.toggleTrackOn : ""}`}
+              onClick={() => update("exit.partialClose.enabled", !exit.partialClose.enabled)}
+            >
+              <div className={styles.toggleThumb} />
+            </div>
+            <span>Partial Close</span>
+          </div>
+          {exit.partialClose.enabled && (
+            <div className={styles.gridRow}>
+              <div className={styles.formGroup}>
+                <label>Close % of Position</label>
+                <input className={styles.input} type="number" value={exit.partialClose.percent} onChange={(e) => update("exit.partialClose.percent", parseInt(e.target.value))} min={10} max={90} step={10} />
+              </div>
+              <div className={styles.formGroup}>
+                <label>At Profit (pips)</label>
+                <input className={styles.input} type="number" value={exit.partialClose.atPips} onChange={(e) => update("exit.partialClose.atPips", parseInt(e.target.value))} min={10} max={500} />
+              </div>
+            </div>
+          )}
+        </>
+      )}
+
+      {canSessionFilter && (
+        <div className={styles.formGroup}>
+          <label>Trading Sessions</label>
+          <div className={styles.sessionGrid}>
+            {SESSIONS.map((s) => (
+              <div
+                key={s.id}
+                className={`${styles.sessionCard} ${(filters.sessions || []).includes(s.id) ? styles.sessionCardSelected : ""}`}
+                onClick={() => toggleSession(s.id)}
+              >
+                <span>{s.label}</span>
+                <span>{s.time}</span>
+              </div>
+            ))}
+          </div>
+          <span>Leave all unchecked to trade all sessions</span>
+        </div>
       )}
     </div>
   );

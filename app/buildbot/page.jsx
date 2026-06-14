@@ -113,29 +113,53 @@ function BuildContent() {
     });
   };
 
-  const next = () => setStep((s) => Math.min(s + 1, STEPS.length - 1));
+  const next = () => {
+    if (step === 0 && !config.botName.trim()) {
+      toast.error("Please enter a bot name");
+      return;
+    }
+    if (step === 1 && config.riskManagement.mode === "fixed") {
+      const lot = config.riskManagement.lotSize;
+      if (!lot || lot < 0.01) {
+        toast.error("Lot size must be at least 0.01");
+        return;
+      }
+    }
+    setStep((s) => Math.min(s + 1, STEPS.length - 1));
+  };
   const back = () => setStep((s) => Math.max(s - 1, 0));
 
   const onTierChange = (tier) => {
-    const isBasic = tier.name === "basic";
-    const isAdvanced = tier.name === "advanced";
+    const lim = tier.limits || {};
     setConfig((p) => ({
       ...p,
       tierId: tier._id,
       tierName: tier.name,
-      entry: { ...p.entry, indicators: isBasic ? [] : p.entry.indicators },
-      filters: { ...p.filters, sessions: isBasic ? [] : p.filters.sessions },
+      entry: {
+        ...p.entry,
+        indicators: (lim.maxIndicators || 1) <= 1 ? [] : p.entry.indicators,
+      },
+      filters: {
+        ...p.filters,
+        sessions: !lim.sessionFilter ? [] : p.filters.sessions,
+      },
+      riskManagement: {
+        ...p.riskManagement,
+        mode: !lim.riskPercentMode && p.riskManagement.mode === "percent" ? "fixed" : p.riskManagement.mode,
+      },
       exit: {
         ...p.exit,
-        trailingStop: isBasic ? { enabled: false, distance: 30, step: 15 } : p.exit.trailingStop,
-        breakEven: isBasic ? { enabled: false, triggerPips: 20, lockPips: 5 } : p.exit.breakEven,
-        partialClose: !isAdvanced ? { enabled: false, percent: 50, atPips: 50 } : p.exit.partialClose,
+        trailingStop: !lim.trailingStop ? { enabled: false, distance: 30, step: 15 } : p.exit.trailingStop,
+        breakEven: !lim.breakEven ? { enabled: false, triggerPips: 20, lockPips: 5 } : p.exit.breakEven,
+        partialClose: !lim.partialClose ? { enabled: false, percent: 50, atPips: 50 } : p.exit.partialClose,
       },
       advanced: {
         ...p.advanced,
-        multiTimeframe: !isAdvanced ? { enabled: false, confirmationTimeframe: "H4", indicator: "MA", period: 50 } : p.advanced.multiTimeframe,
-        grid: !isAdvanced ? { enabled: false, distance: 50, maxLevels: 5, lotMultiplier: 1 } : p.advanced.grid,
-        martingale: !isAdvanced ? { enabled: false, multiplier: 2, maxLevel: 3 } : p.advanced.martingale,
+        emailNotifications: !lim.notifications ? false : p.advanced.emailNotifications,
+        pushNotifications: !lim.notifications ? false : p.advanced.pushNotifications,
+        multiTimeframe: !lim.multiTimeframe ? { enabled: false, confirmationTimeframe: "H4", indicator: "MA", period: 50 } : p.advanced.multiTimeframe,
+        grid: !lim.gridMartingale ? { enabled: false, distance: 50, maxLevels: 5, lotMultiplier: 1 } : p.advanced.grid,
+        martingale: !lim.gridMartingale ? { enabled: false, multiplier: 2, maxLevel: 3 } : p.advanced.martingale,
       },
     }));
   };

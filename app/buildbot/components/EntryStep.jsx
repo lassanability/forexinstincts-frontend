@@ -39,7 +39,7 @@ const PA_STRATEGIES = ["price_action_breakout", "candlestick_pattern"];
 
 export default function EntryStep({ config, update, selectedTier }) {
   const entry = config.entry;
-  const isComplex = config.tierName === "complex" || config.tierName === "advanced";
+  const canMultiIndicator = (selectedTier?.limits?.maxIndicators || 1) > 1;
   const strategy = entry.strategy || "ma_crossover";
 
   const isPriceActionCategory = PA_STRATEGIES.includes(strategy);
@@ -100,14 +100,14 @@ export default function EntryStep({ config, update, selectedTier }) {
           <div className={styles.formGroup}>
             <label>Primary Strategy</label>
             <Dropdown
-              options={isComplex ? INDICATOR_STRATEGIES : INDICATOR_STRATEGIES_BASIC}
-              value={(isComplex ? INDICATOR_STRATEGIES : INDICATOR_STRATEGIES_BASIC).find((s) => s.value === strategy) || null}
+              options={canMultiIndicator ? INDICATOR_STRATEGIES : INDICATOR_STRATEGIES_BASIC}
+              value={(canMultiIndicator ? INDICATOR_STRATEGIES : INDICATOR_STRATEGIES_BASIC).find((s) => s.value === strategy) || null}
               onSelect={(opt) => update("entry.strategy", opt.value)}
               dropPlaceHolder="Select Strategy"
             />
           </div>
 
-          {isComplex && (
+          {canMultiIndicator && (
             <>
               <div className={styles.formGroup}>
                 <label>Additional Indicators</label>
