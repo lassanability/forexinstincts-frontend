@@ -5,7 +5,6 @@
     display: flex;
     position: relative;
     overflow: hidden;
-    background: var(--light-background-color);
   }
 
   .loadingContainer {
@@ -1582,7 +1581,6 @@
 .dashboardWrapper {
   width: 100%;
   min-height: 100vh;
-  background: var(--light-background-color);
 }
 
 .dashboardMain {
