@@ -1617,7 +1617,6 @@
   }
 
   .accountSidebar {
-    width: 300px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -2928,8 +2927,6 @@
     width: 100%;
     order: 2;
     position: static;
-    max-height: none;
-    overflow-y: visible;
   }
 
   .botsColumn {
