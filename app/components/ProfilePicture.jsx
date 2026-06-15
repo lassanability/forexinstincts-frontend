@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { useAuthStore } from "@/app/store/AuthStore";
 import { toast } from "sonner";
 import { IoCamera } from "react-icons/io5";
@@ -10,9 +11,14 @@ export default function ProfilePicture({ size = "medium", editable = true }) {
   const { username, profileImage, uploadProfilePicture } = useAuthStore();
   const [preview, setPreview] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const fileInputRef = useRef(null);
 
   const displayImage = preview || profileImage || null;
+
+  useEffect(() => {
+    setImgError(false);
+  }, [displayImage]);
 
   const handleClick = () => {
     if (!editable) return;
@@ -48,14 +54,14 @@ export default function ProfilePicture({ size = "medium", editable = true }) {
       onClick={handleClick}
       title={editable ? "Click to change profile picture" : undefined}
     >
-      {displayImage ? (
-        <img
+      {displayImage && !imgError ? (
+        <Image
           src={displayImage}
           alt={`${username || "User"} profile`}
+          fill
+          sizes="64px"
           className={styles.avatarImage}
-          onError={(e) => {
-            e.target.style.display = "none";
-          }}
+          onError={() => setImgError(true)}
         />
       ) : (
         <div className={styles.avatarPlaceholder}>
