@@ -234,6 +234,7 @@
     line-height: 1.7;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     margin: 0;
@@ -605,6 +606,7 @@
 
   .blogCardFeatured p {
     -webkit-line-clamp: 4;
+    line-clamp: 4;
   }
 
   .featuredImgWrap {
@@ -658,6 +660,7 @@
 
   .blogCardFeatured p {
     -webkit-line-clamp: 5;
+    line-clamp: 5;
   }
 
   .blogPost {
