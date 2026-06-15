@@ -9,12 +9,11 @@ import styles from "@/app/style/profilePicture.module.css";
 
 export default function ProfilePicture({ size = "medium", editable = true }) {
   const { username, profileImage, uploadProfilePicture } = useAuthStore();
-  const [preview, setPreview] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [imgError, setImgError] = useState(false);
   const fileInputRef = useRef(null);
 
-  const displayImage = preview || profileImage || null;
+  const displayImage = profileImage || null;
 
   useEffect(() => {
     setImgError(false);
@@ -29,20 +28,14 @@ export default function ProfilePicture({ size = "medium", editable = true }) {
     const file = e.target.files[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onloadend = () => setPreview(reader.result);
-    reader.readAsDataURL(file);
-
     setUploading(true);
     const result = await uploadProfilePicture(file);
     setUploading(false);
 
     if (result.success) {
       toast.success(result.message || "Profile picture updated!");
-      setPreview(null);
     } else {
       toast.error(result.message || "Failed to upload");
-      setPreview(null);
     }
 
     e.target.value = "";
