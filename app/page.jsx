@@ -4,6 +4,7 @@ import NewsPreviewSection from "@/app/components/NewsPreviewSection";
 import BlogPreviewSection from "@/app/components/BlogPreviewSection";
 import Testimonials from "@/app/components/Testimonials";
 import QuoteSection from "@/app/components/QuoteSection";
+import AdvertsInit from "@/app/components/ads/AdvertsInit";
 
 const SITE_URL = "https://forexinstincts.com";
 
@@ -32,6 +33,7 @@ export const metadata = {
 export default function Home() {
   return (
     <main>
+      <AdvertsInit />
       <HomeSection />
       <MiddleSection />
       <NewsPreviewSection />

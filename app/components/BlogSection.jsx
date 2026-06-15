@@ -8,16 +8,21 @@ import { useBlogStore } from "@/app/store/BlogStore";
 import SectionLabel from "@/app/components/ui/SectionLabel";
 import { IoSearch as SearchIcon } from "react-icons/io5";
 import { FiArrowRight as ArrowRight, FiClock as ClockIcon, FiUser as UserIcon } from "react-icons/fi";
+import AdCard from "@/app/components/ads/AdCard";
+import { useAdvertStore } from "@/app/store/AdvertStore";
 
 export default function BlogSection() {
   const { blogs, categories, loading, fetchBlogs, fetchCategories } = useBlogStore();
+  const { ads, loaded, fetchAds } = useAdvertStore();
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("");
+  const bannerAd = ads.find((a) => a.isActive && a.affiliateLink && a.showBanner);
 
   useEffect(() => {
     fetchBlogs();
     fetchCategories();
-  }, [fetchBlogs, fetchCategories]);
+    if (!loaded) fetchAds();
+  }, [fetchBlogs, fetchCategories, loaded, fetchAds]);
 
   const filtered = useMemo(() => {
     let list = blogs;
@@ -150,6 +155,11 @@ export default function BlogSection() {
               </div>
             );
           })}
+        </div>
+      )}
+      {bannerAd && (
+        <div className={styles.bannerAdWrap}>
+          <AdCard ad={bannerAd} variant="banner" />
         </div>
       )}
     </section>

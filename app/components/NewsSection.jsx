@@ -7,18 +7,23 @@ import AppImage from "@/app/components/ui/AppImage";
 import { useNewsStore } from "@/app/store/NewsStore";
 import SectionLabel from "@/app/components/ui/SectionLabel";
 import { IoSearch as SearchIcon } from "react-icons/io5";
+import AdCard from "@/app/components/ads/AdCard";
+import { useAdvertStore } from "@/app/store/AdvertStore";
 
 const formatDate = (d) =>
   d ? new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "";
 
 export default function NewsSection() {
   const { news, loading, fetchNews } = useNewsStore();
+  const { ads, loaded, fetchAds } = useAdvertStore();
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("");
+  const bannerAd = ads.find((a) => a.isActive && a.affiliateLink && a.showBanner);
 
   useEffect(() => {
     fetchNews();
-  }, [fetchNews]);
+    if (!loaded) fetchAds();
+  }, [fetchNews, loaded, fetchAds]);
 
   const categories = useMemo(() => {
     const cats = [...new Set(news.map((n) => n.category).filter(Boolean))];
@@ -125,6 +130,11 @@ export default function NewsSection() {
               </Link>
             </div>
           ))}
+        </div>
+      )}
+      {bannerAd && (
+        <div className={styles.bannerAdWrap}>
+          <AdCard ad={bannerAd} variant="banner" />
         </div>
       )}
     </section>

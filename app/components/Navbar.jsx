@@ -70,6 +70,7 @@ const useNavLinks = () => {
         { href: "/tiers", label: "Pricing" },
         { href: "/blog", label: "Blog" },
         { href: "/news", label: "News" },
+        { href: "/partners", label: "Partners" },
         isAuth && { href: "/dashboard", label: "Dashboard" },
         isAuth && { href: "/marketplace", label: "Marketplace" },
         { href: "/contact", label: "Contact" },

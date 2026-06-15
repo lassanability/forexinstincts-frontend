@@ -670,4 +670,10 @@
   .postSkeleton {
     padding: var(--spacing-xxxl) 0;
   }
+
+  .bannerAdWrap {
+    margin-top: var(--spacing-xxl);
+    display: flex;
+    justify-content: center;
+  }
 }

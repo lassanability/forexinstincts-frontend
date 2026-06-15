@@ -287,4 +287,10 @@
   .newsGrid {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .bannerAdWrap {
+    margin-top: var(--spacing-xxl);
+    display: flex;
+    justify-content: center;
+  }
 }
