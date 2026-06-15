@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ForexInstincts — Media Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0b0f1a;
+      --card:     #111c2d;
+      --primary:  #00c896;
+      --secondary:#00e5b0;
+      --text:     #e8eaf0;
+      --muted:    #8a9bbf;
+      --border:   rgba(0,200,150,0.15);
+      --grad:     linear-gradient(135deg, #00c896 0%, #00e5b0 100%);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 10.5pt;
+      line-height: 1.6;
+    }
+
+    /* ── PAGE BREAKS ── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: auto; }
+
+    /* ── TYPOGRAPHY ── */
+    h1, h2, h3 { font-family: 'Sora', sans-serif; }
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* ══════════════════════════════════
+       PAGE 1 — COVER
+    ══════════════════════════════════ */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 297mm;
+      text-align: center;
+      position: relative;
+    }
+
+    .cover-bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .orb1 {
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(0,200,150,0.18) 0%, transparent 70%);
+      top: -60px; left: -80px;
+    }
+    .orb2 {
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(0,229,176,0.12) 0%, transparent 70%);
+      bottom: 40px; right: -40px;
+    }
+
+    .cover-logo-wrap {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      background: var(--grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      box-shadow: 0 0 40px rgba(0,200,150,0.35);
+    }
+    .cover-logo-wrap img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      filter: brightness(10);
+    }
+
+    .cover h1 {
+      font-size: 38pt;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .cover-tagline {
+      font-size: 13pt;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 32px;
+      max-width: 420px;
+    }
+    .cover-badge {
+      display: inline-block;
+      background: rgba(0,200,150,0.1);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 9pt;
+      color: var(--primary);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    .cover-stats {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 52px;
+    }
+    .cover-stat {
+      text-align: center;
+    }
+    .cover-stat-val {
+      font-family: 'Sora', sans-serif;
+      font-size: 22pt;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+    .cover-stat-label {
+      font-size: 8pt;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .cover-stat-divider {
+      width: 1px;
+      background: var(--border);
+      align-self: stretch;
+    }
+
+    .cover-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--grad);
+      border-radius: 2px;
+      margin: 0 auto 32px;
+    }
+
+    .cover-footer {
+      position: absolute;
+      bottom: 28px;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 36px;
+      font-size: 8pt;
+      color: var(--muted);
+    }
+    .cover-footer a { color: var(--primary); text-decoration: none; }
+    .cover-footer-line {
+      position: absolute;
+      bottom: 56px;
+      left: 36px; right: 36px;
+      height: 1px;
+      background: var(--border);
+    }
+    .kit-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ══════════════════════════════════
+       PAGE 2 — PLATFORM + AUDIENCE
+    ══════════════════════════════════ */
+    .inner {
+      padding: 36px 40px;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header-brand {
+      font-family: 'Sora', sans-serif;
+      font-size: 11pt;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+    .page-header-brand span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      color: var(--muted);
+    }
+
+    .section-label {
+      font-size: 7.5pt;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .section-title {
+      font-size: 17pt;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .section-body {
+      font-size: 9.5pt;
+      color: #b8c4d8;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    /* cards grid */
+    .cards-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .cards-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+    .card-icon {
+      font-size: 18px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .card-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 10pt;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--text);
+    }
+    .card-body {
+      font-size: 8.5pt;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* stat row */
+    .stat-row {
+      display: flex;
+      gap: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+    .stat-cell {
+      flex: 1;
+      padding: 16px 14px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-val {
+      font-family: 'Sora', sans-serif;
+      font-size: 16pt;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      margin-bottom: 3px;
+    }
+    .stat-lbl {
+      font-size: 7.5pt;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* audience traits */
+    .trait-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .trait-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 9pt;
+      color: #b8c4d8;
+      line-height: 1.5;
+    }
+    .trait-dot {
+      width: 6px;
+      height: 6px;
+      min-width: 6px;
+      border-radius: 50%;
+      background: var(--grad);
+      margin-top: 5px;
+    }
+
+    /* tiers */
+    .tier-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .tier-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tier-card.featured { border-color: rgba(0,200,150,0.5); }
+    .tier-card.featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--grad);
+    }
+    .tier-name {
+      font-family: 'Sora', sans-serif;
+      font-size: 10pt;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .tier-tag {
+      font-size: 7pt;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .tier-feature {
+      font-size: 8pt;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .tier-feature li {
+      list-style: none;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 3px;
+    }
+    .tier-check { color: var(--primary); font-size: 9pt; }
+
+    /* page footer */
+    .page-footer {
+      position: absolute;
+      bottom: 20px;
+      left: 40px; right: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 7.5pt;
+      color: var(--muted);
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ══════════════════════════════════
+       PAGE 3 — PARTNERSHIP
+    ══════════════════════════════════ */
+    .partnership-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .partner-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .partner-card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .partner-icon-wrap {
+      width: 34px;
+      height: 34px;
+      min-width: 34px;
+      border-radius: 8px;
+      background: rgba(0,200,150,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+    .partner-card-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 10pt;
+      font-weight: 600;
+    }
+    .partner-card-body {
+      font-size: 8.5pt;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* why list */
+    .why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .why-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+    }
+    .why-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      font-weight: 600;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      min-width: 24px;
+    }
+    .why-text { font-size: 9pt; color: #b8c4d8; line-height: 1.6; }
+    .why-text strong { color: var(--text); font-weight: 600; }
+
+    /* contact */
+    .contact-box {
+      background: linear-gradient(135deg, rgba(0,200,150,0.08) 0%, rgba(0,229,176,0.04) 100%);
+      border: 1px solid rgba(0,200,150,0.3);
+      border-radius: 14px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .contact-left h3 {
+      font-size: 13pt;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .contact-left p {
+      font-size: 8.5pt;
+      color: var(--muted);
+      max-width: 280px;
+      line-height: 1.6;
+    }
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 200px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 8.5pt;
+    }
+    .contact-label {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--primary);
+      min-width: 52px;
+      font-size: 7.5pt;
+      text-transform: uppercase;
+    }
+    .contact-val { color: var(--text); }
+
+    /* ── PRINT ── */
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body { background: var(--bg); }
+      .page { margin: 0; width: 100%; min-height: 100vh; page-break-after: always; }
+      .page:last-child { page-break-after: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════
+       PAGE 1 — COVER
+  ══════════════════════════════════ -->
+  <div class="page">
+    <div class="cover">
+      <div class="cover-bg-orb orb1"></div>
+      <div class="cover-bg-orb orb2"></div>
+
+      <div class="cover-logo-wrap">
+        <img src="/assets/logo.png" alt="ForexInstincts logo" />
+      </div>
+
+      <div class="kit-label" style="margin-bottom:16px;">Media Kit 2026</div>
+
+      <h1>
+        <span class="grad-text">Forex</span>Instincts
+      </h1>
+      <p class="cover-tagline">
+        The #1 platform for building professional MT4 &amp; MT5 trading bots — no coding required.
+      </p>
+
+      <div class="cover-divider"></div>
+
+      <div class="cover-stats">
+        <div class="cover-stat">
+          <span class="cover-stat-val">MT4+5</span>
+          <span class="cover-stat-label">Platforms</span>
+        </div>
+        <div class="cover-stat-divider"></div>
+        <div class="cover-stat">
+          <span class="cover-stat-val">3</span>
+          <span class="cover-stat-label">Bot Tiers</span>
+        </div>
+        <div class="cover-stat-divider"></div>
+        <div class="cover-stat">
+          <span class="cover-stat-val">MQL4/5</span>
+          <span class="cover-stat-label">Code Output</span>
+        </div>
+        <div class="cover-stat-divider"></div>
+        <div class="cover-stat">
+          <span class="cover-stat-val">1×</span>
+          <span class="cover-stat-label">Pay Once</span>
+        </div>
+      </div>
+
+      <div class="cover-badge">forexinstincts.com</div>
+
+      <div class="cover-footer-line"></div>
+      <div class="cover-footer">
+        <span>ForexInstincts &mdash; Confidential Media Kit</span>
+        <span>swiftsyntec@gmail.com</span>
+        <span class="mono">© 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PAGE 2 — PLATFORM + AUDIENCE
+  ══════════════════════════════════ -->
+  <div class="page">
+    <div class="inner" style="padding-bottom: 60px;">
+
+      <div class="page-header">
+        <div class="page-header-brand"><span>Forex</span>Instincts</div>
+        <div class="page-num">02 / 03 &nbsp;—&nbsp; Platform Overview</div>
+      </div>
+
+      <!-- Platform overview -->
+      <span class="section-label">Who We Are</span>
+      <h2 class="section-title">The Expert Advisor <span class="grad-text">Bot Builder</span></h2>
+      <p class="section-body">
+        ForexInstincts is a web platform that generates production-ready MetaTrader Expert Advisors (EAs) from a guided configuration wizard — no coding, no MQL syntax, no technical setup. Traders configure their strategy across six steps and receive a compiled <strong style="color:var(--text)">.ex4 / .ex5 file</strong> ready to attach to any MetaTrader chart. Each bot is built fresh for the trader's exact specifications — not a template, not a snippet.
+      </p>
+
+      <!-- Stats row -->
+      <div class="stat-row">
+        <div class="stat-cell">
+          <span class="stat-val">6-Step</span>
+          <span class="stat-lbl">Guided Wizard</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-val">MT4 + MT5</span>
+          <span class="stat-lbl">Platform Support</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-val">MQL4/5</span>
+          <span class="stat-lbl">Clean Code Output</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-val">3 Tiers</span>
+          <span class="stat-lbl">Strategy Complexity</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-val">0</span>
+          <span class="stat-lbl">Recurring Fees</span>
+        </div>
+      </div>
+
+      <!-- Bot Tiers -->
+      <span class="section-label">Product Tiers</span>
+      <div class="tier-row" style="margin-top:8px;">
+        <div class="tier-card">
+          <div class="tier-name">Basic</div>
+          <span class="tier-tag">Single-indicator</span>
+          <ul class="tier-feature">
+            <li><span class="tier-check">✓</span> MA Crossover / RSI / MACD</li>
+            <li><span class="tier-check">✓</span> Take Profit &amp; Stop Loss</li>
+            <li><span class="tier-check">✓</span> Fixed lot sizing</li>
+            <li><span class="tier-check">✓</span> MT4 or MT5 output</li>
+          </ul>
+        </div>
+        <div class="tier-card featured">
+          <div class="tier-name">Complex</div>
+          <span class="tier-tag">Multi-indicator</span>
+          <ul class="tier-feature">
+            <li><span class="tier-check">✓</span> Multi-indicator logic</li>
+            <li><span class="tier-check">✓</span> Entry &amp; exit filters</li>
+            <li><span class="tier-check">✓</span> Trailing stop &amp; break-even</li>
+            <li><span class="tier-check">✓</span> Session time filters</li>
+          </ul>
+        </div>
+        <div class="tier-card">
+          <div class="tier-name">Advanced</div>
+          <span class="tier-tag">Full-featured</span>
+          <ul class="tier-feature">
+            <li><span class="tier-check">✓</span> Multi-timeframe analysis</li>
+            <li><span class="tier-check">✓</span> Grid &amp; Martingale options</li>
+            <li><span class="tier-check">✓</span> Push &amp; email notifications</li>
+            <li><span class="tier-check">✓</span> AI custom strategy input</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Audience -->
+      <span class="section-label">Our Audience</span>
+      <h2 class="section-title" style="font-size:14pt; margin-top:6px;">Who Uses <span class="grad-text">ForexInstincts</span></h2>
+      <div class="cards-2" style="margin-top:10px;">
+        <div class="card">
+          <span class="card-icon">📈</span>
+          <div class="card-title">Retail Forex Traders</div>
+          <div class="card-body">Active traders across all experience levels who trade forex, metals, and CFDs on MetaTrader platforms — the world's most popular retail trading software.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🤖</span>
+          <div class="card-title">Algo &amp; EA Enthusiasts</div>
+          <div class="card-body">Traders who want to automate their manual strategy without writing MQL code — a growing segment as algo trading becomes mainstream in retail markets.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🏦</span>
+          <div class="card-title">Prop Firm Challengers</div>
+          <div class="card-body">Traders using EAs to pass FTMO, The5ers, and other prop firm challenges — a segment that has grown 45% YoY to an $850M industry in 2026.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🌍</span>
+          <div class="card-title">Global Reach</div>
+          <div class="card-body">Our audience spans Africa, Asia, Europe, and the Americas — regions with the highest retail forex participation rates and fastest-growing broker client bases.</div>
+        </div>
+      </div>
+
+      <!-- Audience traits -->
+      <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px;">
+        <div style="font-family: 'Sora', sans-serif; font-size: 10pt; font-weight: 600; margin-bottom: 12px; color: var(--text);">Audience Characteristics</div>
+        <ul class="trait-list">
+          <li><span class="trait-dot"></span>High purchase intent — users have already committed to trading and actively need brokers, VPS hosting, and prop firm accounts.</li>
+          <li><span class="trait-dot"></span>MetaTrader users — 100% of ForexInstincts users operate on MT4 or MT5, making broker and VPS affiliate offers directly relevant.</li>
+          <li><span class="trait-dot"></span>Bot-first mindset — users who build automated strategies are more consistent traders, leading to higher lifetime value for broker affiliates.</li>
+          <li><span class="trait-dot"></span>Active marketplace — users buy and sell bots on the ForexInstincts marketplace, extending engagement beyond the initial bot build.</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="page-footer">
+      <span>forexinstincts.com</span>
+      <span>ForexInstincts Media Kit 2026</span>
+      <span>swiftsyntec@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PAGE 3 — PARTNERSHIP
+  ══════════════════════════════════ -->
+  <div class="page">
+    <div class="inner" style="padding-bottom: 60px;">
+
+      <div class="page-header">
+        <div class="page-header-brand"><span>Forex</span>Instincts</div>
+        <div class="page-num">03 / 03 &nbsp;—&nbsp; Partnership</div>
+      </div>
+
+      <!-- Partnership types -->
+      <span class="section-label">How We Partner</span>
+      <h2 class="section-title" style="margin-top:6px; margin-bottom:14px;">
+        Affiliate <span class="grad-text">Placement Opportunities</span>
+      </h2>
+
+      <div class="partnership-grid">
+        <div class="partner-card">
+          <div class="partner-card-head">
+            <div class="partner-icon-wrap">🎯</div>
+            <div class="partner-card-title">Bot Success Screen</div>
+          </div>
+          <div class="partner-card-body">After a user downloads their generated bot, we display a contextual recommendation to run it 24/7 via a VPS, or to open a live account with a recommended broker — prime placement at the highest-intent moment in the user journey.</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-card-head">
+            <div class="partner-icon-wrap">🔧</div>
+            <div class="partner-card-title">Build Wizard Integration</div>
+          </div>
+          <div class="partner-card-body">During the bot configuration wizard (Step 1 — Basic Info), users select a trading pair and platform. This is a natural placement point for recommended broker partners who support the selected instrument.</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-card-head">
+            <div class="partner-icon-wrap">📊</div>
+            <div class="partner-card-title">Dashboard Sidebar</div>
+          </div>
+          <div class="partner-card-body">Logged-in users see their bots in a personal dashboard. A persistent sidebar panel surfaces affiliate offers for brokers, VPS providers, and prop firms — displayed in context with the user's active trading tools.</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-card-head">
+            <div class="partner-icon-wrap">📰</div>
+            <div class="partner-card-title">Blog &amp; News Content</div>
+          </div>
+          <div class="partner-card-body">ForexInstincts publishes forex news and educational blog content. Partner mentions, sponsored articles, and embedded affiliate links within content targeting broker selection, VPS setup, and prop firm reviews.</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-card-head">
+            <div class="partner-icon-wrap">🏪</div>
+            <div class="partner-card-title">Marketplace Page</div>
+          </div>
+          <div class="partner-card-body">The bot marketplace lists public bots for purchase. A "Run this bot live" call-to-action links to broker and VPS affiliate partners, targeting buyers who are ready to deploy immediately.</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-card-head">
+            <div class="partner-icon-wrap">💰</div>
+            <div class="partner-card-title">Dedicated Partners Page</div>
+          </div>
+          <div class="partner-card-body">A curated /partners page listing recommended brokers, VPS providers, and prop firms — presented as trusted tools for the ForexInstincts community, linking directly to affiliate signup flows.</div>
+        </div>
+      </div>
+
+      <!-- Why partner -->
+      <span class="section-label" style="margin-top:6px;">Why Partner With Us</span>
+      <div class="why-list" style="margin-top:10px;">
+        <div class="why-item">
+          <span class="why-num">01</span>
+          <span class="why-text"><strong>Zero cold traffic.</strong> Every ForexInstincts user is already a committed forex trader who has paid for a custom bot — not a casual visitor browsing trading content.</span>
+        </div>
+        <div class="why-item">
+          <span class="why-num">02</span>
+          <span class="why-text"><strong>100% MT4/MT5 audience.</strong> Our entire user base operates on MetaTrader — the same platform supported by virtually every forex broker running an affiliate program.</span>
+        </div>
+        <div class="why-item">
+          <span class="why-num">03</span>
+          <strong></strong><span class="why-text"><strong>Contextual relevance.</strong> Broker, VPS, and prop firm offers are not interruptions on ForexInstincts — they are natural next steps in the user's workflow after building their bot.</span>
+        </div>
+        <div class="why-item">
+          <span class="why-num">04</span>
+          <span class="why-text"><strong>Growing marketplace.</strong> The user bot marketplace and referral system drive repeat visits and sustained engagement — extended exposure for affiliate placements beyond the initial visit.</span>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="contact-box">
+        <div class="contact-left">
+          <h3>Ready to <span class="grad-text">Partner?</span></h3>
+          <p>Reach out to discuss placement options, commission structures, and how ForexInstincts can drive high-quality referrals to your platform.</p>
+        </div>
+        <div class="contact-right">
+          <div class="contact-item">
+            <span class="contact-label">Email</span>
+            <span class="contact-val">swiftsyntec@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Web</span>
+            <span class="contact-val">forexinstincts.com</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Niche</span>
+            <span class="contact-val">Forex / Algo Trading / MT4 &amp; MT5</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="page-footer">
+      <span>forexinstincts.com</span>
+      <span>ForexInstincts Media Kit 2026</span>
+      <span>swiftsyntec@gmail.com</span>
+    </div>
+  </div>
+
+</body>
+</html>
