@@ -65,6 +65,7 @@ export const useAuthStore = create(
           const data = await response.json();
           if (data.success && data.user) {
             set({
+              profileImage: data.user.profileImage || "",
               hasUsedTrial: data.user.hasUsedTrial || false,
               referralCode: data.user.referralCode || "",
               referralCount: data.user.referralCount || 0,
@@ -201,6 +202,15 @@ export const useAuthStore = create(
       },
 
       logout: async () => {
+        try {
+          const { token } = get();
+          if (token) {
+            await fetch(`${SERVER_API}/user/logout`, {
+              method: "POST",
+              headers: { Authorization: `Bearer ${token}` },
+            });
+          }
+        } catch {}
         get().clearUser();
         if (typeof window !== "undefined") {
           localStorage.removeItem("forexinstincts-auth");
@@ -211,19 +221,12 @@ export const useAuthStore = create(
       uploadProfilePicture: async (file) => {
         try {
           const { token } = get();
-          const base64 = await new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result);
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-          });
+          const formData = new FormData();
+          formData.append("image", file);
           const response = await fetch(`${SERVER_API}/user/profile-picture`, {
             method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ image: base64 }),
+            headers: { Authorization: `Bearer ${token}` },
+            body: formData,
           });
           const data = await response.json();
           if (data.success) {
