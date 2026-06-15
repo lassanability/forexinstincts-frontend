@@ -17,7 +17,7 @@ const PLATFORM_CARDS = [
   {
     emoji: "🏪",
     title: "Bot Marketplace",
-    body: "Users list their generated bots for other traders to purchase. 50% of each marketplace sale is credited to the original bot owner, creating a community-driven ecosystem with recurring engagement.",
+    body: "Users can publish their generated bots to the marketplace for other traders to buy. 50% of every sale goes back to the original bot creator — turning a one-time build into passive recurring income.",
   },
   {
     emoji: "📰",
@@ -45,9 +45,9 @@ const TIERS = [
     tag: "Single-indicator",
     featured: false,
     features: [
-      "MA Crossover, RSI, MACD, Bollinger Bands",
-      "Fixed lot sizing",
-      "Take profit & stop loss",
+      "MA Crossover, RSI, MACD, Bollinger Bands, Stochastic",
+      "Price Action breakout & candlestick patterns",
+      "Fixed lot sizing · Take profit & stop loss",
       "MT4 or MT5 output",
     ],
   },
@@ -56,10 +56,10 @@ const TIERS = [
     tag: "Multi-indicator",
     featured: true,
     features: [
-      "Multi-indicator logic with filters",
+      "Multi-indicator logic with AND/OR filters",
       "Trailing stop & break-even rules",
-      "Session time filters",
-      "Custom entry & exit conditions",
+      "Session time filters & multi-timeframe analysis",
+      "Additional confirmation indicators",
     ],
   },
   {
@@ -67,10 +67,10 @@ const TIERS = [
     tag: "Full-featured",
     featured: false,
     features: [
-      "Multi-timeframe analysis",
-      "Grid & Martingale options",
-      "AI custom strategy input",
-      "Push & email notifications",
+      "Everything in Complex, plus:",
+      "Martingale & grid trading options",
+      "Maximum strategy configurability — all signal types unlocked",
+      "Push & email trade notifications",
     ],
   },
 ];
@@ -170,35 +170,33 @@ export default function MediaKitPage() {
         import("jspdf"),
       ]);
 
-      const element = contentRef.current;
-      const canvas = await html2canvas(element, {
-        scale: 2,
+      const canvas = await html2canvas(contentRef.current, {
+        scale: 2.5,
         useCORS: true,
         allowTaint: true,
         backgroundColor: "#0b0f1a",
         scrollY: -window.scrollY,
-        windowWidth: element.scrollWidth,
-        windowHeight: element.scrollHeight,
+        windowWidth: 900,
+        logging: false,
+        imageTimeout: 0,
       });
 
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const pageWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = pageWidth;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const imgData = canvas.toDataURL("image/jpeg", 0.95);
+      const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+      const pageW = pdf.internal.pageSize.getWidth();
+      const pageH = pdf.internal.pageSize.getHeight();
+      const imgH = (canvas.height * pageW) / canvas.width;
 
-      let position = 0;
-      let heightLeft = imgHeight;
+      let offsetY = 0;
+      let remaining = imgH;
+      let first = true;
 
-      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+      while (remaining > 0) {
+        if (!first) pdf.addPage();
+        pdf.addImage(imgData, "JPEG", 0, offsetY, pageW, imgH, undefined, "FAST");
+        offsetY -= pageH;
+        remaining -= pageH;
+        first = false;
       }
 
       pdf.save("ForexInstincts-MediaKit.pdf");
@@ -212,7 +210,7 @@ export default function MediaKitPage() {
       <div className={styles.toolbar}>
         <div className={styles.toolbarBrand}>
           <div className={styles.toolbarLogo}>
-            <Image src="/assets/logo.png" alt="ForexInstincts" width={22} height={22} />
+            <Image src="/assets/whitelogo.png" alt="ForexInstincts" width={22} height={22} />
           </div>
           <div className={styles.toolbarName}>
             <span>Forex</span>Instincts — Media Kit
@@ -221,11 +219,7 @@ export default function MediaKitPage() {
         <div className={styles.toolbarRight}>
           <div className={styles.toolbarLabel}>Download for affiliate applications</div>
           <button className={styles.downloadBtn} onClick={handleDownload} disabled={loading}>
-            {loading ? (
-              <LoadingIcon className={styles.downloadIcon} />
-            ) : (
-              <DownloadIcon className={styles.downloadIcon} />
-            )}
+            {loading ? <LoadingIcon className={styles.downloadIcon} /> : <DownloadIcon className={styles.downloadIcon} />}
             {loading ? "Generating..." : "Download PDF"}
           </button>
         </div>
@@ -240,7 +234,7 @@ export default function MediaKitPage() {
               Media Kit &nbsp;·&nbsp; 2026
             </div>
             <div className={styles.coverLogoWrap}>
-              <Image src="/assets/logo.png" alt="ForexInstincts" width={48} height={48} />
+              <Image src="/assets/whitelogo.png" alt="ForexInstincts" width={48} height={48} />
             </div>
             <h1 className={styles.coverTitle}>
               <span>Forex</span>Instincts
