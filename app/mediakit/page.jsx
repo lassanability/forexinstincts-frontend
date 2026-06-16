@@ -264,7 +264,7 @@ export default function MediaKitPage() {
               <div className={styles.coverMetaDot} />
               <div className={styles.coverMetaItem}>
                 <span>Contact</span>
-                <span>swiftsyntec@gmail.com</span>
+                <span>support@forexinstincts.com</span>
               </div>
             </div>
           </div>
@@ -431,7 +431,7 @@ export default function MediaKitPage() {
             <div className={styles.contactRight}>
               <div className={styles.contactItem}>
                 <div className={styles.contactLabel}>Email</div>
-                <div className={styles.contactVal}>swiftsyntec@gmail.com</div>
+                <div className={styles.contactVal}>support@forexinstincts.com</div>
               </div>
               <div className={styles.contactItem}>
                 <div className={styles.contactLabel}>Website</div>
@@ -457,7 +457,7 @@ export default function MediaKitPage() {
             Media Kit &nbsp;·&nbsp; Confidential
           </div>
           <div className={styles.coverFooterText}>
-            Contact: <span>swiftsyntec@gmail.com</span>
+            Contact: <span>support@forexinstincts.com</span>
           </div>
         </div>
       </div>

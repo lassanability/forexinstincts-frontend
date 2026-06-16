@@ -23,7 +23,7 @@ export default function PartnersPage() {
             Trusted <span>Partners</span>
           </h1>
           <p className={styles.heroDesc}>
-            Brokers, VPS providers, and prop firms recommended by ForexInstincts — vetted tools built for MetaTrader traders who want to run their bots effectively.
+            Brokers, VPS providers, and prop firms recommended by ForexInstincts, vetted tools built for MetaTrader traders who want to run their bots effectively.
           </p>
         </div>
       </div>
