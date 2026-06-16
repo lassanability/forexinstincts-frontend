@@ -31,7 +31,8 @@ export default function Dashboard() {
   const router = useRouter();
   const { isAuth, username, isInitialized, initializeAuth, referralCode, referralCount, referralEarnings, walletAddress, updateWallet, fetchProfile, requestPayout, fetchPayouts } = useAuthStore();
   const { orders: rawOrders, ordersLoading, getMyOrders, downloadBot, deleteOrder, updateVisibility } = useOrderStore();
-  const dashboardAd = useAdvertStore((s) => s.ads.find((a) => a.isActive && a.affiliateLink && a.showDashboardCard));
+  const { ads: advertAds, loaded: adsLoaded, fetchAds } = useAdvertStore();
+  const dashboardAd = advertAds.find((a) => a.isActive && a.affiliateLink && a.showDashboardCard);
   const orders = rawOrders.filter(
     (o) => o.status === "paid" || o.status === "generated" || o.status === "trial" || o.isTrial
   );
@@ -62,6 +63,8 @@ export default function Dashboard() {
     fetchProfile();
     fetchPayouts().then(r => { if (r.success) setPayouts(r.data); });
   }, [isAuth, isInitialized, router, getMyOrders, fetchProfile, fetchPayouts]);
+
+  useEffect(() => { if (!adsLoaded) fetchAds(); }, [adsLoaded, fetchAds]);
 
   useEffect(() => { setWalletInput(walletAddress || ""); }, [walletAddress]);
 

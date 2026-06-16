@@ -26,12 +26,19 @@ function PartnerCard({ ad }) {
   );
 }
 
+const BANNER_SIZES = {
+  "728x90":  "(max-width: 768px) 100vw, 728px",
+  "300x250": "300px",
+  "320x50":  "320px",
+};
+
 function BannerAd({ ad }) {
   if (!ad.bannerImage) return null;
+  const size = ad.bannerSize || "728x90";
   return (
     <Link href={ad.affiliateLink} target="_blank" rel="noopener noreferrer sponsored" className={styles.bannerWrap}>
-      <div className={styles.bannerInner}>
-        <AppImage src={ad.bannerImage} alt={ad.name} sizes="(max-width: 768px) 320px, 728px" />
+      <div className={styles.bannerInner} data-size={size}>
+        <AppImage src={ad.bannerImage} alt={ad.name} sizes={BANNER_SIZES[size] || BANNER_SIZES["728x90"]} />
       </div>
     </Link>
   );
