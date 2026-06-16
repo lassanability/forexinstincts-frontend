@@ -29,6 +29,7 @@ const STATUS_CONFIG = {
   generating: { label: "Generating", Icon: SyncIcon },
   completed:  { label: "Ready",      Icon: CheckIcon },
   failed:     { label: "Failed",     Icon: AlertIcon },
+  expired:    { label: "Expired",    Icon: AlertIcon },
 };
 
 const formatTrialExpiry = (dateStr) => {
@@ -61,7 +62,8 @@ export default function BotCard({
   const botSuccessAd = useAdvertStore((s) => s.ads.find((a) => a.isActive && a.affiliateLink && a.showBotSuccess));
 
   if (variant === "dashboard") {
-    const genStatus = order.generation?.status || "pending";
+    const isExpired = !order.isTrial && order.botLicenseExpiresAt && new Date(order.botLicenseExpiresAt) < new Date();
+    const genStatus = isExpired ? "expired" : (order.generation?.status || "pending");
     const { Icon: StatusIcon, label: statusLabel } = STATUS_CONFIG[genStatus] || STATUS_CONFIG.pending;
     const isReady = genStatus === "completed";
     const isFailed = genStatus === "failed";
@@ -135,7 +137,7 @@ export default function BotCard({
 
         {isReady && botSuccessAd && <AdCard ad={botSuccessAd} variant="botSuccess" />}
 
-        {!isReady && !isFailed && (
+        {!isReady && !isFailed && !isExpired && (
           <div className={styles.infoMsg}>
             You will receive an email when your bot is ready. If you don&apos;t see it, check your spam or junk folder.
           </div>
@@ -143,6 +145,10 @@ export default function BotCard({
 
         {isFailed && (
           <div className={styles.errorMsg}>Generation failed. Please contact support.</div>
+        )}
+
+        {isExpired && (
+          <div className={styles.errorMsg}>License expired. Contact support to renew your bot.</div>
         )}
 
         <div className={styles.cardFooter}>
