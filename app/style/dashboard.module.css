@@ -1648,6 +1648,12 @@
   gap: var(--spacing-sm);
 }
 
+.sidebarBannerWrap {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
 .sidebarPanelHeader {
   display: flex;
   align-items: center;

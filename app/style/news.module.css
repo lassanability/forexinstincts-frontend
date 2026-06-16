@@ -288,9 +288,10 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .bannerAdWrap {
+  .adCardsRow {
     margin-top: var(--spacing-xxl);
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--spacing-md);
   }
 }

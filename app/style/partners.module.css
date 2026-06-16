@@ -81,6 +81,25 @@
     padding: 0 20px 60px;
   }
 
+  .partnersLayout {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+  }
+
+  .partnerSideCol {
+    display: none;
+    flex-shrink: 0;
+    width: 300px;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+
+  .partnersGridArea {
+    flex: 1;
+    min-width: 0;
+  }
+
   .grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -110,5 +129,11 @@
 }
 
 @media only screen and (min-width: 64.063em) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+
+  .partnerSideCol { display: block; }
+}
+
+@media only screen and (min-width: 80em) {
   .grid { grid-template-columns: repeat(3, 1fr); }
 }

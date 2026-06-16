@@ -18,7 +18,7 @@ export default function NewsSection() {
   const { ads, loaded, fetchAds } = useAdvertStore();
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("");
-  const bannerAd = ads.find((a) => a.isActive && a.affiliateLink && a.showBanner);
+  const cardAds = ads.filter((a) => a.isActive && a.affiliateLink && a.showDashboardCard);
 
   useEffect(() => {
     fetchNews();
@@ -132,9 +132,11 @@ export default function NewsSection() {
           ))}
         </div>
       )}
-      {bannerAd && (
-        <div className={styles.bannerAdWrap}>
-          <AdCard ad={bannerAd} variant="banner" />
+      {cardAds.length > 0 && (
+        <div className={styles.adCardsRow}>
+          {cardAds.map((ad) => (
+            <AdCard key={ad._id} ad={ad} variant="partner" />
+          ))}
         </div>
       )}
     </section>

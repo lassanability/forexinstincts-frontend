@@ -32,7 +32,7 @@ export default function Dashboard() {
   const { isAuth, username, isInitialized, initializeAuth, referralCode, referralCount, referralEarnings, walletAddress, updateWallet, fetchProfile, requestPayout, fetchPayouts } = useAuthStore();
   const { orders: rawOrders, ordersLoading, getMyOrders, downloadBot, deleteOrder, updateVisibility } = useOrderStore();
   const { ads: advertAds, loaded: adsLoaded, fetchAds } = useAdvertStore();
-  const dashboardAd = advertAds.find((a) => a.isActive && a.affiliateLink && a.showDashboardCard);
+  const bannerAd = advertAds.find((a) => a.isActive && a.affiliateLink && a.showBanner);
   const orders = rawOrders.filter(
     (o) => o.status === "paid" || o.status === "generated" || o.status === "trial" || o.isTrial
   );
@@ -278,8 +278,6 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {dashboardAd && <AdCard ad={dashboardAd} variant="dashboard" />}
-
             {/* Referral */}
             <div className={styles.sidebarPanel}>
               <div className={styles.sidebarPanelHeader}>
@@ -373,6 +371,12 @@ export default function Dashboard() {
                 <p className={styles.payoutEmpty}>No payout requests yet.</p>
               )}
             </div>
+
+            {bannerAd && (
+              <div className={styles.sidebarBannerWrap}>
+                <AdCard ad={bannerAd} variant="banner" />
+              </div>
+            )}
           </aside>
         </div>
       </main>
