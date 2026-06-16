@@ -15,7 +15,7 @@ const securityHeaders = [
     "img-src 'self' data: blob: https://s3.swiftsyn.com https://server.forexinstincts.com",
     "font-src 'self' data:",
     "connect-src 'self' https://api.nowpayments.io https://server.forexinstincts.com wss:",
-    "frame-src https://nowpayments.io",
+    "frame-src *",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",

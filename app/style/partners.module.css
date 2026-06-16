@@ -94,21 +94,6 @@
     margin-bottom: var(--spacing-xl);
   }
 
-  .disclaimer {
-    text-align: center;
-    margin-top: var(--spacing-xl);
-  }
-
-  .disclaimerText {
-    font-size: var(--font-size-xs);
-    color: var(--warm-gray);
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  .disclaimerText span {
-    color: var(--primary-color);
-  }
 }
 
 @media only screen and (min-width: 48em) {

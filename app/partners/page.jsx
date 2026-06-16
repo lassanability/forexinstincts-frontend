@@ -36,13 +36,6 @@ export default function PartnersPage() {
           ))}
         </div>
 
-        {partners.length > 0 && (
-          <div className={styles.disclaimer}>
-            <p className={styles.disclaimerText}>
-              <span>Disclosure:</span> Some links on this page are affiliate links. ForexInstincts may earn a commission if you sign up through them — at no extra cost to you. We only feature partners we consider relevant to active forex traders.
-            </p>
-          </div>
-        )}
       </div>
     </div>
   );
