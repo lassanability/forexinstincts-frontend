@@ -414,6 +414,70 @@
 
   .botSuccessBtn:hover { color: #fff; opacity: 0.9; }
 
+  @keyframes popupFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0);   }
+  }
+
+  .popupSlideContent {
+    animation: popupFadeIn 0.22s ease;
+  }
+
+  .popupSliderNav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: 0 var(--spacing-lg) var(--spacing-md);
+  }
+
+  .popupNavBtn {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    background: rgba(0, 200, 150, 0.08);
+    border: 1px solid rgba(0, 200, 150, 0.2);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    transition: all var(--transition-normal);
+    flex-shrink: 0;
+  }
+
+  .popupNavBtn:hover {
+    background: rgba(0, 200, 150, 0.18);
+    border-color: rgba(0, 200, 150, 0.4);
+  }
+
+  .popupDots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .popupDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(0, 200, 150, 0.15);
+    border: 1px solid rgba(0, 200, 150, 0.25);
+    padding: 0;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+  }
+
+  .popupDotActive {
+    width: 18px;
+    border-radius: 3px;
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
   .iframeWrap {
     width: 100%;
     overflow: hidden;

@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import AppImage from "@/app/components/ui/AppImage";
 import styles from "@/app/style/adCard.module.css";
-import { IoOpenOutline as LinkIcon, IoClose as CloseIcon } from "react-icons/io5";
+import { IoOpenOutline as LinkIcon, IoClose as CloseIcon, IoChevronBack as PrevIcon, IoChevronForward as NextIcon } from "react-icons/io5";
 
 function PartnerCard({ ad }) {
   return (
@@ -61,35 +61,57 @@ function DashboardAdCard({ ad }) {
   );
 }
 
-function PopupAd({ ad, onClose }) {
+function PopupAd({ ad, onClose, total, current, onPrev, onNext, onGoTo }) {
   return (
     <div className={styles.popupOverlay} onClick={onClose}>
       <div className={styles.popupBox} onClick={(e) => e.stopPropagation()}>
         <button className={styles.popupClose} onClick={onClose} aria-label="Close">
           <CloseIcon />
         </button>
-        {ad.advertImage && (
-          <div className={styles.popupImageWrap}>
-            <AppImage src={ad.advertImage} alt={ad.name} sizes="480px" />
-          </div>
-        )}
-        <div className={styles.popupBody}>
-          <div className={styles.popupHead}>
-            <div className={styles.popupLogoWrap}>
-              <AppImage src={ad.logo} alt={ad.name} sizes="44px" />
+        <div key={ad._id} className={styles.popupSlideContent}>
+          {ad.advertImage && (
+            <div className={styles.popupImageWrap}>
+              <AppImage src={ad.advertImage} alt={ad.name} sizes="480px" />
             </div>
-            <div className={styles.popupHeadText}>
-              <div className={styles.popupName}>{ad.name}</div>
-              {ad.bonus && <div className={styles.popupBonus}>{ad.bonus}</div>}
+          )}
+          <div className={styles.popupBody}>
+            <div className={styles.popupHead}>
+              <div className={styles.popupLogoWrap}>
+                <AppImage src={ad.logo} alt={ad.name} sizes="44px" />
+              </div>
+              <div className={styles.popupHeadText}>
+                <div className={styles.popupName}>{ad.name}</div>
+                {ad.bonus && <div className={styles.popupBonus}>{ad.bonus}</div>}
+              </div>
             </div>
-          </div>
-          <div className={styles.popupActions}>
-            <Link href={ad.affiliateLink} target="_blank" rel="noopener noreferrer sponsored" className={styles.popupCta} onClick={onClose}>
-              Get Offer
-            </Link>
-            <button className={styles.popupDismiss} onClick={onClose}>Maybe later</button>
+            <div className={styles.popupActions}>
+              <Link href={ad.affiliateLink} target="_blank" rel="noopener noreferrer sponsored" className={styles.popupCta} onClick={onClose}>
+                Get Offer
+              </Link>
+              <button className={styles.popupDismiss} onClick={onClose}>Maybe later</button>
+            </div>
           </div>
         </div>
+        {total > 1 && (
+          <div className={styles.popupSliderNav}>
+            <button className={styles.popupNavBtn} onClick={onPrev} aria-label="Previous ad">
+              <PrevIcon />
+            </button>
+            <div className={styles.popupDots}>
+              {Array.from({ length: total }, (_, i) => (
+                <button
+                  key={i}
+                  className={i === current ? `${styles.popupDot} ${styles.popupDotActive}` : styles.popupDot}
+                  onClick={() => onGoTo(i)}
+                  aria-label={`Ad ${i + 1} of ${total}`}
+                />
+              ))}
+            </div>
+            <button className={styles.popupNavBtn} onClick={onNext} aria-label="Next ad">
+              <NextIcon />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -143,7 +165,29 @@ export default function AdCard({ ad, variant }) {
 
 export function AdPopupController({ ads }) {
   const [dismissed, setDismissed] = useState(false);
-  const popup = ads.find((a) => a.showPopup);
-  if (!popup || dismissed) return null;
-  return <PopupAd ad={popup} onClose={() => setDismissed(true)} />;
+  const [current, setCurrent] = useState(0);
+  const popups = ads.filter((a) => a.showPopup);
+  const total = popups.length;
+
+  useEffect(() => {
+    if (total <= 1 || dismissed) return;
+    const id = setInterval(() => setCurrent((i) => (i + 1) % total), 4500);
+    return () => clearInterval(id);
+  }, [current, total, dismissed]);
+
+  if (!total || dismissed) return null;
+  const ad = popups[current];
+  const prev = () => setCurrent((i) => (i - 1 + total) % total);
+  const next = () => setCurrent((i) => (i + 1) % total);
+  return (
+    <PopupAd
+      ad={ad}
+      onClose={() => setDismissed(true)}
+      total={total}
+      current={current}
+      onPrev={prev}
+      onNext={next}
+      onGoTo={setCurrent}
+    />
+  );
 }
