@@ -10,6 +10,8 @@ import {
   IoRocketOutline as RocketIcon,
 } from "react-icons/io5";
 import styles from "@/app/style/botCard.module.css";
+import AdCard from "@/app/components/ads/AdCard";
+import { useAdvertStore } from "@/app/store/AdvertStore";
 
 const STRATEGY_LABELS = {
   ma_crossover:          "MA Crossover",
@@ -56,6 +58,8 @@ export default function BotCard({
   onBuy,
   buyingId,
 }) {
+  const botSuccessAd = useAdvertStore((s) => s.ads.find((a) => a.isActive && a.affiliateLink && a.showBotSuccess));
+
   if (variant === "dashboard") {
     const genStatus = order.generation?.status || "pending";
     const { Icon: StatusIcon, label: statusLabel } = STATUS_CONFIG[genStatus] || STATUS_CONFIG.pending;
@@ -128,6 +132,8 @@ export default function BotCard({
             )}
           </div>
         )}
+
+        {isReady && botSuccessAd && <AdCard ad={botSuccessAd} variant="botSuccess" />}
 
         {!isReady && !isFailed && (
           <div className={styles.infoMsg}>

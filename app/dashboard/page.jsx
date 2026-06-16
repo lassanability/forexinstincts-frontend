@@ -9,6 +9,8 @@ import { toast } from "sonner";
 import styles from "@/app/style/dashboard.module.css";
 import BotInstallGuide from "@/app/components/BotInstallGuide";
 import BotCard from "@/app/components/BotCard";
+import AdCard from "@/app/components/ads/AdCard";
+import { useAdvertStore } from "@/app/store/AdvertStore";
 import {
   IoRocketOutline as RocketIcon,
   IoCodeSlash as CodeIcon,
@@ -29,6 +31,7 @@ export default function Dashboard() {
   const router = useRouter();
   const { isAuth, username, isInitialized, initializeAuth, referralCode, referralCount, referralEarnings, walletAddress, updateWallet, fetchProfile, requestPayout, fetchPayouts } = useAuthStore();
   const { orders: rawOrders, ordersLoading, getMyOrders, downloadBot, deleteOrder, updateVisibility } = useOrderStore();
+  const dashboardAd = useAdvertStore((s) => s.ads.find((a) => a.isActive && a.affiliateLink && a.showDashboardCard));
   const orders = rawOrders.filter(
     (o) => o.status === "paid" || o.status === "generated" || o.status === "trial" || o.isTrial
   );
@@ -271,6 +274,8 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
+
+            {dashboardAd && <AdCard ad={dashboardAd} variant="dashboard" />}
 
             {/* Referral */}
             <div className={styles.sidebarPanel}>
