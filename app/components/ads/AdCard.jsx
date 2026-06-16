@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import AppImage from "@/app/components/ui/AppImage";
 import styles from "@/app/style/adCard.module.css";
-import { IoOpenOutline as LinkIcon, IoClose as CloseIcon, IoChevronBack as PrevIcon, IoChevronForward as NextIcon } from "react-icons/io5";
+import { IoOpenOutline as LinkIcon, IoClose as CloseIcon } from "react-icons/io5";
 
 function PartnerCard({ ad }) {
   return (
@@ -94,9 +94,6 @@ function PopupAd({ ad, onClose, total, current, onPrev, onNext, onGoTo }) {
         </div>
         {total > 1 && (
           <div className={styles.popupSliderNav}>
-            <button className={styles.popupNavBtn} onClick={onPrev} aria-label="Previous ad">
-              <PrevIcon />
-            </button>
             <div className={styles.popupDots}>
               {Array.from({ length: total }, (_, i) => (
                 <button
@@ -107,9 +104,6 @@ function PopupAd({ ad, onClose, total, current, onPrev, onNext, onGoTo }) {
                 />
               ))}
             </div>
-            <button className={styles.popupNavBtn} onClick={onNext} aria-label="Next ad">
-              <NextIcon />
-            </button>
           </div>
         )}
       </div>
