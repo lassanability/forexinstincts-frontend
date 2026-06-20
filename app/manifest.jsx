@@ -2,7 +2,7 @@ export default function manifest() {
   return {
     name: 'ForexInstincts',
     short_name: 'ForexInstincts',
-    description: 'Build professional automated trading bots without writing code. Deploy to MT4/MT5 instantly — one-time payment per bot.',
+    description: 'Build professional automated trading bots without writing code. Deploy to MT4, MT5, or TradingView instantly, one-time payment per bot.',
     start_url: '/',
     scope: '/',
     display: 'standalone',

@@ -61,6 +61,9 @@ const useResponsive = () => {
 
 const useNavLinks = () => {
   const { isAuth } = useAuthStore();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
 
   const NAV_LINKS = useMemo(
     () =>
@@ -71,11 +74,11 @@ const useNavLinks = () => {
         { href: "/blog", label: "Blog" },
         { href: "/news", label: "News" },
         { href: "/partners", label: "Partners" },
-        isAuth && { href: "/dashboard", label: "Dashboard" },
-        isAuth && { href: "/marketplace", label: "Marketplace" },
+        mounted && isAuth && { href: "/dashboard", label: "Dashboard" },
+        mounted && isAuth && { href: "/marketplace", label: "Marketplace" },
         { href: "/contact", label: "Contact" },
       ].filter(Boolean),
-    [isAuth]
+    [isAuth, mounted]
   );
 
   return { NAV_LINKS };

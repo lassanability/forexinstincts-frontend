@@ -1,7 +1,7 @@
 const SITE_URL = "https://forexinstincts.com";
 
 export const metadata = {
-  title: "Bot Pricing — Choose Your Bot Tier | ForexInstincts",
+  title: "Bot Pricing: Choose Your Bot Tier | ForexInstincts",
   description: "One-time payment per bot. Professional MetaTrader EA generated instantly. Choose from Basic, Complex, or Advanced bot tiers for your trading strategy.",
 
   keywords: [
@@ -18,7 +18,7 @@ export const metadata = {
   ],
 
   openGraph: {
-    title: "Bot Pricing — Choose Your Bot Tier | ForexInstincts",
+    title: "Bot Pricing: Choose Your Bot Tier | ForexInstincts",
     description: "One-time payment per bot. Professional MQL4/MQL5 trading bot generated instantly. Basic, Complex, and Advanced tiers available.",
     url: `${SITE_URL}/tiers`,
     type: "website",
@@ -26,7 +26,7 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Bot Pricing — Choose Your Bot Tier | ForexInstincts",
+    title: "Bot Pricing: Choose Your Bot Tier | ForexInstincts",
     description: "One-time payment per bot. Professional MQL4/MQL5 trading bot generated instantly.",
   },
 

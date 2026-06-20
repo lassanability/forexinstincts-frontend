@@ -3,7 +3,7 @@ import NewsSection from "@/app/components/NewsSection";
 const SITE_URL = "https://forexinstincts.com";
 
 export const metadata = {
-  title: "Platform News — Updates, Announcements & Market News",
+  title: "Platform News: Updates, Announcements & Market News",
   description: "Stay up to date with the latest ForexInstincts platform updates, new bot features, MetaTrader announcements, and forex market news.",
   keywords: [
     "forexinstincts news",
@@ -25,7 +25,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Platform News & Updates — ForexInstincts",
+    title: "Platform News & Updates | ForexInstincts",
     description: "Latest ForexInstincts platform updates, new features, and forex market news.",
     images: [`${SITE_URL}/assets/banner.png`],
   },

@@ -2,7 +2,7 @@ import styles from "@/app/style/legal.module.css";
 
 export const metadata = {
   title: "Terms of Use",
-  description: "ForexInstincts Terms of Use — legally binding terms governing your use of the platform.",
+  description: "ForexInstincts Terms of Use: legally binding terms governing your use of the platform.",
 };
 
 export default function Terms() {
@@ -52,7 +52,7 @@ export default function Terms() {
           <p>
             <strong>&quot;Marketplace Bot&quot;</strong> means a pre-built Expert Advisor created by ForexInstincts
             and made available for purchase in the Bot Marketplace. Marketplace bots are not
-            user-configured — they are built with fixed logic and settings intended as a starting
+            user-configured; they are built with fixed logic and settings intended as a starting
             point for new traders.
           </p>
           <p>
@@ -78,7 +78,7 @@ export default function Terms() {
             <strong>(a) Bot Builder:</strong> A web-based wizard that enables users to configure and generate
             Expert Advisor files for MetaTrader 4 (MT4) and MetaTrader 5 (MT5) based on the user&apos;s
             own specified rules, indicators, risk settings, and strategy parameters. The generated bot
-            automates exactly the logic and rules the user configures — nothing more.
+            automates exactly the logic and rules the user configures, nothing more.
           </p>
           <p>
             <strong>(b) Bot Marketplace:</strong> A catalogue of pre-built Expert Advisors created by
@@ -170,8 +170,8 @@ export default function Terms() {
         <section>
           <h2>7. Digital Goods Delivery and No-Refund Policy</h2>
           <p>
-            <strong>7.1 Immediate Digital Delivery.</strong> EA files — whether generated through the
-            Bot Builder or purchased from the Marketplace — are digital products delivered
+            <strong>7.1 Immediate Digital Delivery.</strong> EA files, whether generated through the
+            Bot Builder or purchased from the Marketplace, are digital products delivered
             automatically to your account dashboard upon confirmed payment. Delivery is considered
             complete when the EA file becomes available for download in your account.
           </p>
@@ -217,9 +217,9 @@ export default function Terms() {
         <section>
           <h2>8. Intellectual Property</h2>
           <p>
-            <strong>8.1 Platform Ownership.</strong> The ForexInstincts Platform — including its
+            <strong>8.1 Platform Ownership.</strong> The ForexInstincts Platform, including its
             website, design, interface, generation engine, underlying algorithms, templates,
-            trademarks, trade name, and all related technology and content — is the exclusive
+            trademarks, trade name, and all related technology and content, is the exclusive
             intellectual property of ForexInstincts. All rights reserved.
           </p>
           <p>
@@ -294,7 +294,7 @@ export default function Terms() {
           </p>
           <p>
             <strong>FOREXINSTINCTS DOES NOT GUARANTEE ANY TRADING OUTCOME, PROFIT, MINIMUM RETURN,
-            OR PRESERVATION OF CAPITAL FOR ANY PRODUCT — CUSTOM OR MARKETPLACE.</strong> Past
+            OR PRESERVATION OF CAPITAL FOR ANY PRODUCT, CUSTOM OR MARKETPLACE.</strong> Past
             performance does not guarantee future performance.
           </p>
           <p>
@@ -307,9 +307,9 @@ export default function Terms() {
         <section>
           <h2>10. Not Financial Advice</h2>
           <p>
-            Nothing on the ForexInstincts Platform — including bot configurations, strategy
+            Nothing on the ForexInstincts Platform, including bot configurations, strategy
             descriptions, indicator explanations, performance examples, documentation, blog
-            posts, or any other content — constitutes financial, investment, tax, or trading
+            posts, or any other content, constitutes financial, investment, tax, or trading
             advice. ForexInstincts is not registered, licensed, or regulated as a financial
             advisor, investment firm, broker-dealer, or money manager in any jurisdiction.
           </p>

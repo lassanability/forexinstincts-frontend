@@ -33,9 +33,9 @@ const jetbrains = JetBrains_Mono({
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://forexinstincts.com";
 const SITE_NAME = "ForexInstincts";
-const TITLE_DEFAULT = "ForexInstincts — Custom Forex Trading Bot Generator";
+const TITLE_DEFAULT = "ForexInstincts: Custom Forex Trading Bot Generator";
 const DESCRIPTION =
-  "Build your own automated trading bot in minutes. Configure strategy, indicators, risk management, and more — get professional MQL4/MQL5 bot code generated instantly.";
+  "Build your own automated trading bot in minutes. Configure strategy, indicators, risk management, and more. Get professional MQL4/MQL5 bot code generated instantly.";
 const BANNER_URL = `${SITE_URL}/assets/banner.png`;
 
 export const viewport = {
@@ -94,7 +94,7 @@ export const metadata = {
         url: BANNER_URL,
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} — Forex Trading Bot Generator`,
+        alt: `${SITE_NAME} Forex Trading Bot Generator`,
       },
     ],
   },

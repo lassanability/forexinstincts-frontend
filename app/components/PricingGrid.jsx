@@ -83,7 +83,7 @@ export default function PricingGrid() {
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <h1>Build Your Custom Forex Bot</h1>
-          <p>One-time payment per bot — configure your requirements, pay once, trade.</p>
+          <p>One-time payment per bot, configure your requirements, pay once, trade.</p>
         </div>
         <div className={styles.card}>
           <div className={styles.skeletonSection}>
@@ -123,7 +123,7 @@ export default function PricingGrid() {
             </div>
             <h3>Try Before You Buy</h3>
             <p>
-              Generate a basic trading bot free of charge. Valid for 6 hours — no payment required.
+              Generate a basic trading bot free of charge. Valid for 6 hours, no payment required.
               {!isAuth && " Create an account to get started."}
               {isAuth && hasUsedTrial && " You have already used your free trial."}
             </p>
@@ -149,7 +149,7 @@ export default function PricingGrid() {
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <h1>Build Your Custom Forex Bot</h1>
-        <p>One-time payment per bot — configure your requirements, pay once, trade.</p>
+        <p>One-time payment per bot, configure your requirements, pay once, trade.</p>
       </div>
 
       <div className={styles.card}>
@@ -278,7 +278,7 @@ export default function PricingGrid() {
           </div>
           <h3>Try Before You Buy</h3>
           <p>
-            Generate a basic trading bot free of charge. Valid for 6 hours — no payment required.
+            Generate a basic trading bot free of charge. Valid for 6 hours, no payment required.
             {!isAuth && " Create an account to get started."}
             {isAuth && hasUsedTrial && " You have already used your free trial."}
           </p>

@@ -2,7 +2,7 @@ import styles from "@/app/style/legal.module.css";
 
 export const metadata = {
   title: "Privacy Policy",
-  description: "ForexInstincts Privacy Policy — how we collect, use, and protect your personal information.",
+  description: "ForexInstincts Privacy Policy: how we collect, use, and protect your personal information.",
 };
 
 export default function Privacy() {
@@ -41,12 +41,12 @@ export default function Privacy() {
             at any point.
           </p>
           <p>
-            <strong>2.2 Order and Transaction Data.</strong> When you place an order — whether
+            <strong>2.2 Order and Transaction Data.</strong> When you place an order, whether
             through the Bot Builder (custom configuration) or the Bot Marketplace (pre-built bot
-            purchase) — we record: a unique order ID, your selected tier or marketplace bot,
+            purchase), we record: a unique order ID, your selected tier or marketplace bot,
             configuration parameters where applicable, the payment reference number issued by our
             payment processor, the transaction amount, and timestamp. We do not receive, store,
-            or process your raw payment credentials — those remain exclusively with our payment processor.
+            or process your raw payment credentials; those remain exclusively with our payment processor.
           </p>
           <p>
             <strong>2.3 Usage and Technical Data.</strong> We automatically collect certain
@@ -102,7 +102,7 @@ export default function Privacy() {
         </section>
 
         <section>
-          <h2>4. Payment Processing — NowPayments</h2>
+          <h2>4. Payment Processing: NowPayments</h2>
           <p>
             All payments on the ForexInstincts Platform are processed exclusively by
             <strong> NowPayments</strong>, a third-party cryptocurrency payment processor.
@@ -112,11 +112,11 @@ export default function Privacy() {
             ACCESS TO YOUR WALLET DETAILS, PRIVATE KEYS, OR ANY OTHER SENSITIVE PAYMENT
             CREDENTIALS AT ANY POINT IN THE PAYMENT PROCESS.</strong> When you make a payment,
             your cryptocurrency transaction is handled directly and exclusively through
-            NowPayments&apos; secure interface — never into ForexInstincts systems.
+            NowPayments&apos; secure interface, not into ForexInstincts systems.
           </p>
           <p>
             ForexInstincts receives only a payment confirmation reference, the transaction
-            amount, and a success or failure status from NowPayments — never your raw financial
+            amount, and a success or failure status from NowPayments, never your raw financial
             credentials.
           </p>
           <p>
@@ -142,7 +142,7 @@ export default function Privacy() {
           <p>
             <strong>(b) Legitimate Interests:</strong> Processing necessary for our legitimate
             business interests, including operating and improving the Platform, ensuring security,
-            and preventing fraud — provided such interests are not overridden by your rights.
+            and preventing fraud, provided such interests are not overridden by your rights.
           </p>
           <p>
             <strong>(c) Legal Obligation:</strong> Processing required to comply with applicable
@@ -169,7 +169,7 @@ export default function Privacy() {
           <p>
             <strong>(b) Server Infrastructure (Linode):</strong> All ForexInstincts services are
             self-hosted on dedicated servers provided by Linode (Akamai Cloud). Linode provides
-            raw server infrastructure only — it does not have access to, process, or control
+            raw server infrastructure only; it does not have access to, process, or control
             any application data, user accounts, personal information, or EA files stored on
             the Platform. No third-party cloud service, SaaS database, or managed infrastructure
             provider holds or processes your data.
@@ -218,8 +218,8 @@ export default function Privacy() {
         <section>
           <h2>8. Data Security</h2>
           <p>
-            All ForexInstincts services — including the web application, database, and file
-            storage — are entirely self-hosted on our own servers (Linode infrastructure).
+            All ForexInstincts services, including the web application, database, and file
+            storage, are entirely self-hosted on our own servers (Linode infrastructure).
             No application data is stored in or processed by any third-party cloud service,
             managed database provider, or external SaaS platform. We maintain full custody
             and control of all data at all times.
@@ -235,7 +235,7 @@ export default function Privacy() {
           </p>
           <p>
             (b) Secure hashing of passwords using industry-standard algorithms (bcrypt or
-            equivalent) — we never store passwords in plain text;
+            equivalent); we never store passwords in plain text;
           </p>
           <p>
             (c) Server-side authentication token validation and session management;
@@ -321,9 +321,9 @@ export default function Privacy() {
             comprehensive data protection laws than those in your jurisdiction.
           </p>
           <p>
-            Where we transfer personal data internationally, we take appropriate safeguards —
+            Where we transfer personal data internationally, we take appropriate safeguards,
             such as standard contractual clauses, data processing agreements, or reliance on
-            adequacy decisions — to ensure that your personal data receives adequate protection
+            adequacy decisions, to ensure that your personal data receives adequate protection
             consistent with applicable data protection law.
           </p>
         </section>

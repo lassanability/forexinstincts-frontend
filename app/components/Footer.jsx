@@ -16,6 +16,9 @@ import { IoShieldCheckmark as ShieldIcon } from "react-icons/io5";
 
 export default function Footer() {
   const pathname = usePathname();
+
+  if (pathname.startsWith("/dashboard") || pathname.startsWith("/terminal")) return null;
+
   const handleTwitterClick = () => window.open("https://twitter.com/forexinstincts", "_blank");
   const handleInstagramClick = () => window.open("https://www.instagram.com/forexinstincts", "_blank");
   const handleTelegramClick = () => window.open("https://t.me/forexinstincts", "_blank");

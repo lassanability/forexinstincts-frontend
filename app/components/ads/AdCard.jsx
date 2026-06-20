@@ -131,6 +131,26 @@ function BotSuccessAdCard({ ad }) {
   );
 }
 
+function TerminalAdCard({ ad }) {
+  return (
+    <div className={styles.terminalAdCard}>
+      <div className={styles.terminalAdHead}>
+        <div className={styles.terminalAdLogoWrap}>
+          <AppImage src={ad.logo} alt={ad.name} sizes="36px" />
+        </div>
+        <div className={styles.terminalAdInfo}>
+          <div className={styles.terminalAdLabel}>Recommended Broker</div>
+          <div className={styles.terminalAdName}>{ad.name}</div>
+        </div>
+      </div>
+      {ad.bonus && <div className={styles.terminalAdBonus}>{ad.bonus}</div>}
+      <Link href={ad.affiliateLink} target="_blank" rel="noopener noreferrer sponsored" className={styles.terminalAdBtn}>
+        Open Account <LinkIcon className={styles.partnerLinkIcon} />
+      </Link>
+    </div>
+  );
+}
+
 function IframeAd({ ad }) {
   if (!ad.iframeCode) return null;
   return (
@@ -153,6 +173,7 @@ export default function AdCard({ ad, variant }) {
   }
   if (variant === "dashboard") return <DashboardAdCard ad={ad} />;
   if (variant === "botSuccess") return <BotSuccessAdCard ad={ad} />;
+  if (variant === "terminal") return <TerminalAdCard ad={ad} />;
   if (variant === "iframe") return <IframeAd ad={ad} />;
   return null;
 }

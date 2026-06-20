@@ -118,7 +118,7 @@ export default function MarketplacePage() {
 
       <div className={styles.disclaimer}>
         <p>
-          Marketplace bots are pre-built Expert Advisors designed to give new traders a structured starting point in automated trading. They are not guaranteed to generate profits, positive returns, or trading success of any kind. Market conditions are unpredictable, and individual results will vary based on broker, account type, market volatility, and other factors outside our control. All trading involves risk — only trade with capital you can afford to lose.
+          Marketplace bots are pre-built Expert Advisors designed to give new traders a structured starting point in automated trading. They are not guaranteed to generate profits, positive returns, or trading success of any kind. Market conditions are unpredictable, and individual results will vary based on broker, account type, market volatility, and other factors outside our control. All trading involves risk. Only trade with capital you can afford to lose.
         </p>
         <div className={styles.disclaimerLinks}>
           <Link href="/terms">Terms of Use</Link>

@@ -10,9 +10,9 @@ const securityHeaders = [
   { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
   { key: 'Content-Security-Policy', value: [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://s3.tradingview.com",
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob: https://s3.swiftsyn.com https://server.forexinstincts.com",
+    "img-src 'self' data: blob: https://s3.swiftsyn.com https://server.forexinstincts.com https://*.tradingview.com",
     "font-src 'self' data:",
     "connect-src 'self' https://api.nowpayments.io https://server.forexinstincts.com wss:",
     "frame-src *",

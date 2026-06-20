@@ -31,8 +31,8 @@ const PATTERN_TYPES = [
 ];
 
 const LOGIC_OPTS = [
-  { value: "AND", name: "AND — All conditions must be true" },
-  { value: "OR",  name: "OR — Any condition can trigger" },
+  { value: "AND", name: "AND: All conditions must be true" },
+  { value: "OR",  name: "OR: Any condition can trigger" },
 ];
 
 const PA_STRATEGIES = ["price_action_breakout", "candlestick_pattern"];
@@ -90,7 +90,7 @@ export default function EntryStep({ config, update, selectedTier }) {
               <div className={styles.categoryCardTitle}>Price Action</div>
               {priceActionAddon > 0 && <div className={styles.categoryCardBadge}>+${priceActionAddon}</div>}
             </div>
-            <div className={styles.categoryCardDesc}>Breakout levels and candlestick patterns — no indicators needed</div>
+            <div className={styles.categoryCardDesc}>Breakout levels and candlestick patterns, no indicators needed</div>
           </div>
         </div>
       </div>
@@ -195,9 +195,9 @@ export default function EntryStep({ config, update, selectedTier }) {
                 ))}
               </div>
               <div className={styles.strategyHint}>
-                <p><strong>Pin Bar</strong> — long wick rejecting a level</p>
-                <p><strong>Engulfing</strong> — full candle reversal</p>
-                <p><strong>Inside Bar</strong> — consolidation then breakout in parent bar direction</p>
+                <p><strong>Pin Bar</strong>: long wick rejecting a level</p>
+                <p><strong>Engulfing</strong>: full candle reversal</p>
+                <p><strong>Inside Bar</strong>: consolidation then breakout in parent bar direction</p>
               </div>
             </div>
           )}

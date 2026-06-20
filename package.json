@@ -13,6 +13,7 @@
     "@paystack/inline-js": "^2.22.1",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",
+    "lightweight-charts": "^4.2.3",
     "next": "^15.3.4",
     "next-google-translate-widget": "^2.0.2",
     "react": "^19.0.0",

@@ -9,9 +9,12 @@ import {
 const SYMBOLS_OPTS = ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD", "EURJPY", "GBPJPY", "XAUUSD"].map((s) => ({ name: s, value: s }));
 const TIMEFRAME_OPTS = ["M1", "M5", "M15", "M30", "H1", "H4", "D1", "W1"].map((tf) => ({ name: tf, value: tf }));
 const PLATFORM_OPTS = [
-  { value: "MT4",  name: "MT4" },
-  { value: "MT5",  name: "MT5" },
-  { value: "both", name: "MT4 & MT5" },
+  { value: "MT4",         name: "MT4 (MetaTrader 4)" },
+  { value: "MT5",         name: "MT5 (MetaTrader 5)" },
+  { value: "both",        name: "MT4 & MT5" },
+  { value: "TradingView", name: "TradingView (Pine Script)" },
+  { value: "Capital.com", name: "Capital.com (Web Trading)" },
+  { value: "OANDA",       name: "OANDA (Web Trading)" },
 ];
 const DIRECTION_OPTS = [
   { value: "both",      name: "Both Buy & Sell" },

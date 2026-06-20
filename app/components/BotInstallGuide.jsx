@@ -16,7 +16,7 @@ const HOW_TO_STEPS = [
   },
   {
     title: "Compile in MetaEditor",
-    desc: "Press F4 in MetaTrader to open MetaEditor. Open your EA file, then press F7 to compile. Wait for '0 error(s)' in the output at the bottom. This step is required — without it, MetaTrader will not recognise the bot.",
+    desc: "Press F4 in MetaTrader to open MetaEditor. Open your EA file, then press F7 to compile. Wait for '0 error(s)' in the output at the bottom. This step is required; without it, MetaTrader will not recognise the bot.",
   },
   {
     title: "Refresh the Navigator",
@@ -42,7 +42,7 @@ export default function BotInstallGuide() {
         <div>
           <h2>How to Install Your Bot</h2>
           <p>
-            Expert Advisors only run on the <strong>Windows desktop</strong> version of MetaTrader 4 or 5 — not on the mobile app. If you trade on your phone, install MT4/MT5 on a Windows PC or rent a VPS to run the bot.
+            Expert Advisors only run on the <strong>Windows desktop</strong> version of MetaTrader 4 or 5, not on the mobile app. If you trade on your phone, install MT4/MT5 on a Windows PC or rent a VPS to run the bot.
           </p>
         </div>
       </div>

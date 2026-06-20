@@ -1,7 +1,7 @@
 const SITE_URL = "https://forexinstincts.com";
 
 export const metadata = {
-  title: "Contact Us — ForexInstincts Support",
+  title: "Contact Us | ForexInstincts Support",
   description: "Get in touch with the ForexInstincts team for bot inquiries, payment issues, download support, or custom strategy requests. We respond within 24 hours.",
 
   keywords: [
@@ -18,7 +18,7 @@ export const metadata = {
   ],
 
   openGraph: {
-    title: "Contact Us — ForexInstincts Support",
+    title: "Contact Us | ForexInstincts Support",
     description: "Need help with your trading bot? Our support team responds within 24 hours. Reach us on Telegram @forexinstincts or via email.",
     url: `${SITE_URL}/contact`,
     type: "website",
@@ -26,7 +26,7 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Contact Us — ForexInstincts Support",
+    title: "Contact Us | ForexInstincts Support",
     description: "Need help with your trading bot? Reach us on Telegram @forexinstincts or via email.",
   },
 

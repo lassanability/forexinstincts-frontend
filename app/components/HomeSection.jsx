@@ -23,7 +23,7 @@ export default function HomeSection() {
               <LiquidGlass borderRadius={999} blur={0.4} saturation={1.4} shadowIntensity={0.12} zIndex={10}>
                 <div className={styles.badge}>
                   <CodeIcon className={styles.badgeIcon} />
-                  <span>MetaTrader EA Generator MT4 &amp; MT5 Supported</span>
+                  <span>MT4, MT5 &amp; TradingView Bot Builder</span>
                 </div>
               </LiquidGlass>
             </div>
@@ -37,9 +37,9 @@ export default function HomeSection() {
             </h1>
 
             <p className={styles.heroDescription}>
-              Configure your <span>forex strategy</span> indicators, risk
-              management, session filters, and more. Get a professional
-              trading bot deployed to MT4/MT5 instantly.
+              Configure your <span>forex strategy</span>, indicators, risk
+              management, and session filters. Generate a professional bot
+              for MetaTrader or TradingView, backtest it with real data, and deploy instantly.
             </p>
             <div className={styles.statsGrid}>
               <div className={styles.statCard}>
@@ -47,7 +47,7 @@ export default function HomeSection() {
                 <p>Bot Tiers</p>
               </div>
               <div className={styles.statCard}>
-                <h1>MT4/5</h1>
+                <h1>MT4/5/TV</h1>
                 <p>Platforms</p>
               </div>
               <div className={styles.statCard}>
@@ -64,8 +64,8 @@ export default function HomeSection() {
               </div>
               <div className={styles.trustItem}>
                 <FlashIcon className={styles.trustIconPurple} />
-                <div className={styles.trustTextFull}>Instant generation</div>
-                <div className={styles.trustTextShort}>Instant</div>
+                <div className={styles.trustTextFull}>Backtest before deploy</div>
+                <div className={styles.trustTextShort}>Backtest</div>
               </div>
               <div className={styles.trustItem}>
                 <TimeIcon className={styles.trustIconPink} />
@@ -116,7 +116,7 @@ void OnTick() {
                       <span className={styles.cardBadge}>✓ Ready</span>
                     </div>
                     <div className={styles.cardSubtitle}>EURUSD • H1 • RSI+MA</div>
-                    <div className={styles.cardValue}>Download EA</div>
+                    <div className={styles.cardValue}>Backtest & Deploy</div>
                   </div>
                 </LiquidGlass>
               </div>

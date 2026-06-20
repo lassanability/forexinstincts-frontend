@@ -289,7 +289,7 @@ function BuildContent() {
           <div className={styles.trialBadge}>Free Trial · Basic Bot · Valid 6 Hours</div>
         )}
         <h1>{isTrial ? "Try Your Trading Bot Free" : "Build Your Trading Bot"}</h1>
-        <p>{isTrial ? "Configure a basic bot — generate free, valid for 6 hours" : "Configure every detail of your trading bot"}</p>
+        <p>{isTrial ? "Configure a basic bot, generate free, valid for 6 hours" : "Configure every detail of your trading bot"}</p>
       </div>
 
       <StepIndicator steps={STEPS} current={step} onStepClick={(i) => setStep(i)} />

@@ -14,9 +14,9 @@ export default function MiddleSection() {
   const features = [
     {
       icon: <CodeIcon />,
-      title: "Plug-and-Play EA File",
+      title: "MT4, MT5 & TradingView",
       description:
-        "Receive a compiled, ready-to-upload EA file (.ex4/.ex5). Drop it into MetaTrader and start trading immediately — no setup, no coding.",
+        "Generate a compiled EA file for MetaTrader or a Pine Script bot for TradingView. Drop it in and start trading, no coding required.",
       stat: "Instant Deploy",
     },
     {
@@ -30,15 +30,15 @@ export default function MiddleSection() {
       icon: <SparklesIcon />,
       title: "Multi-Indicator Signals",
       description:
-        "MA crossovers, RSI, MACD, Bollinger Bands, Stochastic — select and combine signals to match your edge.",
-      stat: "10+ Strategies",
+        "MA crossovers, RSI, MACD, Bollinger Bands, Stochastic, select and combine signals to match your edge.",
+      stat: "5+ Strategies",
     },
     {
       icon: <CrownIcon />,
-      title: "Advanced Capabilities",
+      title: "Backtest Before You Deploy",
       description:
-        "Multi-timeframe analysis, grid, martingale, session filters, and news avoidance. Full MT4 and MT5 support.",
-      stat: "MT4 + MT5",
+        "Run your strategy against real historical data from 1 week to 1 year before risking a single dollar. Results include win rate, P&L, and drawdown.",
+      stat: "Real OHLCV Data",
     },
   ];
 
@@ -59,13 +59,13 @@ export default function MiddleSection() {
       icon: <ShieldIcon />,
       title: "Pay & Generate",
       description:
-        "Complete payment via crypto. Your bot is generated immediately — professional EA code ready for MetaTrader.",
+        "Complete payment via crypto. Your bot is generated immediately, professional EA code ready for MetaTrader or TradingView.",
     },
     {
       icon: <DownloadIcon />,
-      title: "Download & Trade",
+      title: "Backtest, Download & Trade",
       description:
-        "Download your MT4 or MT5 EA file from your dashboard. Attach it to your chart and start trading.",
+        "Backtest your strategy in the dashboard across multiple periods, then download your EA and attach it to your chart.",
     },
   ];
 
@@ -95,7 +95,7 @@ export default function MiddleSection() {
           <div className={styles.sectionHeader}>
             <div className={styles.sectionChip}>Every Bot Includes</div>
             <h2>Configured by You. Built for the Market.</h2>
-            <p>Every EA is custom-built from your configuration and delivered as a ready-to-deploy file — professional strategy logic included.</p>
+            <p>Every bot is custom-built from your configuration and delivered as a ready-to-deploy file, professional strategy logic included.</p>
           </div>
           <div className={styles.featuresGrid}>
             {features.map((feature, i) => (

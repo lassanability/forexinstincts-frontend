@@ -48,7 +48,7 @@ export default function TrialNotification() {
           <span>FREE TRIAL</span>
         </div>
         <div className={styles.notifBody}>
-          <p>Generate a basic forex trading bot — completely free. Valid for 6 hours, no payment required.</p>
+          <p>Generate a basic forex trading bot, completely free. Valid for 6 hours, no payment required.</p>
         </div>
         <button className={styles.notifCta} onClick={handleCTA}>
           <span>Create Account & Try Free</span>

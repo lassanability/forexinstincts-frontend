@@ -8,6 +8,10 @@ import {
   IoTimeOutline as ClockIcon,
   IoTrashOutline as TrashIcon,
   IoRocketOutline as RocketIcon,
+  IoCopyOutline as CopyIcon,
+  IoOpenOutline as OpenIcon,
+  IoPulseOutline as LiveIcon,
+  IoBarChartOutline as ChartIcon,
 } from "react-icons/io5";
 import styles from "@/app/style/botCard.module.css";
 import AdCard from "@/app/components/ads/AdCard";
@@ -26,7 +30,7 @@ const STRATEGY_LABELS = {
 
 const STATUS_CONFIG = {
   pending:    { label: "Queued",     Icon: ClockIcon },
-  generating: { label: "Generating", Icon: SyncIcon },
+  generating: { label: "Generating", Icon: SyncIcon  },
   completed:  { label: "Ready",      Icon: CheckIcon },
   failed:     { label: "Failed",     Icon: AlertIcon },
   expired:    { label: "Expired",    Icon: AlertIcon },
@@ -42,9 +46,18 @@ const formatTrialExpiry = (dateStr) => {
 const strategyLabel = (strategy) =>
   strategy ? (STRATEGY_LABELS[strategy] || strategy.replace(/_/g, " ")) : null;
 
+function copyToClipboard(text, label = "Copied!") {
+  navigator.clipboard?.writeText(text).then(() => {
+    const el = document.createElement("div");
+    el.textContent = label;
+    el.style.cssText = "position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#00c896;color:#fff;padding:8px 18px;border-radius:8px;font-size:14px;z-index:9999;pointer-events:none";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 2000);
+  });
+}
+
 export default function BotCard({
   variant = "dashboard",
-  // dashboard props
   order,
   onDownload,
   onDelete,
@@ -54,7 +67,6 @@ export default function BotCard({
   confirmDeleteId,
   onConfirmDelete,
   onCancelDelete,
-  // marketplace props
   bot,
   onBuy,
   buyingId,
@@ -65,8 +77,11 @@ export default function BotCard({
     const isExpired = !order.isTrial && order.botLicenseExpiresAt && new Date(order.botLicenseExpiresAt) < new Date();
     const genStatus = isExpired ? "expired" : (order.generation?.status || "pending");
     const { Icon: StatusIcon, label: statusLabel } = STATUS_CONFIG[genStatus] || STATUS_CONFIG.pending;
-    const isReady = genStatus === "completed";
-    const isFailed = genStatus === "failed";
+    const isReady   = genStatus === "completed";
+    const isFailed  = genStatus === "failed";
+    const platform  = order.config?.platform;
+    const isMT      = !platform || platform === "MT4" || platform === "MT5" || platform === "both";
+    const isTV      = platform === "TradingView";
 
     return (
       <div className={styles.card} data-trial={order.isTrial ? "true" : undefined}>
@@ -89,16 +104,18 @@ export default function BotCard({
         <div className={styles.detailGrid}>
           <div className={styles.detail}>
             <span>Platform</span>
-            <span>{order.config?.platform || "MT4"}</span>
+            <span>{platform || "MT4"}</span>
           </div>
           <div className={styles.detail}>
             <span>Strategy</span>
             <span>{strategyLabel(order.config?.entry?.strategy) || "MA Crossover"}</span>
           </div>
-          <div className={styles.detail}>
-            <span>Downloads</span>
-            <span>{order.generation?.downloadCount || 0}</span>
-          </div>
+          {isMT && (
+            <div className={styles.detail}>
+              <span>Downloads</span>
+              <span>{order.generation?.downloadCount || 0}</span>
+            </div>
+          )}
           {order.isTrial && (
             <div
               className={styles.detail}
@@ -112,26 +129,55 @@ export default function BotCard({
 
         {isReady && (
           <div className={styles.actions}>
-            {order.generation?.mt4Code && (
-              <button
-                className={styles.dlBtn}
-                onClick={() => onDownload(order._id, order.botName, "mt4")}
-                disabled={downloadingId === `${order._id}-mt4`}
-              >
-                <DownloadIcon />
-                <span>{downloadingId === `${order._id}-mt4` ? "Preparing..." : "Download MT4"}</span>
-              </button>
+            <div className={styles.primaryActions}>
+              <a href="/terminal?tab=backtest" className={styles.actionBacktest}>
+                <ChartIcon /><span>Backtest</span>
+              </a>
+              <a href="/terminal?tab=capital" className={styles.actionOanda}>
+                <LiveIcon /><span>Trade via Capital.com</span>
+              </a>
+            </div>
+
+            {isTV && order.generation?.pineCode && (
+              <div className={styles.secondaryActions}>
+                <button className={styles.actionSecondary} onClick={() => copyToClipboard(order.generation.pineCode, "Pine Script copied!")}>
+                  <CopyIcon /><span>Copy Pine Script</span>
+                </button>
+                <a href="https://www.tradingview.com/pine-script-editor" target="_blank" rel="noopener noreferrer" className={styles.actionSecondary}>
+                  <OpenIcon /><span>Open TradingView</span>
+                </a>
+              </div>
             )}
-            {order.generation?.mt5Code && (
-              <button
-                className={styles.dlBtn}
-                onClick={() => onDownload(order._id, order.botName, "mt5")}
-                disabled={downloadingId === `${order._id}-mt5`}
-              >
-                <DownloadIcon />
-                <span>{downloadingId === `${order._id}-mt5` ? "Preparing..." : "Download MT5"}</span>
-              </button>
+
+            {isMT && (
+              <div className={styles.secondaryActions}>
+                {order.generation?.mt4Code && (
+                  <button
+                    className={styles.actionSecondary}
+                    onClick={() => onDownload(order._id, order.botName, "mt4")}
+                    disabled={downloadingId === `${order._id}-mt4`}
+                  >
+                    <DownloadIcon />
+                    <span>{downloadingId === `${order._id}-mt4` ? "Preparing..." : "Download MT4"}</span>
+                  </button>
+                )}
+                {order.generation?.mt5Code && (
+                  <button
+                    className={styles.actionSecondary}
+                    onClick={() => onDownload(order._id, order.botName, "mt5")}
+                    disabled={downloadingId === `${order._id}-mt5`}
+                  >
+                    <DownloadIcon />
+                    <span>{downloadingId === `${order._id}-mt5` ? "Preparing..." : "Download MT5"}</span>
+                  </button>
+                )}
+              </div>
             )}
+
+            <div className={styles.capitalEncourage}>
+              <LiveIcon className={styles.encourageIcon} />
+              <span>Connect your Capital.com account in the terminal and let this bot trade automatically, no files to manage.</span>
+            </div>
           </div>
         )}
 
@@ -167,21 +213,11 @@ export default function BotCard({
           {confirmDeleteId === order._id ? (
             <div className={styles.deleteConfirm}>
               <span>Delete this bot?</span>
-              <button
-                className={styles.confirmYes}
-                onClick={() => onConfirmDelete(order._id)}
-                disabled={deletingId === order._id}
-              >
-                Yes
-              </button>
+              <button className={styles.confirmYes} onClick={() => onConfirmDelete(order._id)} disabled={deletingId === order._id}>Yes</button>
               <button className={styles.confirmNo} onClick={onCancelDelete}>Cancel</button>
             </div>
           ) : (
-            <button
-              className={styles.deleteBtn}
-              onClick={() => onDelete(order._id)}
-              disabled={deletingId === order._id}
-            >
+            <button className={styles.deleteBtn} onClick={() => onDelete(order._id)} disabled={deletingId === order._id}>
               <TrashIcon />
               <span>{deletingId === order._id ? "Deleting..." : "Delete"}</span>
             </button>
@@ -191,9 +227,8 @@ export default function BotCard({
     );
   }
 
-  // marketplace variant
   const platform = bot.platform || bot.config?.platform;
-  const label = strategyLabel(bot.config?.entry?.strategy);
+  const label    = strategyLabel(bot.config?.entry?.strategy);
 
   return (
     <div className={styles.card}>
@@ -214,11 +249,7 @@ export default function BotCard({
         {label && <span className={styles.tag}>{label}</span>}
       </div>
 
-      <button
-        className={styles.buyBtn}
-        onClick={() => onBuy(bot)}
-        disabled={buyingId === bot._id}
-      >
+      <button className={styles.buyBtn} onClick={() => onBuy(bot)} disabled={buyingId === bot._id}>
         <RocketIcon />
         {buyingId === bot._id ? "Processing..." : `Buy for $${bot.price}`}
       </button>

@@ -12,22 +12,22 @@ const PLATFORM_CARDS = [
   {
     emoji: "🤖",
     title: "EA Bot Builder",
-    body: "A 6-step guided wizard lets traders configure strategy, indicators, risk management, and session filters. The platform generates clean MQL4/MQL5 code as a downloadable .ex4 or .ex5 file — no coding required.",
+    body: "A 6-step guided wizard lets traders configure strategy, indicators, risk management, and session filters. The platform generates clean MQL4/MQL5 code as a downloadable .ex4 or .ex5 file, no coding required.",
   },
   {
     emoji: "🏪",
     title: "Bot Marketplace",
-    body: "Users can publish their generated bots to the marketplace for other traders to buy. 50% of every sale goes back to the original bot creator — turning a one-time build into passive recurring income.",
+    body: "Users can publish their generated bots to the marketplace for other traders to buy. 50% of every sale goes back to the original bot creator, turning a one-time build into passive recurring income.",
   },
   {
     emoji: "📰",
     title: "News & Blog",
-    body: "Live forex market news and an educational blog covering trading strategies, EA setup guides, and market analysis — keeping traders on the platform beyond the initial bot build.",
+    body: "Live forex market news and an educational blog covering trading strategies, EA setup guides, and market analysis, keeping traders on the platform beyond the initial bot build.",
   },
   {
     emoji: "💰",
     title: "Referral & Wallet System",
-    body: "A built-in referral programme with tiered commission rates rewards users for bringing others to the platform — compounding growth and community loyalty over time.",
+    body: "A built-in referral programme with tiered commission rates rewards users for bringing others to the platform, compounding growth and community loyalty over time.",
   },
 ];
 
@@ -69,7 +69,7 @@ const TIERS = [
     features: [
       "Everything in Complex, plus:",
       "Martingale & grid trading options",
-      "Maximum strategy configurability — all signal types unlocked",
+      "Maximum strategy configurability, all signal types unlocked",
       "Push & email trade notifications",
     ],
   },
@@ -79,7 +79,7 @@ const AUDIENCE = [
   {
     emoji: "📈",
     title: "Retail Forex Traders",
-    body: "Active traders on MetaTrader 4 and MetaTrader 5 — the world's most widely used retail trading platforms. These users already have broker accounts and are actively placing trades.",
+    body: "Active traders on MetaTrader 4 and MetaTrader 5, the world's most widely used retail trading platforms. These users already have broker accounts and are actively placing trades.",
   },
   {
     emoji: "🤖",
@@ -89,31 +89,31 @@ const AUDIENCE = [
   {
     emoji: "🏦",
     title: "Prop Firm Challengers",
-    body: "Traders using EAs to pass FTMO, The5ers, and similar prop firm challenges. The prop trading industry grew 45% YoY to $850M in 2026 — and EA users are its core demographic.",
+    body: "Traders using EAs to pass FTMO, The5ers, and similar prop firm challenges. The prop trading industry grew 45% YoY to $850M in 2026 and EA users are its core demographic.",
   },
   {
     emoji: "🌍",
     title: "Global Reach",
-    body: "Our audience spans Africa, Asia, Europe, and the Americas — regions with the highest retail forex participation rates and fastest-growing broker client bases.",
+    body: "Our audience spans Africa, Asia, Europe, and the Americas, regions with the highest retail forex participation rates and fastest-growing broker client bases.",
   },
 ];
 
 const TRAITS = [
-  "100% MetaTrader users — every ForexInstincts user operates MT4 or MT5, making broker and VPS affiliate offers directly relevant to their workflow.",
-  "High purchase intent — users have already paid for a bot. They are committed traders actively seeking brokers, VPS hosting, and prop firm accounts.",
-  "Bot-first mindset — traders who automate their strategies are more disciplined and consistent, leading to higher lifetime value for broker affiliates.",
-  "Marketplace repeat visits — the bot marketplace and referral system drive sustained engagement beyond the initial platform transaction.",
+  "100% MetaTrader users: every ForexInstincts user operates MT4 or MT5, making broker and VPS affiliate offers directly relevant to their workflow.",
+  "High purchase intent: users have already paid for a bot. They are committed traders actively seeking brokers, VPS hosting, and prop firm accounts.",
+  "Bot-first mindset: traders who automate their strategies are more disciplined and consistent, leading to higher lifetime value for broker affiliates.",
+  "Marketplace repeat visits: the bot marketplace and referral system drive sustained engagement beyond the initial platform transaction.",
 ];
 
 const PLACEMENTS = [
   {
     num: "01",
     title: "Bot Download Screen",
-    body: "Immediately after a user downloads their generated bot, a contextual recommendation is displayed to run it 24/7 via a recommended VPS provider or open a live account with a partner broker — the highest-intent moment in the user journey.",
+    body: "Immediately after a user downloads their generated bot, a contextual recommendation is displayed to run it 24/7 via a recommended VPS provider or open a live account with a partner broker, the highest-intent moment in the user journey.",
   },
   {
     num: "02",
-    title: "Build Wizard — Step 1",
+    title: "Build Wizard: Step 1",
     body: "Users select a trading pair and platform during configuration. This is a natural placement for broker partners whose accounts support the selected instruments.",
   },
   {
@@ -129,23 +129,23 @@ const PLACEMENTS = [
   {
     num: "05",
     title: "Bot Marketplace",
-    body: "Every bot listing includes a 'Run this bot live' call-to-action linking to recommended broker and VPS partners — targeting buyers who are ready to deploy immediately.",
+    body: "Every bot listing includes a 'Run this bot live' call-to-action linking to recommended broker and VPS partners, targeting buyers who are ready to deploy immediately.",
   },
   {
     num: "06",
     title: "Dedicated Partners Page",
-    body: "A curated /partners page lists recommended brokers, VPS providers, and prop firms as trusted community tools — presented as first-party recommendations, not banner advertising.",
+    body: "A curated /partners page lists recommended brokers, VPS providers, and prop firms as trusted community tools, presented as first-party recommendations, not banner advertising.",
   },
 ];
 
 const WHY = [
   {
     title: "Zero cold traffic.",
-    body: "Every ForexInstincts user has already paid for a custom bot. These are committed traders — not casual visitors browsing trading content.",
+    body: "Every ForexInstincts user has already paid for a custom bot. These are committed traders, not casual visitors browsing trading content.",
   },
   {
     title: "100% MT4 & MT5 audience.",
-    body: "Our entire user base operates on MetaTrader — the same platform supported by virtually every forex broker and VPS provider running an affiliate programme.",
+    body: "Our entire user base operates on MetaTrader, the same platform supported by virtually every forex broker and VPS provider running an affiliate programme.",
   },
   {
     title: "Contextual relevance.",
@@ -153,7 +153,7 @@ const WHY = [
   },
   {
     title: "Compounding engagement.",
-    body: "The marketplace, referral system, and blog content bring users back repeatedly — giving partner placements extended exposure across multiple sessions.",
+    body: "The marketplace, referral system, and blog content bring users back repeatedly, giving partner placements extended exposure across multiple sessions.",
   },
 ];
 
@@ -213,7 +213,7 @@ export default function MediaKitPage() {
             <Image src="/assets/whitelogo.png" alt="ForexInstincts" width={22} height={22} />
           </div>
           <div className={styles.toolbarName}>
-            <span>Forex</span>Instincts — Media Kit
+            <span>Forex</span>Instincts Media Kit
           </div>
         </div>
         <div className={styles.toolbarRight}>
@@ -240,7 +240,7 @@ export default function MediaKitPage() {
               <span>Forex</span>Instincts
             </h1>
             <p className={styles.coverTagline}>
-              The professional platform for building MetaTrader Expert Advisors — no coding required. Trusted by forex traders who need production-ready MT4 &amp; MT5 bots on demand.
+              The professional platform for building MetaTrader Expert Advisors, no coding required. Trusted by forex traders who need production-ready MT4 &amp; MT5 bots on demand.
             </p>
             <div className={styles.coverDivider} />
             <div className={styles.coverStats}>
@@ -281,7 +281,7 @@ export default function MediaKitPage() {
             What is <span>ForexInstincts?</span>
           </h2>
           <p className={styles.sectionBody}>
-            ForexInstincts is a web platform that generates production-ready MetaTrader Expert Advisors (EAs) from a guided configuration wizard. Traders walk through six steps covering strategy, risk, entry signals, protection rules, and advanced options — and receive a compiled .ex4 or .ex5 file ready to attach to any MetaTrader chart. Each bot is generated fresh for the trader&apos;s exact specifications, not a template or snippet.
+            ForexInstincts is a web platform that generates production-ready MetaTrader Expert Advisors (EAs) from a guided configuration wizard. Traders walk through six steps covering strategy, risk, entry signals, protection rules, and advanced options, and receive a compiled .ex4 or .ex5 file ready to attach to any MetaTrader chart. Each bot is generated fresh for the trader&apos;s exact specifications, not a template or snippet.
           </p>
           <div className={styles.platformGrid}>
             {PLATFORM_CARDS.map((c) => (
@@ -345,7 +345,7 @@ export default function MediaKitPage() {
             Who Uses <span>ForexInstincts</span>
           </h2>
           <p className={styles.sectionBody}>
-            Our audience consists entirely of active retail forex traders who operate on MetaTrader platforms — the same traders your affiliate programme is designed to acquire.
+            Our audience consists entirely of active retail forex traders who operate on MetaTrader platforms, the same traders your affiliate programme is designed to acquire.
           </p>
           <div className={styles.audienceGrid}>
             {AUDIENCE.map((a) => (
@@ -382,7 +382,7 @@ export default function MediaKitPage() {
             Affiliate <span>Placement Opportunities</span>
           </h2>
           <p className={styles.sectionBody}>
-            Partner placements on ForexInstincts are contextual — they appear at the exact moments traders are making decisions about brokers, infrastructure, and capital. No banner blindness; every placement aligns with a genuine user need.
+            Partner placements on ForexInstincts are contextual: they appear at the exact moments traders are making decisions about brokers, infrastructure, and capital. No banner blindness; every placement aligns with a genuine user need.
           </p>
           <div className={styles.placementsGrid}>
             {PLACEMENTS.map((p) => (
@@ -451,7 +451,7 @@ export default function MediaKitPage() {
 
         <div className={styles.coverFooter}>
           <div className={styles.coverFooterText}>
-            © 2026 ForexInstincts &nbsp;—&nbsp; <span>forexinstincts.com</span>
+            © 2026 ForexInstincts &nbsp;·&nbsp; <span>forexinstincts.com</span>
           </div>
           <div className={styles.coverFooterText}>
             Media Kit &nbsp;·&nbsp; Confidential
