@@ -286,15 +286,10 @@
     background: var(--light-background-color);
     border-top: 1px solid rgba(0, 200, 150, 0.12);
     z-index: 100;
-    overflow-x: auto;
-    scrollbar-width: none;
   }
 
-  .mobileNav::-webkit-scrollbar { display: none; }
-
   .mobileNavItem {
-    flex: 0 0 auto;
-    min-width: 54px;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -388,7 +388,7 @@
 
   .badgeWrap {
     display: inline-flex;
-    align-self: flex-start;
+    align-self: center;
     border-radius: var(--radius-full);
     overflow: hidden;
   }
