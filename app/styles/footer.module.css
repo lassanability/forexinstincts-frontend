@@ -1,0 +1,60 @@
+.footer {
+  margin-top: var(--space-section);
+  padding: var(--space-xxl) var(--inset) var(--space-xl);
+  border-top: 1px solid var(--line);
+  background: linear-gradient(180deg, transparent, rgba(6, 11, 20, 0.85));
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-xl);
+  max-width: var(--content);
+  margin: 0 auto;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 320px;
+}
+
+.affiliate {
+  color: var(--emerald);
+  font-weight: 700;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.column strong {
+  color: var(--text);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.column a {
+  color: var(--text-2);
+}
+
+.column a:hover {
+  color: var(--emerald);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: var(--content);
+  margin: var(--space-xxl) auto 0;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--line);
+  color: var(--text-3);
+  font-size: 13px;
+}

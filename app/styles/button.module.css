@@ -1,0 +1,87 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  min-height: 44px;
+  padding: 0 var(--space-lg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease), background var(--duration) var(--ease), border-color var(--duration) var(--ease);
+}
+
+.button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.primary {
+  background: var(--gradient);
+  color: #02130e;
+  box-shadow: var(--glow);
+}
+
+.primary:hover {
+  box-shadow: 0 0 0 1px rgba(25, 245, 193, 0.45), 0 14px 50px -10px rgba(43, 217, 255, 0.6);
+}
+
+.glass {
+  border-color: var(--edge-strong);
+  background: var(--panel);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  color: var(--text);
+}
+
+.glass:hover {
+  border-color: var(--emerald);
+  box-shadow: var(--glow-cyan);
+}
+
+.ghost {
+  color: var(--text-2);
+}
+
+.ghost:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.danger {
+  border-color: rgba(255, 77, 109, 0.5);
+  background: var(--down-soft);
+  color: var(--down);
+}
+
+.danger:hover {
+  background: rgba(255, 77, 109, 0.22);
+  box-shadow: 0 0 30px -8px rgba(255, 77, 109, 0.6);
+}
+
+.sm {
+  min-height: 34px;
+  padding: 0 var(--space-md);
+  font-size: 13px;
+}
+
+.lg {
+  min-height: 54px;
+  padding: 0 var(--space-xl);
+  font-size: 16px;
+}
+
+.block {
+  width: 100%;
+}

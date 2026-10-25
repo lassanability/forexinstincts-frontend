@@ -1,0 +1,48 @@
+.toaster {
+  position: fixed;
+  right: var(--inset);
+  bottom: var(--inset);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: min(380px, calc(100vw - 2 * var(--inset)));
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  animation: rise 300ms var(--ease) both;
+}
+
+.toast > svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.success > svg {
+  color: var(--up);
+}
+
+.error {
+  border-color: rgba(255, 77, 109, 0.4);
+}
+
+.error > svg {
+  color: var(--down);
+}
+
+.info > svg {
+  color: var(--cyan);
+}

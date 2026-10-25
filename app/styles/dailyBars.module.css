@@ -1,0 +1,22 @@
+.figure {
+  margin: 0;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 160px;
+}
+
+.axis {
+  stroke: var(--line);
+}
+
+.up {
+  fill: var(--up);
+  filter: drop-shadow(0 0 4px rgba(25, 245, 193, 0.5));
+}
+
+.down {
+  fill: var(--down);
+}

@@ -1,34 +1,23 @@
 {
-  "name": "forexinstincts",
-  "version": "0.1.0",
+  "name": "forexinstincts-website",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev -p 7042",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start -p 7042",
+    "lint": "eslint"
   },
   "dependencies": {
-    "@liquidglass/react": "^0.1.3",
-    "@paystack/inline-js": "^2.22.1",
-    "html2canvas": "^1.4.1",
-    "jspdf": "^4.2.1",
-    "lightweight-charts": "^4.2.3",
-    "next": "^15.3.4",
-    "next-google-translate-widget": "^2.0.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-icons": "^5.5.0",
-    "sharp": "^0.34.2",
-    "sonner": "^2.0.5",
-    "zustand": "^5.0.6"
+    "next": "^16.4.3",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-icons": "^5.7.0",
+    "sharp": "^0.35.5",
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "eslint": "^9",
-    "eslint-config-next": "15.3.4"
-  },
-  "overrides": {
-    "postcss": "^8.5.10"
+    "eslint-config-next": "^16.4.3"
   }
 }

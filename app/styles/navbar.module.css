@@ -1,0 +1,120 @@
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding: var(--space-md) var(--inset) 0;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  max-width: var(--content);
+  height: 60px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm) 0 var(--space-lg);
+  border-radius: var(--radius-pill);
+  background: rgba(6, 11, 20, 0.7);
+}
+
+.links {
+  display: none;
+  gap: var(--space-xs);
+  margin: 0 auto;
+}
+
+.link {
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  color: var(--text-2);
+  font-size: 14px;
+  font-weight: 600;
+  transition: color var(--duration) var(--ease), background var(--duration) var(--ease);
+}
+
+.link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-left: auto;
+}
+
+.signIn {
+  display: none;
+  padding: 8px 12px;
+  color: var(--text-2);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.signIn:hover {
+  color: var(--text);
+}
+
+.menu {
+  position: relative;
+}
+
+.menu summary {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  list-style: none;
+}
+
+.menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.menu summary svg {
+  width: 22px;
+  height: 22px;
+}
+
+.sheet {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  background: var(--panel-strong);
+}
+
+.sheet a {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.sheet a:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (min-width: 60em) {
+  .links {
+    display: flex;
+  }
+
+  .signIn {
+    display: inline;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .actions {
+    margin-left: 0;
+  }
+}

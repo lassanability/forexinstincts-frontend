@@ -1,43 +1,42 @@
-FROM node:20.19-alpine AS base
-
-FROM base AS deps
-RUN apk add --no-cache libc6-compat
+FROM node:24-alpine AS deps
 
 WORKDIR /app
 
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
-RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+COPY package*.json ./
+RUN npm ci
 
-FROM base AS builder
+FROM node:24-alpine AS build
+
 WORKDIR /app
+
+ARG NEXT_PUBLIC_SERVER_API
+ARG NEXT_PUBLIC_SITE_URL
+ARG NEXT_PUBLIC_IMAGE_HOSTS
+ENV NEXT_PUBLIC_SERVER_API=$NEXT_PUBLIC_SERVER_API
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
+ENV NEXT_PUBLIC_IMAGE_HOSTS=$NEXT_PUBLIC_IMAGE_HOSTS
+ENV NEXT_TELEMETRY_DISABLED=1
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN npm run build
 
-FROM base AS runner
+FROM node:24-alpine AS runtime
+
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=15120
+ENV HOSTNAME=0.0.0.0
 
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
+COPY --from=build --chown=node:node /app/.next/standalone ./
+COPY --from=build --chown=node:node /app/.next/static ./.next/static
+COPY --from=build /app/public ./public
 
-COPY --from=builder /app/public ./public
-
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
+USER node
 
 EXPOSE 15120
-
-ENV PORT=15120
 
 CMD ["node", "server.js"]

@@ -1,0 +1,37 @@
+.shell {
+  display: grid;
+  place-items: center;
+  min-height: 70vh;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: min(440px, 100%);
+  padding: var(--space-xxl) var(--space-xl);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glow), var(--shadow);
+}
+
+.card h1 {
+  font-size: 30px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.code {
+  font-size: 26px;
+  letter-spacing: 0.4em;
+  text-align: center;
+}
+
+.note {
+  color: var(--text-3);
+  font-size: 13px;
+  text-align: center;
+}

@@ -1,0 +1,252 @@
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-xxl);
+  min-height: min(78vh, 720px);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.title {
+  font-size: clamp(42px, 7vw, 82px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.lead {
+  max-width: 560px;
+  color: var(--text-2);
+  font-size: 18px;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+.proof li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.proof svg {
+  color: var(--emerald);
+}
+
+.terminal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--glow), var(--shadow);
+  animation: float 9s ease-in-out infinite;
+}
+
+.terminal::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--gradient);
+  opacity: 0.25;
+  filter: blur(30px);
+}
+
+.terminalHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.terminalHead strong {
+  flex: 1;
+}
+
+.lights {
+  display: flex;
+  gap: 6px;
+}
+
+.lights i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.lights i:first-child {
+  background: var(--down);
+}
+
+.lights i:nth-child(2) {
+  background: var(--warn);
+}
+
+.lights i:last-child {
+  background: var(--up);
+}
+
+.terminalFoot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  border-top: 1px solid var(--line);
+  color: var(--text-3);
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+}
+
+.terminalFoot span::before {
+  content: "● ";
+  color: var(--emerald);
+}
+
+.reasons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-lg);
+}
+
+.reason {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-xl);
+}
+
+.reason h3 {
+  font-size: 19px;
+}
+
+.reasonIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--edge-strong);
+  border-radius: var(--radius-md);
+  background: var(--gradient-soft);
+  color: var(--emerald);
+  box-shadow: var(--glow-cyan);
+}
+
+.reasonIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.split {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-lg);
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+}
+
+.number {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  color: var(--text-3);
+  font-size: 13px;
+}
+
+.stepIcon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: var(--space-sm);
+  color: var(--cyan);
+}
+
+.centered {
+  align-self: center;
+  align-items: center;
+  text-align: center;
+}
+
+.centered > span {
+  align-self: center;
+}
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.question {
+  padding: var(--space-lg) var(--space-xl);
+  border-radius: var(--radius-md);
+}
+
+.question summary {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.question p {
+  margin-top: var(--space-md);
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-section) var(--space-xl);
+  border-radius: var(--radius-xl);
+  background: radial-gradient(600px 300px at 50% 0%, rgba(25, 245, 193, 0.18), transparent 70%), var(--panel);
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: clamp(30px, 4vw, 48px);
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (min-width: 64em) {
+  .hero {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  }
+}

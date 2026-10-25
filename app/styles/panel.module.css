@@ -1,0 +1,45 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--line);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--gradient-soft);
+  color: var(--emerald);
+}
+
+.icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.title {
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.padded {
+  padding: var(--space-lg);
+}

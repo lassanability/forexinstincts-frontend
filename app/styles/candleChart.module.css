@@ -1,0 +1,16 @@
+.chart {
+  display: block;
+  width: 100%;
+}
+
+.sm {
+  height: 180px;
+}
+
+.md {
+  height: 320px;
+}
+
+.lg {
+  height: 460px;
+}

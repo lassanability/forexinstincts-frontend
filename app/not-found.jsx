@@ -1,21 +1,12 @@
-"use client";
-
-import Image from "next/image";
-import styles from "@/app/style/notfound.module.css";
-import NotfoundImg from "@/public/assets/notfound.png";
+import { TbCompassOff } from "react-icons/tb";
+import ButtonLink from "@/app/components/ui/ButtonLink";
+import EmptyState from "@/app/components/ui/EmptyState";
+import styles from "@/app/styles/signIn.module.css";
 
 export default function NotFound() {
   return (
-    <div className={styles.pageLayout}>
-      <div className={styles.notFound}>
-        <Image
-          className={styles.notFoundImg}
-          src={NotfoundImg}
-          alt="Animated Logo "
-          height={400}
-        />
-        <p>You seem lost trader.</p>
-      </div>
+    <div className={styles.shell}>
+      <EmptyState icon={TbCompassOff} title="This page drifted off the chart" message="The link may be old, or the page has moved." action={<ButtonLink href="/">Back to ForexInstincts</ButtonLink>} />
     </div>
   );
 }

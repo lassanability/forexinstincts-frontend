@@ -1,0 +1,48 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.label {
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--edge);
+  border-radius: var(--radius-sm);
+  background: rgba(3, 8, 14, 0.6);
+  outline: none;
+  transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+}
+
+.field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--emerald);
+  box-shadow: 0 0 0 3px rgba(25, 245, 193, 0.15);
+}
+
+.hint {
+  color: var(--text-3);
+  font-size: 12px;
+}
+
+.error {
+  color: var(--down);
+  font-size: 12px;
+}

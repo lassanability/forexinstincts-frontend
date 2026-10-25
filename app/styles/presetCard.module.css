@@ -1,0 +1,61 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-xl);
+  transition: transform var(--duration) var(--ease), border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--edge-strong);
+  box-shadow: var(--glow-cyan);
+}
+
+.card h3 {
+  font-size: 20px;
+}
+
+.card p {
+  font-size: 14px;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  color: var(--text-3);
+}
+
+.record {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-sm);
+  margin: auto 0 0;
+  padding: var(--space-md);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgba(3, 8, 14, 0.5);
+}
+
+.record dt {
+  color: var(--text-3);
+  font-size: 11px;
+}
+
+.record dd {
+  margin: 0;
+  font-size: 15px;
+}
+
+.users {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-3);
+  font-size: 12px;
+}
+
+.featured {
+  border-color: rgba(25, 245, 193, 0.35);
+}
