@@ -40,7 +40,7 @@ export default function AccountManager({ accounts, derivSignup }) {
                   <strong className="mono">{account.derivId}</strong>
                   <small>{account.lastError ? `Connection problem: ${account.lastError}` : `Linked ${new Date(account.createdAt).toLocaleDateString("en-GB")}`}</small>
                 </span>
-                <Badge tone={account.isVirtual ? "cyan" : "warn"}>{account.isVirtual ? "Demo" : "Real"}</Badge>
+                <Badge tone={account.isVirtual ? "ember" : "warn"}>{account.isVirtual ? "Demo" : "Real"}</Badge>
                 <span className={`mono ${styles.right}`}>{account.balance === null ? "—" : money(account.balance, account.currency)}</span>
                 <Button size="sm" variant="ghost" icon={TbTrash} aria-label={`Unlink ${account.derivId}`} onClick={() => run(() => removeAccount(account.id))} />
               </div>

@@ -18,7 +18,7 @@
   padding: var(--space-md);
   border: 1px solid var(--edge);
   border-radius: var(--radius-md);
-  background: rgba(3, 8, 14, 0.5);
+  background: rgba(12, 9, 6, 0.5);
   text-align: left;
   transition: border-color var(--duration) var(--ease), background var(--duration) var(--ease);
 }
@@ -45,7 +45,7 @@
 
 .chosen,
 .chosen:disabled {
-  border-color: var(--emerald);
+  border-color: var(--gold);
   background: var(--gradient-soft);
   box-shadow: var(--glow);
   opacity: 1;
@@ -93,7 +93,7 @@
 
 .warning {
   padding: var(--space-md);
-  border: 1px solid rgba(255, 181, 71, 0.3);
+  border: 1px solid rgba(217, 195, 160, 0.3);
   border-radius: var(--radius-sm);
   background: var(--warn-soft);
   font-size: 14px;
@@ -101,10 +101,10 @@
 
 .danger {
   padding: var(--space-md);
-  border: 1px solid rgba(255, 77, 109, 0.35);
+  border: 1px solid rgba(214, 120, 128, 0.35);
   border-radius: var(--radius-sm);
   background: var(--down-soft);
-  color: #ffc2cd;
+  color: #f3d3d0;
   font-size: 14px;
 }
 

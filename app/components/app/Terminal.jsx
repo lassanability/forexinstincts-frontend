@@ -246,7 +246,7 @@ export default function Terminal({ accounts, markets }) {
           <ul>
             {positions.map((position) => (
               <li key={position.contract_id} className={styles.position}>
-                <Badge tone={/UP|CALL/.test(position.contract_type) ? "up" : "cyan"}>{position.contract_type}</Badge>
+                <Badge tone={/UP|CALL/.test(position.contract_type) ? "up" : "ember"}>{position.contract_type}</Badge>
                 <span className="grow truncate">{position.underlying_symbol ?? position.symbol}</span>
                 <span className="mono">{money(position.buy_price)}</span>
                 {position.profit !== undefined && <Pnl value={position.profit} />}

@@ -16,8 +16,8 @@
   border: 1px solid var(--edge-strong);
   border-radius: 50%;
   background: var(--gradient-soft);
-  color: var(--emerald);
-  box-shadow: var(--glow-cyan);
+  color: var(--gold);
+  box-shadow: var(--glow-ember);
 }
 
 .icon svg {

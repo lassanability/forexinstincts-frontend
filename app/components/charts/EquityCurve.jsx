@@ -20,12 +20,12 @@ export default function EquityCurve({ points }) {
     <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className={styles.svg} role="img" aria-label="Equity curve">
       <defs>
         <linearGradient id="equity-fill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#1fe0a9" stopOpacity="0.35" />
-          <stop offset="1" stopColor="#1fe0a9" stopOpacity="0" />
+          <stop offset="0" stopColor="#f2b544" stopOpacity="0.35" />
+          <stop offset="1" stopColor="#f2b544" stopOpacity="0" />
         </linearGradient>
         <linearGradient id="equity-line" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#1fe0a9" />
-          <stop offset="1" stopColor="#2bd9ff" />
+          <stop offset="0" stopColor="#f2b544" />
+          <stop offset="1" stopColor="#ff7a3d" />
         </linearGradient>
       </defs>
       <line x1="0" x2={WIDTH} y1={y(100)} y2={y(100)} className={styles.base} />

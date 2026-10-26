@@ -8,13 +8,13 @@
 .inner {
   display: flex;
   align-items: center;
-  gap: var(--space-lg);
+  gap: var(--space-sm);
   max-width: var(--content);
   height: 60px;
   margin: 0 auto;
-  padding: 0 var(--space-sm) 0 var(--space-lg);
+  padding: 0 var(--space-xs) 0 var(--space-md);
   border-radius: var(--radius-pill);
-  background: rgba(6, 11, 20, 0.7);
+  background: rgba(18, 14, 10, 0.7);
 }
 
 .links {
@@ -98,10 +98,15 @@
 }
 
 .sheet a:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 228, 190, 0.05);
 }
 
 @media (min-width: 60em) {
+  .inner {
+    gap: var(--space-lg);
+    padding: 0 var(--space-sm) 0 var(--space-lg);
+  }
+
   .links {
     display: flex;
   }

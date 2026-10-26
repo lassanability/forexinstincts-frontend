@@ -4,8 +4,8 @@ import Badge from "@/app/components/ui/Badge";
 const TONES = {
   moderate: { tone: "up", icon: TbShieldCheck },
   original: { tone: "up", icon: TbStar },
-  mixed: { tone: "cyan", icon: TbScale },
-  untested: { tone: "cyan", icon: TbFlask },
+  mixed: { tone: "ember", icon: TbScale },
+  untested: { tone: "ember", icon: TbFlask },
   "equities-only": { tone: "warn", icon: TbScale },
   "cost-sensitive": { tone: "warn", icon: TbScale },
   none: { tone: "warn", icon: TbFlask },

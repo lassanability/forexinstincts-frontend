@@ -6,7 +6,7 @@ import { money, timeAgo } from "@/app/lib/format";
 import { useLive } from "@/app/stores/live";
 import styles from "@/app/styles/appPage.module.css";
 
-const STATUS = { open: "cyan", won: "up", lost: "down", sold: "plain" };
+const STATUS = { open: "ember", won: "up", lost: "down", sold: "plain" };
 
 export default function TradeTable({ trades, botId }) {
   const updates = useLive((state) => state.trades);

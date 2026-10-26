@@ -22,14 +22,22 @@
 }
 
 .eyebrow {
+  display: inline-flex;
   align-self: flex-start;
-  padding: 5px 14px;
-  border: 1px solid var(--edge-strong);
-  border-radius: var(--radius-pill);
-  background: var(--gradient-soft);
-  color: var(--emerald);
+  align-items: center;
+  gap: 10px;
+  color: var(--gold);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ember));
+  box-shadow: 0 0 10px var(--ember);
 }
 
 .title {

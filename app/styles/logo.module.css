@@ -6,7 +6,7 @@
 }
 
 .logo img {
-  filter: drop-shadow(0 0 14px rgba(0, 200, 150, 0.55));
+  filter: drop-shadow(0 0 14px rgba(242, 181, 68, 0.55));
   transition: transform var(--duration) var(--ease);
 }
 

@@ -11,7 +11,7 @@ import styles from "@/app/styles/appPage.module.css";
 
 export const metadata = { title: "Backtests" };
 
-const STATUS = { running: "cyan", done: "up", failed: "down" };
+const STATUS = { running: "ember", done: "up", failed: "down" };
 
 export default async function BacktestsPage({ searchParams }) {
   const [{ strategy }, strategies, tests] = await Promise.all([searchParams, request("/web/strategies"), request("/web/backtests")]);
@@ -27,7 +27,7 @@ export default async function BacktestsPage({ searchParams }) {
           </h1>
           <p>Real Deriv price history, every trade charged spread and commission, and a coin-flip twin with the same stops. If the strategy can’t beat random after costs, you’ll see it here first.</p>
         </div>
-        <Badge tone="cyan">
+        <Badge tone="ember">
           {tests.data?.used ?? 0} / {tests.data?.limit ?? 0} this month
         </Badge>
       </header>

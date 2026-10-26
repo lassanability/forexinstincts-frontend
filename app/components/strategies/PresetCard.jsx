@@ -13,7 +13,7 @@ export default function PresetCard({ preset }) {
     <Link href={`/marketplace/${preset.slug}`} className={cx("glass", styles.card, preset.featured && styles.featured)}>
       <div className="row gap-sm">
         {preset.strategyInfo && <EvidenceBadge evidence={preset.strategyInfo.evidence} label={preset.strategyInfo.name} />}
-        {preset.minTier !== "free" && <Badge tone="cyan">{preset.minTier}</Badge>}
+        {preset.minTier !== "free" && <Badge tone="ember">{preset.minTier}</Badge>}
         <TbArrowUpRight className={styles.arrow} aria-hidden="true" />
       </div>
       <h3>{preset.title}</h3>

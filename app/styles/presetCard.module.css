@@ -9,7 +9,7 @@
 .card:hover {
   transform: translateY(-4px);
   border-color: var(--edge-strong);
-  box-shadow: var(--glow-cyan);
+  box-shadow: var(--glow-ember);
 }
 
 .card h3 {
@@ -35,7 +35,7 @@
   padding: var(--space-md);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
-  background: rgba(3, 8, 14, 0.5);
+  background: rgba(12, 9, 6, 0.5);
 }
 
 .record dt {
@@ -57,5 +57,5 @@
 }
 
 .featured {
-  border-color: rgba(0, 200, 150, 0.35);
+  border-color: rgba(242, 181, 68, 0.35);
 }

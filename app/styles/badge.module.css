@@ -27,31 +27,31 @@
 }
 
 .up {
-  border-color: rgba(0, 200, 150, 0.35);
+  border-color: rgba(242, 181, 68, 0.35);
   background: var(--up-soft);
   color: var(--up);
 }
 
 .down {
-  border-color: rgba(255, 77, 109, 0.35);
+  border-color: rgba(214, 120, 128, 0.35);
   background: var(--down-soft);
   color: var(--down);
 }
 
 .warn {
-  border-color: rgba(255, 181, 71, 0.35);
+  border-color: rgba(217, 195, 160, 0.35);
   background: var(--warn-soft);
   color: var(--warn);
 }
 
-.cyan {
-  border-color: rgba(43, 217, 255, 0.35);
-  background: var(--cyan-soft);
-  color: var(--cyan);
+.ember {
+  border-color: rgba(255, 122, 61, 0.35);
+  background: var(--ember-soft);
+  color: var(--ember);
 }
 
 .gradient {
   border-color: transparent;
   background: var(--gradient);
-  color: #02130e;
+  color: #1a1004;
 }

@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { cx } from "@/app/lib/cx";
 import styles from "@/app/styles/candleChart.module.css";
 
-const COLORS = { up: "#1fe0a9", down: "#ff4d6d", grid: "rgba(160, 220, 255, 0.07)", text: "#627a89", line: "#2bd9ff" };
+const COLORS = { up: "#f2b544", down: "#d67880", grid: "rgba(255, 220, 170, 0.07)", text: "#8a7a68", line: "#ff7a3d" };
 const PAD = { top: 16, right: 64, bottom: 22, left: 8 };
 const GRID_ROWS = 5;
 const MIN_BODY = 1;
@@ -78,7 +78,7 @@ const draw = (canvas, candles, markers) => {
   context.setLineDash([]);
   context.fillStyle = COLORS.line;
   context.fillRect(width - PAD.right + 2, y(last) - 9, PAD.right - 4, 18);
-  context.fillStyle = "#02130e";
+  context.fillStyle = "#1a1004";
   context.fillText(last.toFixed(digits), width - PAD.right + 6, y(last) + 4);
 };
 

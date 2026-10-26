@@ -24,7 +24,7 @@
   height: 64px;
   padding: 0 var(--inset);
   border-bottom: 1px solid var(--line);
-  background: rgba(3, 6, 11, 0.75);
+  background: rgba(10, 8, 6, 0.75);
   -webkit-backdrop-filter: var(--blur);
   backdrop-filter: var(--blur);
 }
@@ -125,11 +125,11 @@
   border-color: var(--edge-strong);
   background: var(--gradient-soft);
   color: var(--text);
-  box-shadow: inset 3px 0 0 var(--emerald);
+  box-shadow: inset 3px 0 0 var(--gold);
 }
 
 .link.active svg {
-  color: var(--emerald);
+  color: var(--gold);
 }
 
 .plan {
@@ -140,7 +140,7 @@
   padding: var(--space-md);
   border: 1px solid var(--edge);
   border-radius: var(--radius-md);
-  background: rgba(3, 8, 14, 0.5);
+  background: rgba(12, 9, 6, 0.5);
 }
 
 .tier {
@@ -150,7 +150,7 @@
 }
 
 .upgrade {
-  color: var(--emerald);
+  color: var(--gold);
   font-size: 13px;
   font-weight: 700;
 }
@@ -164,7 +164,7 @@
   display: flex;
   padding: 6px;
   border-radius: var(--radius-lg);
-  background: rgba(6, 11, 20, 0.88);
+  background: rgba(18, 14, 10, 0.88);
 }
 
 .tab {
@@ -187,7 +187,7 @@
 
 .tab.active {
   background: var(--gradient-soft);
-  color: var(--emerald);
+  color: var(--gold);
 }
 
 @media (min-width: 64em) {

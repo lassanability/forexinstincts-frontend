@@ -20,7 +20,7 @@
   height: 32px;
   border-radius: var(--radius-sm);
   background: var(--gradient-soft);
-  color: var(--emerald);
+  color: var(--gold);
 }
 
 .icon svg {

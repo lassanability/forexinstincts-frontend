@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { TbArrowRight, TbBolt, TbChartCandle, TbClockPlay, TbFlask, TbKey, TbLink, TbPlayerStop, TbRobot, TbRocket, TbScale, TbShieldCheck, TbShieldLock } from "react-icons/tb";
+import { TbArrowRight, TbBolt, TbChartCandle, TbClockPlay, TbFlask, TbKey, TbLink, TbPlayerStop, TbRocket, TbScale, TbShieldLock } from "react-icons/tb";
+import Heartbeat from "@/app/components/home/Heartbeat";
+import Pride from "@/app/components/home/Pride";
 import LiveChart from "@/app/components/charts/LiveChart";
 import Ticker from "@/app/components/charts/Ticker";
 import PlanCards from "@/app/components/billing/PlanCards";
@@ -42,14 +44,14 @@ export default async function HomePage() {
   return (
     <>
       <section className={styles.hero}>
-        <div className={styles.copy}>
-          <span className={site.eyebrow}>Deriv trading bots, hosted</span>
+        <div className={`rise ${styles.copy}`}>
+          <span className={site.eyebrow}>Hosted Deriv trading bots</span>
           <h1 className={styles.title}>
             Trade on instinct.
             <br />
             <span className="gradient-text">Prove it with data.</span>
           </h1>
-          <p className={styles.lead}>Run research-backed forex, gold and synthetic bots on your own Deriv account. They trade around the clock on our servers, test against real costs, and stop the moment a limit is hit.</p>
+          <p className={styles.lead}>Run research-backed forex, gold and synthetic bots on your own Deriv account. They hunt around the clock on our servers, test against real costs, and stop the moment a limit is hit.</p>
           <div className={styles.ctas}>
             <ButtonLink href="/dashboard" size="lg" icon={TbRocket}>
               Launch terminal
@@ -70,23 +72,23 @@ export default async function HomePage() {
             </li>
           </ul>
         </div>
+        <Pride />
+      </section>
 
-        <div className={styles.stage}>
-          <Image src="/mark.png" alt="" width={620} height={620} priority className={styles.lion} />
-          <span className={`glass ${styles.chip} ${styles.chipTop}`}>
-            <TbRobot aria-hidden="true" />
-            <span>
-              <strong>Bot running</strong>
-              <small>24/7 on our servers</small>
-            </span>
-          </span>
+      <Heartbeat />
+
+      <Ticker />
+
+      <section className={`reveal ${site.page}`} aria-labelledby="why">
+        <header className={site.header}>
+          <span className={site.eyebrow}>Why traders switch</span>
+          <h2 id="why" className={site.title}>
+            Built for the complaints <span className="gradient-text">every bot site ignores</span>
+          </h2>
+        </header>
+        <div className={styles.bento}>
           <div className={`glass ${styles.terminal}`}>
             <header className={styles.terminalHead}>
-              <span className={styles.lights} aria-hidden="true">
-                <i />
-                <i />
-                <i />
-              </span>
               <strong>Volatility 100 · 1m</strong>
               <Badge tone="up" pulse>
                 Live
@@ -99,26 +101,6 @@ export default async function HomePage() {
               <span>Costs included</span>
             </footer>
           </div>
-          <span className={`glass ${styles.chip} ${styles.chipBottom}`}>
-            <TbShieldCheck aria-hidden="true" />
-            <span>
-              <strong>Kill switch armed</strong>
-              <small>Limits on every bot</small>
-            </span>
-          </span>
-        </div>
-      </section>
-
-      <Ticker />
-
-      <section className={site.page} aria-labelledby="why">
-        <header className={site.header}>
-          <span className={site.eyebrow}>Why traders switch</span>
-          <h2 id="why" className={site.title}>
-            Built for the complaints <span className="gradient-text">every bot site ignores</span>
-          </h2>
-        </header>
-        <div className={styles.reasons}>
           {REASONS.map((reason) => (
             <article key={reason.title} className={`glass ${styles.reason}`}>
               <span className={styles.reasonIcon}>
@@ -131,7 +113,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className={site.page} aria-labelledby="strategies">
+      <section className={`reveal ${site.page}`} aria-labelledby="strategies">
         <header className={styles.split}>
           <div className={site.header}>
             <span className={site.eyebrow}>Strategy library</span>
@@ -151,7 +133,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className={site.page} aria-labelledby="how">
+      <section className={`reveal ${site.page}`} aria-labelledby="how">
         <header className={site.header}>
           <span className={site.eyebrow}>How it works</span>
           <h2 id="how" className={site.title}>
@@ -160,9 +142,11 @@ export default async function HomePage() {
         </header>
         <ol className={styles.steps}>
           {STEPS.map((step, index) => (
-            <li key={step.title} className={`glass ${styles.step}`}>
+            <li key={step.title} className={styles.step}>
+              <span className={styles.node}>
+                <step.icon aria-hidden="true" />
+              </span>
               <span className={`mono ${styles.number}`}>0{index + 1}</span>
-              <step.icon className={styles.stepIcon} aria-hidden="true" />
               <h3>{step.title}</h3>
               <p className="muted">{step.text}</p>
             </li>
@@ -171,7 +155,7 @@ export default async function HomePage() {
       </section>
 
       {config?.plans?.length > 0 && (
-        <section className={site.page} aria-labelledby="plans">
+        <section className={`reveal ${site.page}`} aria-labelledby="plans">
           <header className={`${site.header} ${styles.centered}`}>
             <span className={site.eyebrow}>Plans</span>
             <h2 id="plans" className={site.title}>
@@ -182,7 +166,7 @@ export default async function HomePage() {
         </section>
       )}
 
-      <section className={site.page} aria-labelledby="faq">
+      <section className={`reveal ${site.page}`} aria-labelledby="faq">
         <header className={site.header}>
           <span className={site.eyebrow}>Straight answers</span>
           <h2 id="faq" className={site.title}>
@@ -199,7 +183,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className={`glass ${styles.cta}`}>
+      <section className={`reveal ${styles.cta}`}>
+        <Image src="/mark.png" alt="" width={220} height={220} className={styles.ctaLion} />
         <h2>
           Your next bot should <span className="gradient-text">earn your trust first.</span>
         </h2>

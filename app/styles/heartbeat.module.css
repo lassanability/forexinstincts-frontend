@@ -1,0 +1,96 @@
+.heartbeat {
+  position: relative;
+  margin: 0 calc(var(--inset) * -1);
+  border-block: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(18, 14, 10, 0), rgba(18, 14, 10, 0.55));
+  overflow: hidden;
+}
+
+.heartbeat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 80px 100%;
+  mask-image: linear-gradient(90deg, transparent, #000 30%, #000 90%, transparent);
+  pointer-events: none;
+}
+
+.caption {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--inset);
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm) var(--space-md);
+  font-size: 13px;
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.live::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 12px var(--ember);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.symbol {
+  color: var(--text-3);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: clamp(120px, 14vw, 180px);
+}
+
+.line {
+  filter: drop-shadow(0 0 6px rgba(255, 122, 61, 0.55));
+  vector-effect: non-scaling-stroke;
+}
+
+.area {
+  mask-image: linear-gradient(90deg, transparent, #000 40%);
+}
+
+.cursor {
+  stroke: rgba(242, 181, 68, 0.25);
+  stroke-dasharray: 2 5;
+}
+
+.head {
+  fill: var(--ivory);
+  filter: drop-shadow(0 0 8px var(--gold));
+}
+
+.ring {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: beat 1s var(--ease) infinite;
+}
+
+@keyframes beat {
+  from {
+    opacity: 0.9;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
