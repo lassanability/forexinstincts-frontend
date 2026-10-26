@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { cx } from "@/app/lib/cx";
 import styles from "@/app/styles/candleChart.module.css";
 
-const COLORS = { up: "#19f5c1", down: "#ff4d6d", grid: "rgba(160, 220, 255, 0.07)", text: "#627a89", line: "#2bd9ff" };
+const COLORS = { up: "#1fe0a9", down: "#ff4d6d", grid: "rgba(160, 220, 255, 0.07)", text: "#627a89", line: "#2bd9ff" };
 const PAD = { top: 16, right: 64, bottom: 22, left: 8 };
 const GRID_ROWS = 5;
 const MIN_BODY = 1;

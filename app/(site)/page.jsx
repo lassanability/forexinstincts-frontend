@@ -1,4 +1,5 @@
-import { TbArrowRight, TbBolt, TbChartCandle, TbClockPlay, TbFlask, TbKey, TbLink, TbPlayerStop, TbRocket, TbScale, TbShieldLock } from "react-icons/tb";
+import Image from "next/image";
+import { TbArrowRight, TbBolt, TbChartCandle, TbClockPlay, TbFlask, TbKey, TbLink, TbPlayerStop, TbRobot, TbRocket, TbScale, TbShieldCheck, TbShieldLock } from "react-icons/tb";
 import LiveChart from "@/app/components/charts/LiveChart";
 import Ticker from "@/app/components/charts/Ticker";
 import PlanCards from "@/app/components/billing/PlanCards";
@@ -70,24 +71,41 @@ export default async function HomePage() {
           </ul>
         </div>
 
-        <div className={`glass ${styles.terminal}`}>
-          <header className={styles.terminalHead}>
-            <span className={styles.lights} aria-hidden="true">
-              <i />
-              <i />
-              <i />
+        <div className={styles.stage}>
+          <Image src="/mark.png" alt="" width={620} height={620} priority className={styles.lion} />
+          <span className={`glass ${styles.chip} ${styles.chipTop}`}>
+            <TbRobot aria-hidden="true" />
+            <span>
+              <strong>Bot running</strong>
+              <small>24/7 on our servers</small>
             </span>
-            <strong>Volatility 100 · 1m</strong>
-            <Badge tone="up" pulse>
-              Live
-            </Badge>
-          </header>
-          <LiveChart symbol="R_100" granularity={60} size="md" />
-          <footer className={styles.terminalFoot}>
-            <span>Server-side · 24/7</span>
-            <span>Kill switch armed</span>
-            <span>Costs included</span>
-          </footer>
+          </span>
+          <div className={`glass ${styles.terminal}`}>
+            <header className={styles.terminalHead}>
+              <span className={styles.lights} aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </span>
+              <strong>Volatility 100 · 1m</strong>
+              <Badge tone="up" pulse>
+                Live
+              </Badge>
+            </header>
+            <LiveChart symbol="R_100" granularity={60} size="md" />
+            <footer className={styles.terminalFoot}>
+              <span>Server-side · 24/7</span>
+              <span>Kill switch armed</span>
+              <span>Costs included</span>
+            </footer>
+          </div>
+          <span className={`glass ${styles.chip} ${styles.chipBottom}`}>
+            <TbShieldCheck aria-hidden="true" />
+            <span>
+              <strong>Kill switch armed</strong>
+              <small>Limits on every bot</small>
+            </span>
+          </span>
         </div>
       </section>
 

@@ -28,13 +28,30 @@
 }
 
 .primary {
+  overflow: hidden;
   background: var(--gradient);
+  background-size: 160% 100%;
   color: #02130e;
   box-shadow: var(--glow);
+  transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease), background-position 600ms var(--ease);
+}
+
+.primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 700ms var(--ease);
 }
 
 .primary:hover {
-  box-shadow: 0 0 0 1px rgba(25, 245, 193, 0.45), 0 14px 50px -10px rgba(43, 217, 255, 0.6);
+  background-position: 100% 0;
+  box-shadow: 0 0 0 1px rgba(0, 200, 150, 0.5), 0 16px 50px -10px rgba(34, 211, 238, 0.6);
+}
+
+.primary:hover::after {
+  transform: translateX(120%);
 }
 
 .glass {

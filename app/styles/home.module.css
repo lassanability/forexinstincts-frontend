@@ -13,9 +13,71 @@
 }
 
 .title {
-  font-size: clamp(42px, 7vw, 82px);
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-size: clamp(36px, 5.6vw, 68px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+}
+
+.stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xl) 0;
+}
+
+.lion {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  width: 120%;
+  max-width: 620px;
+  height: auto;
+  opacity: 0.16;
+  filter: drop-shadow(0 0 60px rgba(0, 200, 150, 0.8)) blur(0.5px);
+  transform: translate(-50%, -50%);
+  animation: breathe 7s ease-in-out infinite;
+}
+
+.chip {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  animation: float 7s ease-in-out infinite;
+}
+
+.chip svg {
+  width: 18px;
+  height: 18px;
+  color: var(--emerald);
+}
+
+.chip strong {
+  display: block;
+  font-size: 13px;
+}
+
+.chip small {
+  display: block;
+  color: var(--text-3);
+  font-size: 11px;
+}
+
+.chipTop {
+  top: -22px;
+  right: -20px;
+}
+
+.chipBottom {
+  bottom: -24px;
+  left: -24px;
+  animation-delay: -3s;
 }
 
 .lead {
@@ -231,17 +293,24 @@
   gap: var(--space-lg);
   padding: var(--space-section) var(--space-xl);
   border-radius: var(--radius-xl);
-  background: radial-gradient(600px 300px at 50% 0%, rgba(25, 245, 193, 0.18), transparent 70%), var(--panel);
+  background: radial-gradient(600px 300px at 50% 0%, rgba(0, 200, 150, 0.18), transparent 70%), var(--panel);
   text-align: center;
 }
 
 .cta h2 {
-  font-size: clamp(30px, 4vw, 48px);
+  font-size: clamp(26px, 3.6vw, 42px);
 }
 
 @keyframes float {
   50% {
     transform: translateY(-8px);
+  }
+}
+
+@keyframes breathe {
+  50% {
+    opacity: 0.24;
+    transform: translate(-50%, -50%) scale(1.04);
   }
 }
 

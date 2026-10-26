@@ -34,7 +34,7 @@
 .field select:focus,
 .field textarea:focus {
   border-color: var(--emerald);
-  box-shadow: 0 0 0 3px rgba(25, 245, 193, 0.15);
+  box-shadow: 0 0 0 3px rgba(0, 200, 150, 0.15);
 }
 
 .hint {

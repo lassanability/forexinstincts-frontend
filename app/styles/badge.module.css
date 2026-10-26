@@ -29,7 +29,7 @@
 }
 
 .up {
-  border-color: rgba(25, 245, 193, 0.35);
+  border-color: rgba(0, 200, 150, 0.35);
   background: var(--up-soft);
   color: var(--up);
 }
