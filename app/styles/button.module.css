@@ -8,7 +8,7 @@
   padding: 0 var(--space-lg);
   border: 1px solid transparent;
   border-radius: var(--radius-pill);
-  font-weight: 700;
+  font-weight: 600;
   white-space: nowrap;
   transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease), background var(--duration) var(--ease), border-color var(--duration) var(--ease);
 }
@@ -28,30 +28,13 @@
 }
 
 .primary {
-  overflow: hidden;
-  background: var(--gradient);
-  background-size: 160% 100%;
+  background: var(--emerald);
   color: #02130e;
-  box-shadow: var(--glow);
-  transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease), background-position 600ms var(--ease);
-}
-
-.primary::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
-  transform: translateX(-120%);
-  transition: transform 700ms var(--ease);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 30px -12px rgba(0, 200, 150, 0.7);
 }
 
 .primary:hover {
-  background-position: 100% 0;
-  box-shadow: 0 0 0 1px rgba(0, 200, 150, 0.5), 0 16px 50px -10px rgba(34, 211, 238, 0.6);
-}
-
-.primary:hover::after {
-  transform: translateX(120%);
+  filter: brightness(1.08);
 }
 
 .glass {

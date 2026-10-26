@@ -1,10 +1,9 @@
-import { Geist, Geist_Mono, Unbounded } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import Toaster from "@/app/components/ui/Toaster";
 import { SITE_NAME, SITE_URL } from "@/app/lib/site";
 import "@/app/styles/global.css";
 
 const body = Geist({ subsets: ["latin"], variable: "--font-body", display: "swap" });
-const display = Unbounded({ subsets: ["latin"], variable: "--font-display", display: "swap" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 
 const DESCRIPTION = "Server-side trading bots for Deriv: research-backed forex and gold strategies, honest backtests with real costs, and hard risk limits that actually stop.";
@@ -22,7 +21,7 @@ export const viewport = { themeColor: "#03060b", colorScheme: "dark", width: "de
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${body.variable} ${display.variable} ${mono.variable}`}>
+    <html lang="en" className={`${body.variable} ${mono.variable}`}>
       <body>
         {children}
         <Toaster />

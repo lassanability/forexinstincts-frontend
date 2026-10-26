@@ -34,9 +34,8 @@
 
 .column strong {
   color: var(--text);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .column a {
